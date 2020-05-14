@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         //객체 선언
+        var obj1 = new Object();
+        obj1[0] = 100; 
+        obj1[1] = 200;
+        
+        document.write(obj1[0],"<br>");
+        document.write(obj1[1],"<br><br>");
+        
+        //객체 선언
+        var obj2 = new Object();
+        obj2.a = 100; 
+        obj2.b = 200;
+        
+        document.write(obj2.a,"<br>");
+        document.write(obj2.b,"<br><br>");
+        
+        //객체 선언하고 데이터를 넣는 방법입니다.
+        var obj3 = {};
+        obj3.a = 100; 
+        obj3.b = 200;
+        
+        document.write(obj3.a,"<br>");
+        document.write(obj3.b,"<br><br>");
+        
+        //객체 선언과 동시에 데이터를 넣는 방법입니다.
+        var obj4 = {'a':100, 'b':200};
+        
+        document.write(obj4.a,"<br>");
+        document.write(obj4.b,"<br><br>");
+        
+        //객체와 배열
+        var obj5 = new Object();
+        obj5.a = ['100', '200']; 
+        obj5.b = "자바스크립트";
+        
+        document.write(obj5.a[0],"<br>");
+        document.write(obj5.a[1],"<br>");
+        document.write(obj5.b,"<br><br>");
+        
+        //객체와 배열 속성과 메서드를 사전에 정의하여 객체 생성하기
+        var obj6 = {
+            a : ['100', '200'],
+            b : "자바스크립트",
+            c : function(){
+                document.write("자바스크립트가 실행되었습니다.<br>");
+            },
+            d : function(){
+                document.write(this.b + "가 실행되었습니다.<br><br>");
+            }
+        }
+        document.write(obj6.a[0],"<br>");
+        document.write(obj6.a[1],"<br>");
+        document.write(obj6.b,"<br>");
+        obj6.c();
+        obj6.d();
+        
+        
+        //객체 생성자 표기법
+        //함수를 이용하면 여러개의 객체를 생성, 객체의 이름 대신 this 키워드를 사용.
+        function obj7(a, b){
+            this.a = a;
+            this.b = b;
+            this.c = function(){
+                return a * b;
+            }
+        }
+        var result1 = new obj7(100,200);
+        var result2 = new obj7("자바스크립트","제이쿼리");
+
+        document.write(result1.a,"<br>");
+        document.write(result1.b,"<br>");
+        document.write(result2.a,"<br>");
+        document.write(result2.b,"<br>");
+        document.write(result1.c(),"<br><br>");
+        
+        //
+        //배열 요소 호출하기
+        const array1 = [1, 4, 9, 16];
+        const map1 = array1.map(x => x * 2);
+        
+        document.write(map1,"<br><br>");
+        
+        
+        
+        //
+        const arr = [0,1,2,3];
+
+        let squaredArr = arr.map(function(element, index, array){
+            document.write(`${array}의 ${index}번째 인자 : ${element}`,"<br>");
+            return element * element;
+        });
+        /*
+        0,1,2,3의 0번째 인자 : 0
+        0,1,2,3의 1번째 인자 : 1
+        0,1,2,3의 2번째 인자 : 2
+        0,1,2,3의 3번째 인자 : 3
+        */
+
+        document.write(squaredArr,"<br><br>"); 
+        
+        
+        const calcWinsize = function(){
+            winsize = {
+                width: window.innerWidth, 
+                height: window.innerHeight
+            };
+            document.write(winsize.width,"<br>"); 
+            document.write(winsize.height,"<br><br>"); 
+        }    
+        
+        calcWinsize()
+        //window.addEventListener('resize', calcWinsize);
+        
+        
+        
+        /* 자바스크립트 제이쿼리 비교
+        var myElement = $("#id01");
+        var myElement = document.getElementById("id01");
+        
+        var myElements = $("p");
+        var myElements = document.getElementsByTagName("p");
+        
+        var myElements = $(".intro");
+        var myElements = document.getElementsByClassName("intro");
+        
+        var myElements = $("p.intro");
+        var myElements = document.querySelectorAll("p.intro");
+        
+        myElement.text("Hello Sweden!");
+        myElement.textContent = "Hello Sweden!";
+        
+        var myText = myElement.text();
+        var myText = myElement.textContent || myElement.innerText;
+        
+        var myElement.html("<p>Hello World</p>");
+        var myElement.innerHTML = "<p>Hello World</p>";
+        
+        var content = myElement.html();
+        var content = myElement.innerHTML;
+        
+        myElement.hide();
+        myElement.style.display = "none";
+        
+        myElement.show();
+        myElement.style.display = "";
+        
+        myElement.css("font-size","35px");
+        myElement.style.fontSize = "35px";
+        
+        $("#id").remove();
+        element.parentNode.removeChild(element);
+        
+        var myParent = myElement.parent();
+        var myParent = myElement.parentNode; */
+        
+        
+        
+        const getPageYScroll = function(){
+            docScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            document.write(docScroll,"<br><br>"); 
+        }
+        
+        getPageYScroll();
+        //window.addEventListener('scroll', getPageYScroll);
+        
+        
+        
+        
+        
+        const Rectangle = class {
+            constructor(height, width) {
+                this.height = height;
+                this.width = width;
+            }
+            area() {
+                return this.height * this.width;
+            }
+        }
+
+         document.write(new Rectangle(5,8).area());
+        document.write("<br><br>")
+        
+        
+        
+        
+        
+        
+        // for
+        var aru = [3, 9, 4, 2, 7, 6]
+        var new_arr = []
+
+        for (var i = 0; i < aru.length; i++) {
+            if (aru[i] % 2 === 0) {     // 2의 배수
+                new_arr.push(aru[i])
+            }
+        }
+        document.write(new_arr,"<br><br>")    // 4, 2, 6
+        
+        
+        var arr9 = [3, 9, 4, 2, 7, 6];
+        for (var i = 0; i < arr9.length; i++) {
+            if (arr9[i] % 2 == 0) {
+                document.write(arr9[i],"<br><br>");
+            }
+        }
+
+
+     
+        // forEach()
+        var arr2 = [3, 9, 4, 2, 7, 6]
+        var new_arr2 = []
+        arr2.forEach(function (n) {
+            if (n % 2 ===0) {
+                new_arr2.push(n)
+            }
+        })
+        document.write(new_arr2,"<br><br>")    // 4, 2, 6
+        
+        
+        // forEach() 버전
+        var arr10 = [3, 9, 4, 2, 7, 6];
+        arr10.forEach(function (n) {
+            if (n % 2 == 0) {
+                document.write(n);
+            }
+        });
+        document.write("<br><br>")
+
+        
+        // forEach with arrow fuction
+        var arr3 = [3, 9, 4, 2, 7, 6]
+        var new_arr3 = []
+        
+        arr3.forEach( (n) => { if (n % 2 === 0) new_arr3.push(n) })
+        
+        document.write(new_arr3,"<br><br>")    // 4, 2, 6
+        
+        
+        //for in
+        var obj7 = { 
+            a: 1, 
+            b: 2, 
+            c: 3 
+        }; 
+        for (var prop in obj7) { 
+            document.write(prop, obj7[prop]); // a 1, b 2, c 3 
+        }
+         document.write("<br><br>")
+        
+        
+        //for of
+        var iterable = [10, 20, 30]; 
+        for (var value of iterable) { 
+            document.write(value); // 10, 20, 30 
+        }
+        document.write("<br><br>")
+        
+        
+        //for in 반복문 : 객체의 모든 열거 가능한 속성에 대해 반복
+        //for of 반복문 : [Symbol.iterator] 속성을 가지는 컬렉션 전용
+
+        var iterable = [3, 5, 7]; 
+        iterable.foo = "hello"; 
+        for (var key in iterable) { 
+            document.write(key); // 0, 1, 2, "foo", "arrCustom", "objCustom" 
+        }
+        document.write("<br><br>")
+            
+         for (var value2 of iterable) { 
+             document.write(value2); // 3, 5, 7 
+         }
+        document.write("<br><br>")
+
+
+        
+        // 합집합
+        let arrA = [1, 4, 3, 2]
+        let arrB = [5, 2, 6, 7, 1]
+        document.write([...new Set([...arrA, ...arrB])],"<br><br>")   // [1, 4, 3, 2, 5, 6, 7]
+
+        // 교집합
+        let arrC = [1, 4, 3, 2];
+        let arrD = [5, 2, 6, 7, 1];
+        document.write(arrC.filter(it => arrD.includes(it)),"<br><br>")   //[1, 2]
+        
+        
+        
+        
+        var obj = {
+            apple: 500,
+            grape: 2000,
+            berry: 30
+        };
+        var sum = 0;
+        for (var prop in obj) {
+            sum += obj[prop];
+        }
+        document.write(sum,"<br><br>"); // 2530
+        
+        
+        
+        function func6(name){
+            document.write('1. '+ name +'가 실행되었습니다.<br>');
+            document.write(`2. ${name}가 실행되었습니다.<br>`);
+        }
+        func6("함수");
+        
+        function func61(text1, text2){
+            document.write('3. '+ text1 + '가 ' + text2 + '되었습니다.<br>');
+            document.write(`4. ${text1}가 ${text2}되었습니다.<br>`);
+        }
+        func61("함수", "실행");
+        
+        
+        document.write("<br><br>")
+        
+        
+        //https://velog.io/@decody/ES6-Sheetsheet
+        
+        
+        
+        function sum6(x, y, z) {
+          return x + y + z;
+        }
+
+        const numbers = [1, 2, 3];
+        
+        
+        document.write(sum6(...numbers),"<br>");
+        document.write(sum6.apply(null, numbers),"<br><br>");
+        
+        function myFunction(x, y, z) { }
+        var args = [0, 1, 2];
+        myFunction.apply(null, args);
+        
+        function myFunction(x, y, z) { }
+        var args = [0, 1, 2];
+        myFunction(...args);
+        
+        
+        var arr1 = [0, 1, 2];
+        var arr2 = [3, 4, 5];
+        arr1 = arr1.concat(arr2);
+        
+        var arr1 = [0, 1, 2];
+        var arr2 = [3, 4, 5];
+        arr1 = [...arr1, ...arr2];
+        
+        
+        //https://infoscis.github.io/2018/02/13/ecmascript-6-introducing-javascript-classes/
+        //ECMAScript 5 이전 버전의 JavaScript에는 클래스가 없었습니다. 클래스에 가장 가까운 방법은 생성자를 생성한 다음 생성자의 프로토 타입에 메서드를 할당하는 것으로, 일반적으로 사용자 정의 타입 생성이라고 하는 접근 방식입니다.
+        function PersonType(name) {
+            this.name = name;
+        }
+        PersonType.prototype.sayName = function() {
+            document.write(this.name,"<br><br>");
+        };
+        let person = new PersonType("Nicholas");
+        person.sayName();   // outputs "Nicholas"
+        
+        
+        class PersonClass {
+            // PersonType 생성자와 동일합니다.
+            constructor(name) {
+                this.name = name;
+            }
+            // PersonType.prototype.sayName과 동일합니다.
+            sayName() {
+                document.write(this.name,"<br><br>");
+            }
+        }
+        let person2 = new PersonClass("Nicholas");
+        person2.sayName();   // outputs "Nicholas"
+        
+        //기본 클래스 표현식
+        let PersonClass2 = class {
+            // PersonType constructor와 같습니다.
+            constructor(name) {
+                this.name = name;
+            }
+            // PersonType.prototype.sayName과 같습니다.
+            sayName() {
+                document.write(this.name,"<br><br>");
+            }
+        };
+        let person3 = new PersonClass2("Nicholas");
+        person3.sayName();   // "Nicholas" 출력
+        
+        
+        //이름이 부여된 클래스 표현식
+        let PersonClass3 = class PersonClass4 {
+            // PersonType constructor와 같습니다.
+            constructor(name) {
+                this.name = name;
+            }
+            // PersonType.prototype.sayName과 같습니다.
+            sayName() {
+                document.write(this.name,"<br><br>");
+            }
+        };
+        let person4 = new PersonClass3("Nicholas");
+        person4.sayName();   // "Nicholas" 출력
+
+    
+        
+        var objdd = {
+            foo: function() {},
+            bar: function() {}
+        };
+        //ES6에서는 아래와 같이 줄일 수 있습니다.
+
+        var objdd = {
+            foo() {},
+            bar() {}
+        };
+        
+        
+        
+  
+        
+  
+        
+       
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

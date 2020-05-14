@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .layout {
+            transition: opacity 0.5s;
+            padding-left: 180px;
+            will-change: opacity;
+        }
+        
+        .nav-layout {
+            background: #f7f8fb; transition: background 0.2s;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 180px;
+            height: 100vh;
+            z-index: 1001;
+            padding: 100px 0;
+        }
+        .main-layout {padding: 0 22px 0 22px;}
+    </style>
+</head>
+<body>
+    
+    <div class="layout">
+		<div class="nav-layout">nav-layout</div>
+		<main class="main-layout">
+			<div class="main__header"></div>
+			<div class="main__content">
+			    main__content
+			    
+			</div>
+		</main>
+	</div>
+	
+	
+</body>
+</html>

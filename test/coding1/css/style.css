@@ -1,0 +1,31 @@
+/* reset */
+* {margin: 0; padding: 0;}
+li {list-style: none;}
+a {text-decoration: none; color: #999}
+
+.clearfix::before,
+.clearfix::after {content: ''; display: block; clear: both;}
+
+/* layout */
+#wrap { }
+.container {width: 1000px; margin: 0 auto;}
+
+/* haeader */
+#haeader {background: red;}
+#haeader h1 {float: left; width: 30%; background: #ccc;}
+#haeader nav {float: right; width: 70%; background: #000;  text-align: right;}
+#haeader nav li {float: left; margin-left: 300px;}
+#haeader nav li a {color: #fff;}
+
+
+
+
+
+
+
+
+
+
+
+
+

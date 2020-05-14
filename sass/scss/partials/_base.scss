@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/*--------------------------------------------------
+  기초 설정
+  - 엘리먼트 셀렉터에 기본적인 속성을 지정합니다.
+  - normalize.css보다 우선순위가 높습니다.
+--------------------------------------------------*/
+
+/* 글로벌 */
+*,
+*:before,
+*:after {
+    @include experimental("box-sizing", border-box, webkit, moz, ms);
+}
+
+/* 루트 */
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    font-size: $base-font-size;
+}
+
+body {
+    @extend html;
+    color: $base-font-color;
+    position: relative;
+    line-height: $base-line-height;
+    font-weight: $base-font-weight;
+    letter-spacing: $base-tracking;
+    @include experimental("text-rendering", optimizeLegibility, webkit, moz, o, ms);
+    @include experimental("text-size-adjust", none, webkit, ms);
+}
+
+/* 언어 */
+html:lang(ko) {
+    font-family: $base-font;
+}
+html:lang(en) {
+    font-family: $base-font-en;
+}
+html:lang(ja) {
+    font-family: $base-font-ja;
+}
+html:lang(zn-Hans) {
+    font-family: $base-font-zn;
+}
+
+/* 헤딩 */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: normal;
+}
+h2 {
+    @include text-scale(2);
+}
+h3 {
+    @include text-scale(1);
+}
+h4, h5, h6 {
+    @include text-scale(0);
+}
+
+/* 단락 */
+p {
+    word-break: keep-all;
+}
+
+/* 링크 */
+a {
+    // color: #4196de;
+    color: $base-font-color;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+/* 이탤릭 취소 */
+address,
+em {
+    font-style: normal;
+}
+
+/* 라벨 */
+label {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    @include text-scale(0);
+}
+
+input[disabled],
+input[disabled] + label {
+    cursor: default !important;
+}
+
+/* 필드셋 */
+fieldset {
+    padding: 0;
+}

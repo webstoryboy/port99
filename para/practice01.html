@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>practice01</title>
+    <style>
+        *, *::after, *::befoer {box-sizing: border-box;}
+        :root {font-size: 16px;}
+        body {
+            margin: 0;
+            --color-text : #dc6e25;
+            --color-bg : #efded3;
+            --color-link : #000;
+            --color-link-hover : #dc6e25;
+            --size-title: 10rem;
+            --aspect-ratio: 32/17;
+            --imgwidthmax: 500px;
+            --blendmode-title: color-burn;
+            color: var(--color-link);
+            background-color: var(--color-bg);
+        }
+        .infor {
+            position: fixed; left: 10px; top: 10px; background: rgba(0,0,0,0.3);
+            z-index: 1000; width: 200px; height: 80px;
+        }
+        .infor2 {
+            position: fixed; left: 10px; top: 100px; background: rgba(0,0,0,0.3);
+            z-index: 1000; width: 200px; height: 100px;
+        }
+        .page {
+            display: grid;
+            padding: 5vw;
+            max-width: 1400px;
+            margin: 0 auto;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                'header meta'
+                '... meta'
+                'grid grid'
+        }
+        .page-title {
+            grid-area: header;
+        }
+        .contents {
+            width: 100vw;
+            justify-self: center;
+            grid-area: grid;
+            margin: 25vh 0 30vh;
+        }
+        .content-item {
+            --imgwidth: calc(var(--imgwidthmax) * var(--aspect-ratio));
+            width: var(--imgwidth);
+            max-width: 90vw;
+            position: relative;
+            will-change: transform;
+            margin-bottom: 30vh;
+            display: grid;
+            grid-template-columns: 20% 80%;
+        }
+        .content-item:nth-child(even){
+            margin-left: auto;
+        }
+        .content-item-num {
+            position: absolute; top: -7vw; right: -10vw; 
+            font-size: 25vw; opacity: 0.03; line-height: 1;
+        }
+        .content-item:nth-child(even) .content-item-num {
+            right: auto; left: -7vw;
+        }
+        .content-item-imgWrap {
+            position: relative;
+            --imgwidth: 100%;
+            margin: 0 auto;
+            grid-area: 1 / 1 / 3 / 3;
+            overflow: hidden;
+            width: var(--imgwidth);
+            padding-bottom: calc(var(--imgwidth) / (var(--aspect-ratio)));
+            will-change: transform;
+        }
+        .content-item-img {
+            background-image: url(images/a1.jpg);
+            --overflow: 40px;
+            height: calc(100% + (2 * var(--overflow)));
+            position: absolute;
+            top: calc( -1 * var(--overflow));
+            width: 100%;
+            background-size: cover;
+            background-position: 50% 0;
+            will-change: transform;
+        }
+        .content-item-title {
+            position: relative;
+            font-size: var(--size-title);
+            padding: 0 3vw;
+            margin: calc(var(--size-title) * -1/2) 0 0 0;
+            line-height: 1;
+            will-change: transform;
+            mix-blend-mode: var(--blendmode-title);
+        }
+        .content-item-desc {
+            justify-self: end;
+            position: relative;
+            margin: 0;
+            padding: 1rem 0 0 0;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="infor">
+        브라우저 width : <span class="width">0</span><br>
+        브라우저 height : <span class="height">0</span><br>
+        스크롤 height(docScroll) : <span class="scrollY">0</span><br>
+    </div>
+    <div class="infor2">
+        <div class="in1"></div>
+        <div class="in2"></div>
+        <div class="in3"></div>
+    </div>
+   
+    <div class="page">
+        <h1 class="page-title">Smooth Scroll</h1>
+        <div class="contents">
+            <section class="content-item">
+                <span class="content-item-num">01</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec1</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+            <section class="content-item">
+                <span class="content-item-num">02</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec2</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+            <section class="content-item">
+                <span class="content-item-num">03</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec3</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+            <section class="content-item">
+                <span class="content-item-num">04</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec4</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+            <section class="content-item">
+                <span class="content-item-num">05</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec5</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+            <section class="content-item">
+                <span class="content-item-num">06</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec6</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+            <section class="content-item">
+                <span class="content-item-num">07</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec7</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+            <section class="content-item">
+                <span class="content-item-num">08</span>
+                <div class="content-item-imgWrap">
+                    <div class="content-item-img"></div>
+                </div>
+                <h2 class="content-item-title">sec8</h2>
+                <p class="content-item-desc">Little tress and bushes gorw hoverer makes them</p>
+            </section>
+        </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        //선형 보간법
+        const MathUtils = {
+            map: (x, a, b, c, d) => (x - a) * (d - c) / (b - a) + c,
+            lerp: (a, b, n) => (1 -n) * a + n * b,
+            getRrandomFloat: (min, max) => (Math.random() * (max - min) + min).toFixed(2)
+        };
+        
+        //바디 속성 저장
+        const body = document.body; 
+        
+        //화면 사이즈 
+        let winsize;    
+        
+        //현재 화면 사이즈 구하기
+        //01.
+        /*const width = window.innerWidth;
+        const height = window.innerWidth;
+        
+        console.log("width : " + width);
+        console.log("height : " + height);*/
+        
+        //02
+        /* function calcWinsize(){
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            console.log("width : " + width);
+            console.log("height : " + height);
+        }
+        calcWinsize() */
+        
+        //03 함수 + 배열
+        /*function calcWinsize(){
+            const win = [window.innerWidth, window.innerHeight];
+            
+            console.log("width : " + win[0]);
+            console.log("height : " + win[1]);
+        }
+        calcWinsize()*/
+        
+        //04 익명 함수 + 객체
+        const calcWinsize = function(){
+            winsize = {
+                width: window.innerWidth,
+                height: window.innerHeight
+            };
+            
+            //console.log("width : " + winsize.width);
+            //console.log("height : " + winsize.height);
+            
+            //$(".infor span").eq(0).text(winsize.width);
+            //$(".infor span").eq(1).text(winsize.height);
+            
+            document.querySelector(".width").textContent = winsize.width;
+            document.querySelector(".height").textContent = winsize.height;
+            
+        }
+        calcWinsize()
+        
+        //05 화살표 함수
+        //const calcWinsize = () => winsize = {width: window.innerWidth, height: window.innerHeight}
+        
+        //실시간 화면 사이즈 구하기(제이쿼리)
+        /* $(window).resize(function(){
+            calcWinsize();
+        }); */
+        
+        //실시간 화면 사이즈 구하기(자바스크립트)
+        window.addEventListener('resize', calcWinsize);
+        
+        //스크롤 위치 값
+        let docScroll;
+        
+        //스크롤 마지막 위치 값;
+        let lastScroll;
+        
+        //스크롤 스피드 값
+        let scrollingSpeed = 0;
+        
+        //스크롤 위치 알아내기
+        const getPageYScroll = function(){
+            docScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            document.querySelector(".scrollY").textContent = docScroll;
+        }
+        //const getPageYScroll = () => docScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        getPageYScroll();
+        
+        //스크롤 될 때마다 스크롤 값 구하기
+        window.addEventListener('scroll', getPageYScroll);
+        
+        class test {
+            constructor(name){
+                this.name = name;
+                this.style = {a:1, b:2, c:3, d:4}
+                this.style2 = function(){
+                    return this.style.a + this.style.b
+                }
+                this.func1()
+                this.func2()
+                this.func3()
+            }
+            func1(){
+                document.querySelector(".in1").textContent = this.style.a;
+                document.querySelector(".in1").textContent += this.style.b;
+            }
+            func2(){
+                document.querySelector(".in2").textContent = this.name;
+            }
+            func3(){
+                document.querySelector(".in3").textContent = this.style2();
+            }
+        }
+        new test();
+       
+        
+        
+        //class
+        class Item {
+            constructor(el) { 
+                this.DOM = {el: el};
+                this.DOM.image = this.DOM.el.querySelector('.content-item-img');
+                this.DOM.imageWrapper = this.DOM.image.parentNode;
+                this.DOM.title = this.DOM.el.querySelector('.content-item-title');
+                this.renderedStyles = {
+                imageScale: {        
+                    previous: 0,  
+                    current: 0,   
+                    ease: 0.1,    
+                    setValue: () => {  
+                        const toValue = 1.5;
+                        const fromValue = 1;                              
+                        const val = MathUtils.map(this.props.top - docScroll, winsize.height, -1 * this.props.height, fromValue, toValue);             
+                        return Math.max(Math.min(val, toValue), fromValue);
+                    }
+                },
+                titleTranslationY: {
+                    previous: 0, 
+                    current: 0,  
+                    ease: 0.1,   
+                    fromValue: Number(MathUtils.getRandomFloat(30,400)),
+                    setValue: () => {
+                        const fromValue = this.renderedStyles.titleTranslationY.fromValue;
+                        const toValue = -1*fromValue;
+                        const val = MathUtils.map(this.props.top - docScroll, winsize.height, -1 * this.props.height, fromValue, toValue);
+                        return fromValue < 0 ? Math.min(Math.max(val, fromValue), toValue) : Math.max(Math.min(val, fromValue), toValue);
+                    }
+                }    
+            }
+            update() { 
+            
+            }
+            getSize() { 
+            
+            }
+            initEvents() { 
+            
+            }
+            resize() { 
+            
+            }
+            render() { 
+            
+            }
+            layout() { 
+            
+            }
+        }
+        
+        
+        
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

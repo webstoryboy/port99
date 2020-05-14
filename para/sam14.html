@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'Cafe24Danjunghae';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Danjunghae.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #contents>section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cafe24Danjunghae';
+        }
+
+        #contents>section h2 {
+            font-size: 4vw;
+            color: #fff;
+        }
+
+        .scroll {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            color: #fff;
+            font-family: 'Cafe24Danjunghae';
+        }
+
+        /* section */
+        #section1 {
+            background: radial-gradient(ellipse farthest-corner at center top, #A3A1FF, #3A3897);
+        }
+
+        #section2 {
+            background: radial-gradient(ellipse farthest-corner at center bottom, #3AA17E, #00537E);
+        }
+
+        #section3 {
+            background: radial-gradient(ellipse farthest-corner at center top, #FBB03B, #D4145A);
+        }
+
+        #section4 {
+            background: radial-gradient(ellipse farthest-corner at center top, #29ABE2, #4F00BC);
+        }
+
+        #section5 {
+            background: radial-gradient(ellipse farthest-corner at center top, #FF5300, #45145A);
+        }
+
+        #section6 {
+            background: radial-gradient(ellipse farthest-corner at center bottom, #852D91, #312A6C);
+        }
+
+        #section7 {
+            background: radial-gradient(ellipse farthest-corner at center top, #A3A1FF, #3A3897);
+        }
+
+        #section8 {
+            background: radial-gradient(ellipse farthest-corner at center bottom, #3AA17E, #00537E);
+        }
+
+        #section9 {
+            background: radial-gradient(ellipse farthest-corner at center top, #FBB03B, #D4145A);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contents">
+        <section id="section1">
+            <h2>Scroll Down Button #1</h2>
+            <a href="#section2" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section2">
+            <h2>Scroll Down Button #2</h2>
+            <a href="#section3" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section3">
+            <h2>Scroll Down Button #3</h2>
+            <a href="#section4" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section4">
+            <h2>Scroll Down Button #4</h2>
+            <a href="#section5" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section5">
+            <h2>Scroll Down Button #5</h2>
+            <a href="#section6" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section6">
+            <h2>Scroll Down Button #6</h2>
+            <a href="#section7" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section7">
+            <h2>Scroll Down Button #7</h2>
+            <a href="#section8" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section8">
+            <h2>Scroll Down Button #8</h2>
+            <a href="#section9" class="scroll"><span></span>Scroll</a>
+        </section>
+        <section id="section9">
+            <h2>Scroll Down Button #9</h2>
+            <a href="#section1" class="scroll"><span></span>Scroll</a>
+        </section>
+    </div>
+
+    <script>
+        //sroll버튼을 클릭하면 글씨 색을 파란색으로 변경해주세요!!
+        // $(".scroll").click(function(){
+        //   $("h2").css("color","blue");
+        // });
+
+        // 두번째 스크롤 버튼을 클릭하면 두번째 섹션의 h2 글씨를 변수에
+        // 저장하고 alert으로 출력하시요.
+        // $("#section2 .scroll").click(function(){
+        //   let h2 = $("#section2 h2").text();
+        //   alert(h2);
+        // });
+
+        // 세번째 스크롤 버튼을 클릭하면 섹션 3번째의 a 링크의 href 속성값을
+        // 변수에 저장하고 alert으로 출력하시오.
+        // $("#section3 .scroll").click(function(){
+        //   let attr = $("#section3 .scroll").attr("href");
+        //   alert(attr);
+        // });
+
+
+        //$("a[href^='#']").click(function(){});
+
+        // $("a[href^='#']").on("click",function(){
+        //   let target = $($(this).attr("href"));  
+        //   //let target = $("#section4");
+        //   //alert(target)
+
+        //   if(target.length){
+        //     $("html, body").animate({ scrollTop : target.offset().top },600,"easeInOutExpo");
+        //   }
+        // });
+
+        document.querySelectorAll('a[href^="#"]').forEach(elem => {
+            elem.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(elem.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

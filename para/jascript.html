@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript</title>
+</head>
+<body>
+    <script>
+        //01. 변수 선언
+        var x = 100;
+        var y = 200;
+        var z = "javascript";
+        
+        document.write("01. 변수 선언<br>");
+        document.write(x, "<br>");
+        document.write(y, "<br>");
+        document.write(z, "<br><br>");
+        
+        //02. 변수 선언
+        let x1 = 100;
+        let y1 = 200;
+        let z1 = "javascript";
+        
+        document.write("02. 변수 선언<br>");
+        document.write(x1, "<br>");
+        document.write(y1, "<br>");
+        document.write(z1, "<br><br>");
+        
+        //03. 상수 선언
+        const x2 = 100;
+        const y2 = 200;
+        const z2 = "자바스크립트";
+        
+        document.write("03. 변수 선언<br>");
+        document.write(x2, "<br>");
+        document.write(y2, "<br>");
+        document.write(z2, "<br><br>");
+        
+        //04. 변수 변경
+        x = 300;
+        y = 400;
+        z = "jquery";
+        
+        document.write("04. 변수 변경<br>");
+        document.write(x, "<br>");
+        document.write(y, "<br>");
+        document.write(z, "<br><br>");
+        
+        //05. 상수 변경
+        //x2 = 100;
+        //y2 = 200;
+        //z2 = "자바스크립트";
+        
+        //document.write("05. 상수 변경<br>");
+        //document.write(x2, "<br>");
+        //document.write(y2, "<br>");
+        //document.write(z2, "<br><br>");
+        
+        //06. 배열 선언 - 배열은 선언하고 저장
+        const arr1 = new Array();
+        arr1[0] = 100;
+        arr1[1] = 200;
+        
+        document.write("06. 배열 선언 - 배열은 선언하고 저장<br>");
+        document.write(arr1[0], "<br>");
+        document.write(arr1[1], "<br><br>");
+        
+        //07. 배열 선언
+        const arr2 = [];
+        arr2[0] = 100;
+        arr2[1] = 200;
+        
+        document.write("07. 배열 선언<br>");
+        document.write(arr2[0], "<br>");
+        document.write(arr2[1], "<br><br>");
+        
+        //08. 배열 선언 - 배열을 선언과 동시에 저장
+        const arr3 = new Array(100,200);
+        
+        document.write("08. 배열 선언 - 배열을 선언과 동시에 저장<br>");
+        document.write(arr3[0], "<br>");
+        document.write(arr3[1], "<br><br>");
+        
+
+        //09. 배열 선언 - 배열을 선언하지 않고 저장
+        const arr4= [100, 200];
+        
+        document.write("09. 배열 선언 -  배열을 선언하지 않고 저장<br>");
+        document.write(arr4[0], "<br>");
+        document.write(arr4[1], "<br><br>");
+
+        //10. 배열 크기
+        const arr5= [100, 200];
+        
+        document.write("10. 배열 크기<br>");
+        document.write(arr5.length, "<br><br>");
+
+        //11. 배열 요소 가져오기01
+        const arr6= [100, 200,300];
+        
+        document.write("11. 배열 요소 가져오기01<br>");
+        for(let  i =0;  i <arr6.length;  i++){
+            document.write(arr6[i], "<br>");
+        }
+        document.write("<br><br>");
+
+        //12. 배열 요소 가져오기02
+        const arr7= [100, 200,300];
+        const map7 = arr7.map (x => x);
+        
+        document.write("12. 배열 요소 가져오기02<br>");
+        document.write(map7);
+        document.write("<br><br>");
+         
+         //13. 배열 요소 가져오기03
+         const arr8= [100, 200,300];
+         const map8 = arr7.map (x => x*2);
+        
+        document.write("13. 배열 요소 가져오기03<br>");
+        document.write(map8);   
+        document.write("<br><br>");
+
+          //14. 배열 요소 가져오기04
+          document.write("14. 배열 요소 가져오기04<br>");
+        const arr9= [100, 200,300];
+        const map9 = arr9.map(function(element, index, array){
+            document.write(element,"<br>")
+            document.write(index,"<br>")
+            document.write(array,"<br>")
+        });
+        document.write("<br><br><br><br><br>");
+        
+        
+        
+        //20. 함수 - 선언적 함수
+        function func1(){
+            document.write("20. 함수가 실행되었습니다.<br><br>");
+        }
+        func1(); //함수 호출
+        
+        //21. 함수 - 익명 함수
+        const func2 = function(){
+            document.write("21. 함수가 실행되었습니다.<br><br>");
+        } 
+        func2();
+        
+        //22. 함수 - 매개변수 함수
+        function func3(name){
+            document.write(name);
+        }
+        func3("22. 함수가 실행되었습니다.<br><br>");
+        
+        //23. 함수 - 리턴값이 있는 함수
+        function func4(){
+            const str = "23. 함수가 실행되었습니다.<br><br>";
+            return str;
+        }
+        const val4 = func4();
+        document.write(val4);
+        
+        //24. 함수 - 재귀함수 : 함수 정의문 내에 함수를 다시 호출하여 실행하는 함수
+        function func5(){
+            document.write("24. 함수가 실행되었습니다.<br><br>");
+            //func5(); 무한로프
+        }
+        func5();
+        
+        //25. 함수 - 재귀함수2
+        function func6(num){
+            if( num == 0 ){
+                document.write("25. 함수가 실행되었습니다.<br><br>");
+            } else {
+                document.write("25. 함수가 실행되었습니다.<br><br>");
+                func6( num-1 );
+            }
+        }
+        func6(10);
+        
+        //26. 함수 - 콜백함수 : 함수를 변수에 저장하고 변수를 함수의 인자로 사용하여 매개변수에 전달하는 함수
+        function callback(num){
+            for( let i=1; i<=10; i++ ){
+                num(i);
+            } 
+        }
+        const func7 = function(i){    //파라미터
+            document.write("26. 함수가 실행되었습니다.<br><br>");
+        }
+        callback(func7);  //인자
+        
+        //27. 함수 - 내부 함수 : 함수 안에 함수를 선언하는 함수
+        function func8out(){
+            function func8in(){
+                const txt = "27. 함수가 실행되었습니다.<br><br>";
+                document.write(txt)
+            }
+            func8in();
+        }
+        func8out();     
+        
+        //28. 함수 - 내부 함수 : 함수 안에 함수를 선언하는 함수
+        function func9out(){
+            const txt = "28. 함수가 실행되었습니다.<br><br>";
+            function func9in(){
+                document.write(txt)
+            }
+            func9in();
+        }
+        func9out(); 
+        
+        
+        //29. 화살표 함수 - 선언적 
+        func10 = () => {
+            document.write("29. 함수가 실행되었습니다.<br><br>")
+        }
+        func10();
+        
+        //30. 화살표 함수 - 익명
+        const func11 = () => {
+            document.write("30. 함수가 실행되었습니다.<br><br>")
+        }
+        func11();
+        
+        //31. 화살표 함수 - 리턴값
+        const func12 = () => {
+            const str = "31. 함수가 실행되었습니다.<br><br>";
+            return str;
+        }
+        const var12 = func12();
+        document.write(var12);
+        
+        //32. 화살표 함수 - 매개변수
+        const func13 = (str) => {
+            return str;
+        }
+        const val13 = func13("32. 함수가 실행되었습니다.<br><br>");
+        document.write(val13);
+        
+        //33. 화살표 함수 - 매개변수, 괄호생략
+        const func14 = str => {
+            return str;
+        }
+        const val14 = func14("33. 함수가 실행되었습니다.<br><br>");
+        document.write(val14);
+        
+        //34. 화살표 함수 - 매개변수, 괄호생략, 리턴 생략
+        const func15 = str => str;
+
+        const val15 = func15("34. 함수가 실행되었습니다.<br><br>");
+        document.write(val15);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        document.write("<br><br><br><br><br>");
+        //51. for문 
+        document.write("51. for문<br>");
+        
+        //개수파악할때 !! 
+        for (let i = 1; i<=5; i++){
+            // 1 1<= 5 yes 
+            // 2 2<=5 yes 
+            // 3 3<=5 yes 
+            // 4 4<=5 yes
+            // 5 5<=5 yes
+            // 6 6<=6 no
+            document.write(i + ". for문이 실행되었습니다.<br>");
+        }
+        document.write("<br><br><br><br><br>");
+        
+       //52. for문 
+       document.write("52. for문<br>");
+       const for1 = [1, 2, 3, 4, 5, 6]; 
+       for(let i = 0; i < for1.length; i++){
+           if (for1[i] % 2 == 0){
+                document.write(for1[i] +". for문이 실행되었습니다.<br>");
+           }
+       }
+       //for1[0] = 1 % 2 == 0
+       //for1[1] = 2 % 2 == 0 
+       //for1[2] = 3 % 2 == 0 
+       //for1[3] = 4 % 2 == 0 
+       //for1[4] = 5 % 2 == 0 
+       //for1[5] = 6 % 2 == 0 
+       document.write("<br><br><br><br><br>");
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+@import "variables";
+
+/*--------------------------------------------------
+  모듈
+  - 재사용 가능한 유틸리티 CSS 모음입니다.
+  - 여러 차례 반복해서 사용될 항목만 모아놓습니다.
+--------------------------------------------------*/
+
+/* 플로트 클리어링 */
+.group {
+    @include clearfix;
+}
+
+/* 스타일링을 제거한 목록 */
+.list_unstyled {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 인라인 목록 */
+.list_inline {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+
+    > li {
+        display: inline-block;
+        @include text-scale(0);
+    }
+}
+
+/* 반응형 이미지 */
+.img_fluid {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 프리포맷된 폼 관련 요소 */
+input.styled,
+button.styled,
+select.styled {
+    background: white;
+    border: 1px solid $ui-border-color;
+    @include border-radius($radius);
+    color: $base-font-color;
+    display: inline-block;
+    height: 32px;
+    margin: 0;
+    padding: 0 6px;
+    line-height: 32px;
+    text-align: left;
+    @include text-scale(1);
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+input.styled,
+button.styled {
+    @include appearance(none);
+}
+
+input.shadow {
+    box-shadow: inset 0 1px 1px rgba(0,0,0, .055);
+}
+
+.select_overflow {
+    max-height: 25em;
+}
+
+
+/* 사운드리더 전용: Bootstrap에서 차용 */
+.sr_only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.image_fix {
+    line-height: 0;
+}
+
+.btn {
+    display: inline-block;
+    @include text-scale(1);
+    line-height: 17px;
+    padding: 5px 6px 8px;
+    text-align: center;
+    background: white;
+    color: $base-font-color;
+    border: 1px solid $ui-border-color;
+    @include border-radius($radius);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+/* 라디오, 체크박스 커스터마이징 */
+.radio,
+.checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: .1em;
+}
+
+.radio {
+    display: none;
+
+    + label {
+        display: inline-block;
+        height: 30px;
+        margin-left: 8px;
+        padding-left: 22px;
+        position: relative;
+        line-height: 30px;
+        cursor: pointer;
+        @include text-scale(1);
+        color: $base-font-color;
+
+        &:before,
+        &:after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            @include border-radius(50%);
+        }
+
+        &:before {
+            width: 16px;
+            height: 16px;
+            top: 7px;
+            left: 0;
+            border: 2px solid #babcbf;
+        }
+
+        &:after {
+            width: 6px;
+            height: 6px;
+            top: 12px;
+            left: 5px;
+        }
+
+        &:first-of-type {
+            margin-left: 0;
+        }
+    }
+
+    &.active + label {
+        &:before {
+            border-color: $accent;
+        }
+
+        &:after {
+            background: $accent;
+        }
+    }
+
+    &.disabled + label {
+        @include opacity(.5);
+    }
+}
+
+/* 날씨 아이콘 */
+.meteo {
+    display: inline-block;
+    background: {
+        attachment: scroll;
+        position: 0 0;
+        repeat: no-repeat;
+    }
+
+    // 대체 PNG가 ie8.scss에 추가되어야 함
+    @each $icon in $meteo-types {
+        &.#{$icon} {
+            background: url( $meteo-icon-path + "/" + $icon + ".svg" );
+        }
+    }
+}
+
+/* 풍향 아이콘 */
+.wind_dir {
+    display: inline-block;
+    background: {
+        attachment: scroll;
+        position: 0 0;
+        repeat: no-repeat;
+    }
+
+    // 대체 PNG가 ie8.scss에 추가되어야 함
+    @each $icon in $wind-directions {
+        &.#{$icon} {
+            background: url( $wind-icon-path + "/" + $icon + ".svg" );
+        }
+    }
+}

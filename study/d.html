@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grid</title>
+    <style>
+        /* reset */
+        *{margin: 0; padding: 0; font-size: 20px; margin: 0 auto;}
+        li {list-style: none;}
+        a,em {text-decoration: none;}
+        
+        /* header */
+        #wrap {width: 1200px; height: 1000px; background: #888;}
+        #header {width: 1000px; height: 100px; background: #fff;
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 2%;
+        }
+        .column3:last-child {
+            /* grid-column-start: 1; */
+            /* grid-column-end: 9; */
+            grid-column: span 1 / 9;
+        }
+         }
+    
+        .logo {}
+        .nav {grid-column: span 2 / 5; background-color: blue; z-index: 100;}
+        .nav ul li a {}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <header id="header">
+            <div class="logo">
+                <h1>
+                    <img src="images/logo.jpg" alt="logo">
+                </h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li>
+                        <a href="#">menu</a>
+                        <a href="#">menu</a>
+                        <a href="#">menu</a>
+                        <a href="#">menu</a>
+                    </li>
+                </ul>    
+            </nav>
+        </header>
+    </div>
+</body>
+</html>             
