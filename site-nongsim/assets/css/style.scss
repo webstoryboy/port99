@@ -29,6 +29,21 @@
                 font-weight: 500;
                 padding: 26px 20px;
                 display: inline-block;
+
+                span {
+                    position: relative;
+
+                    &::before {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        bottom: -3px; left: 50%;
+                        width: 100%;
+                        height: 0;
+                        border-top: 2px solid #d83832;
+                        transform: translateX(-50%);
+                    }
+                }
             }
         }
         li.live {
@@ -52,6 +67,10 @@
         }
     }
 }
+
+#header.white h1 svg {fill: #000} 
+#header.white .header .nav li a {color: #000;}
+
 
 /* 배너 */
 #banner {
@@ -430,3 +449,7 @@
         }
     }
 }
+
+
+
+/******* overview *******/

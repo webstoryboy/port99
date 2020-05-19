@@ -313,6 +313,199 @@
   <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
                 </div>
                 <!-- //Intro3 -->
+
+
+
+                <style>
+                    .circle12.show {animation: move 3s 10 cubic-bezier(0,0,0,0);}
+                    .circle13.show {animation: move 3s 10 cubic-bezier(1,0,0,1);}
+                    .circle14.show {animation: move 3s 10 cubic-bezier(0,.6,.2,.97);}
+                    .circle15.show {animation: move 3s 10 cubic-bezier(0,.6,.49,1.79);}
+                    .circle16.show {animation: move 3s 10 cubic-bezier(1,-0.85,.49,1.79);}
+                </style>
+                <!-- Intro3 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro3" class="page-header">Animation-timing-function : Cubic-bezier<span class="btn" id="btn3">Click</span></h2>
+                    <div class="sBox s3">
+                        <div class="circle12">cubic-bezier(0,0,0,0)</div>
+                        <div class="circle13">cubic-bezier(1,0,0,1)</div>
+                        <div class="circle14">cubic-bezier(0,.6,.2,.97)</div>
+                        <div class="circle15">cubic-bezier(0,.6,.49,1.79)</div>
+                        <div class="circle16">cubic-bezier(1,-0.85,.49,1.79)</div>
+                    </div>
+<pre class="line-numbers language-css"><code>.circle12.show {animation: move 3s 10 cubic-bezier(0,0,0,0);}
+.circle13.show {animation: move 3s 10 cubic-bezier(1,0,0,1);}
+.circle14.show {animation: move 3s 10 cubic-bezier(0,.6,.2,.97);}
+.circle15.show {animation: move 3s 10 cubic-bezier(0,.6,.49,1.79);}
+.circle16.show {animation: move 3s 10 cubic-bezier(1,-0.85,.49,1.79);}
+</code></pre>
+
+                </div>
+                <!-- //Intro3 -->
+
+
+                <style>
+                    .circle17.show {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.1s;}
+                    .circle18.show {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.2s;}
+                    .circle19.show {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.3s;}
+                    .circle20.show {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.4s;}
+                </style>
+                <!-- Intro4 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro4" class="page-header">animation-delay <span class="btn" id="btn4">Click</span></h2>
+                    <div class="sBox s4">
+                        <div class="circle17">circle17</div>
+                        <div class="circle18">circle18</div>
+                        <div class="circle19">circle19</div>
+                        <div class="circle20">circle20</div>
+                    </div>
+<pre class="line-numbers language-css"><code>.circle17 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.1s;}
+.circle18 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.2s;}
+.circle19 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.3s;}
+.circle20 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.4s;}
+</code></pre>
+
+                </div>
+                <!-- //Intro4 -->
+
+                <style>
+                    .sBox.s5 {height: 500px;}
+                    .circle21.normal {animation: move2 3s 10 ease normal;}
+                    .circle21.reverse {animation: move2 3s 10 ease reverse;}
+                    .circle21.alternate {animation: move2 3s 10 ease alternate;}
+                    .circle21.alternate-reverse {animation: move2 3s 10 ease alternate-reverse;}
+                    @keyframes move2 {
+                        0% {left: 0; top: 0;}
+                        25% {left: calc(100% - 80px); top:0;}
+                        50% {left: calc(100% - 80px); top: calc(100% - 80px)}
+                        75% {left:0; top: calc(100% - 80px)}
+                        100% {left: 0; top:0;}
+                    }
+                </style>
+                <!-- Intro5 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro5" class="page-header">animation-direction 
+                        <span class="btn" id="btn5-1">normal</span>
+                        <span class="btn" id="btn5-2">reverse</span>
+                        <span class="btn" id="btn5-3">alternate</span>
+                        <span class="btn" id="btn5-4">alternate-reverse</span>
+                    </h2>
+                    <div class="sBox s5">
+                        <div class="circle21">circle21</div>
+                    </div>
+<pre class="line-numbers language-css"><code>.circle17 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.1s;}
+.circle18 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.2s;}
+.circle19 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.3s;}
+.circle20 {animation: move 3s 10 cubic-bezier(0,.6,.2,.97) 0.4s;}
+</code></pre>
+
+                </div>
+                <!-- //Intro6 -->
+
+                <style>
+                    .circle22.show {animation: move 2s ease 1;}
+                    .circle23.show {animation: move 2s ease 2;}
+                    .circle24.show {animation: move 2s ease 3;}
+                    .circle25.show {animation: move 2s ease infinite;}
+                </style>
+                <!-- Intro7 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro7" class="page-header">animation-iteration-count 
+                        <span class="btn" id="btn7">start</span>
+                    </h2>
+                    <div class="sBox s7">
+                        <div class="circle22">circle22</div>
+                        <div class="circle23">circle23</div>
+                        <div class="circle24">circle24</div>
+                        <div class="circle25">circle25</div>
+                    </div>
+<pre class="line-numbers language-css"><code>
+</code></pre>.circle22.show {animation: move 2s ease 1;}
+.circle23.show {animation: move 2s ease 2;}
+.circle24.show {animation: move 2s ease 3;}
+.circle25.show {animation: move 2s ease infinite;}
+                </div>
+                <!-- //Intro7 -->
+
+                <style>
+                    .sBox.s8 {height: 500px;}
+                    .sBox.s8>div.running {animation: move2 3s 10 ease; animation-play-state: running;}
+                    .sBox.s8>div.paused {animation: move2 3s 10 ease; animation-play-state: paused;}
+                </style>
+                <!-- Intro8 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro8" class="page-header">animation-play-state
+                        <span class="btn" id="btn8-1">running</span>
+                        <span class="btn" id="btn8-2">paused</span>
+                    </h2>
+                    <div class="sBox s8">
+                        <div class="circle26">circle26</div>
+                    </div>
+<pre class="line-numbers language-css"><code>.sBox.s8 {height: 500px;}
+.sBox.s8>div.running {animation: move2 3s 10 ease; animation-play-state: running;}
+.sBox.s8>div.paused {animation: move2 3s 10 ease; animation-play-state: paused;}
+</code></pre>
+                </div>
+                <!-- //Intro8 -->
+
+                <style>
+                    .sBox.s9 > div {display: inline-block;}
+                    .sBox.s9 > div.bounce {animation: bounce 1s 10 ease;}
+                    .sBox.s9 > div.rubberBand {animation: rubberBand 1s 10 ease;}
+
+                    @keyframes bounce {
+                        from,60%,75%,90%,to {
+                            animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                        }
+                        0% {
+                            opacity: 0;
+                            transform: translate3d(-3000px, 0, 0) scaleX(3);
+                        }
+                        60% {
+                            opacity: 1;
+                            transform: translate3d(25px, 0, 0) scaleX(1);
+                        }
+                        75% {
+                            transform: translate3d(-10px, 0, 0) scaleX(0.98);
+                        }
+                        90% {
+                            transform: translate3d(5px, 0, 0) scaleX(0.995);
+                        }
+                        to {
+                            transform: translate3d(0, 0, 0);
+                        }
+                    }
+                    @keyframes rubberBand {
+                        from {transform: scale3d(1, 1, 1);}
+                        30% {transform: scale3d(1.25, 0.75, 1);}
+                        40% {transform: scale3d(0.75, 1.25, 1);}
+                        50% {transform: scale3d(1.15, 0.85, 1); }
+                        65% {transform: scale3d(0.95, 1.05, 1);}
+                        75% {transform: scale3d(1.05, 0.95, 1);}
+                        to {transform: scale3d(1, 1, 1);}
+                    }
+             
+                </style>
+                <!-- Intro9 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro9" class="page-header">animation
+                        <span class="btn">bounce</span>
+                        <span class="btn">rubberBand</span>
+                    </h2>
+                    <div class="sBox s9">
+                        <div class="circle27">circle27</div>
+                        <div class="circle27">circle27</div>
+                        <div class="circle27">circle27</div>
+                        <div class="circle27">circle27</div>
+                        <div class="circle27">circle27</div>
+                        <div class="circle27">circle27</div>
+                        <div class="circle27">circle27</div>
+                        <div class="circle27">circle27</div>
+                    </div>
+<pre class="line-numbers language-css"><code>
+</code></pre>
+                </div>
+                <!-- //Intro9 -->
                 
 
 
@@ -370,6 +563,33 @@
             $(".sBox.s2 > div").addClass("show");
         });
 
+        $("#btn3").click(function(){
+            $(".sBox.s3 > div").addClass("show");
+        });
+
+        $("#btn4").click(function(){
+            $(".sBox.s4 > div").addClass("show");
+        });
+
+        $("#intro5 > span").click(function(){
+            let text =$(this).text();
+            //alert(text)
+            $(".sBox.s5 > div").removeClass("normal reverse alternate alternate-reverse").addClass(text);
+        });
+
+        $("#btn7").click(function(){
+            $(".sBox.s7 > div").addClass("show");
+        });
+
+        $("#intro8 > span").click(function(){
+            let tx = $(this).text();
+            $(".sBox.s8 > div").removeClass().addClass(tx);
+        });
+
+        $("#intro9 > span").click(function(){
+            let tx = $(this).text();
+            $(".sBox.s9 > div").removeClass().addClass(tx);
+        });
 
     </script>
 </body>
