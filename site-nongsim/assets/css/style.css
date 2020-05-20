@@ -80,7 +80,11 @@
 .header .side-nav li a {
   width: 25px;
   display: inline-block;
-  padding: 28px 10px 20px 20px;
+  padding: 16px 10px 16px 20px;
+}
+
+#header.white {
+  background: #fff;
 }
 
 #header.white h1 svg {
@@ -89,6 +93,10 @@
 
 #header.white .header .nav li a {
   color: #000;
+}
+
+#header.white .header .side-nav svg {
+  fill: #000;
 }
 
 /* 배너 */
