@@ -32,6 +32,10 @@
             width: 100%;
         }
 
+        ul {
+            padding: 10px 20px;
+        }
+
         body {
             background: url(img/so01.jpg) no-repeat center center;
             background-size: cover;
@@ -85,14 +89,14 @@
         }
 
         /* slide */
-        .slide-wrap {
+        .slider-wrap {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
         }
 
-        .slide-img {
+        .slider-img {
             position: relative;
             width: 1000px;
             height: 600px;
@@ -100,7 +104,7 @@
             box-shadow: 4px 4px 20px rgba(0, 0, 0, .5);
         }
 
-        .slide-img .slides {
+        .slider-img .slides {
             position: absolute;
             left: 0;
             top: 0;
@@ -111,7 +115,7 @@
 <body>
     <div class="info">
         <h1>Image Slider01</h1>
-        <p>페이드 효과 이미지 슬라이드</p>
+        <p>페이드 효과</p>
         <ul>
             <li>3초에 한번씩 이미지 변경하기</li>
         </ul>
@@ -127,8 +131,8 @@
         </ul>
     </div>
 
-    <div class="slide-wrap">
-        <div class="slide-img">
+    <div class="slider-wrap">
+        <div class="slider-img">
             <div class="slides"><img src="img/so01.jpg" alt="이미지1"></div>
             <div class="slides"><img src="img/so02.jpg" alt="이미지2"></div>
             <div class="slides"><img src="img/so03.jpg" alt="이미지3"></div>
@@ -139,8 +143,8 @@
 
     <script src="js/jquery.min_1.12.4.js"></script>
     <script>
-        let slideWrap = $(".slide-wrap");
-        let slideImg = $(".slide-img");
+        let slideWrap = $(".slider-wrap");
+        let slideImg = $(".slider-img");
         let slides = $(".slides");
 
         let currentIndex = 0;               //현재 첫 번재 보이는 이미지
