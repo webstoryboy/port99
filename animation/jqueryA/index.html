@@ -93,10 +93,267 @@
                 <!-- Intro1 -->
                 <div class="bs-docs-section">
                     <h2 id="intro1" class="page-header">Animation</h2>
-
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>유형</th>
+                                    <th>메서드</th>
+                                    <th>설명</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ce va" rowspan="3">Basic</td>
+                                    <td>.hide()</td>
+                                    <td>선택한 요소를 숨깁니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.show()</td>
+                                    <td>선택한 요소를 보여줍니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.toggle() <span style="color:red">♥</span></td>
+                                    <td>선택한 요소를 숨김/보여줍니다.</td>
+                                </tr>
+                                <tr>
+                                    <td class="ce va" rowspan="4">Fading</td>
+                                    <td>.fadeIn()</td>
+                                    <td>선택한 요소를 천천히 보여줍니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.fadeOut()</td>
+                                    <td>선택한 요소를 천천히 숨김니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.fadeto()</td>
+                                    <td>선택한 요소를 투명도를 조절합니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.fadeToggle()</td>
+                                    <td>선택한 요소를 천천히 숨김/보여줍니다.</td>
+                                </tr>
+                                <tr>
+                                    <td class="ce va" rowspan="3">Sliding</td>
+                                    <td>.slideDown()</td>
+                                    <td>선택한 요소를 슬라이딩으로 보여줍니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.slideToggle()</td>
+                                    <td>선택한 요소를 슬라이딩으로 숨김/보여줍니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.slideUp()</td>
+                                    <td>선택한 요소를 슬라이딩으로 숨김니다.</td>
+                                </tr>
+                                <tr>
+                                    <td class="ce va" rowspan="7">custom</td>
+                                    <td>.animate() <span style="color:red">♥</span></td>
+                                    <td>선택한 요소에 애니메이션을 적용합니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.clearQueue()</td>
+                                    <td>선택한 요소에 첫 번째 큐만 실행하고 대기 중인 큐는 모두 삭제합니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.delay()</td>
+                                    <td>선택한 요소의 애니메이션 효과를 지연합니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.dequeue()</td>
+                                    <td>선택한 요소 스택에 쌓인 큐를 모두 제거합니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.finish()</td>
+                                    <td>선택한 요소의 진행중인 애니메이션을 강제로 종료합니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.queue()</td>
+                                    <td>선택한 요소 스택에 대기 중인 큐를 반환하거나 추가할 수 있습니다.</td>
+                                </tr>
+                                <tr>
+                                    <td>.stop()</td>
+                                    <td>선택한 요소의 실행중인 애니메이션을 정지합니다.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
            
                 </div>
                 <!-- //Intro1 -->
+
+                <!-- Intro2 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro2" class="page-header">Animation</h2>
+                    <p class="bs-callout bs-callout-info">
+                        $("selector").animate(properties);<br>
+                        $("selector").animate(properties, duration);<br>
+                        $("selector").animate(properties, duration, easing);<br>
+                        $("selector").animate(properties, duration, easing, collback);
+                    </p>
+                    <p>
+                        properties : border, margin, padding, width, height,
+                        font-size, bottom, left, top, right, line-height<br>
+                        transform(x)
+                    </p>
+                    <p>
+                        //폰트 사이즈를 현재 크기에서 20px로 2초동안 애니메이션<br>
+                        $("선택자").animate({"font-size":"20px"},2000);<br>
+                        $("선택자").animate({fontSize:"20px"},2000);<br>
+                        //선택한 요소를 왼쪽, 오른쪽 마진값을 100px을 600밀리세컨드 동안 애니메이션<br>
+                        $("선택자").animate({marginLeft:100, marginRight:100},600);<br>
+                        $("선택자").animate({marginLeft:100, marginRight:100},"slow");<br>
+                    </p>
+
+                </div>
+                <!-- //Intro2 -->
+
+                <style>
+                    .box {height: 300px; position: relative;}
+                    .circle {
+                        position: absolute;
+                        width: 50px; height: 50px; background: green;
+                        border-radius: 50%;
+                    }
+                </style>
+                <!-- Intro3 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro3" class="page-header">Animation</h2>
+                    <h4>animation <span class="btn btn1">Start</span></h4>
+                    <div class="well">
+                        <div class="box">
+                            <div class="circle circle1"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro3 -->
+
+                <!-- Intro4 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro4" class="page-header">timing-function</h2>
+                    <h4 class="btn2">animation 
+                        <button>easeInCubic</button>
+                        <button>easeInOutQuart</button>
+                        <button>easeInOutBack</button>
+                        <button>easeInOutBounce</button>
+                        <button>easeOutElastic</button>
+                        <button>easeInCirc</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box">
+                            <div class="circle circle2"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro4 -->
+
+                <!-- Intro5 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro5" class="page-header">delay</h2>
+                    <h4 class="btn5">animation 
+                        <button>delay</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box circle5">
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro5 -->
+
+                <!-- Intro6 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro6" class="page-header">width</h2>
+                    <h4 class="btn6">animation 
+                        <button>start</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box circle6">
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro6 -->
+
+                <!-- Intro7 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro7" class="page-header">click</h2>
+                    <h4 class="btn7">animation 
+                        <button class="btn7-1">right</button>
+                        <button class="btn7-2">left</button>
+                        <button class="btn7-3">top</button>
+                        <button class="btn7-4">bottom</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box circle7">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro7 -->
+
+                <!-- Intro8 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro8" class="page-header">무한 반복</h2>
+                    <h4 class="btn8">animation 
+                        <button>start</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box circle8">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro8 -->
+
+                <!-- Intro9 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro9" class="page-header">일정한 간격으로 움직이기</h2>
+                    <h4 class="btn9">animation 
+                        <button>start</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box circle9">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro9 -->
+
+                <!-- Intro10 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro10" class="page-header">사라지는 애니메이션</h2>
+                    <h4 class="btn10">animation 
+                        <button>start</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box circle10">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro10 -->
+
+
+                <!-- Intro11 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro11" class="page-header">창작</h2>
+                    <h4 class="btn11">animation 
+                        <button>start</button>
+                    </h4>
+                    <div class="well">
+                        <div class="box circle11">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Intro11 -->
+                
                 
 
 
@@ -142,9 +399,136 @@
 
     <!-- Bootstrap core JavaScript -->
     <script src="../../assets/js/jquery-1.9.1.min.js"></script>
+    <script src="../../assets/js/jquery-ui.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
     <script src="../../assets/js/docs.min.js"></script>
     <script src="../../assets/js/prism.js"></script>
+    <script>
+        let boxWidth = $(".box").width();
+        let circleWidth = $(".circle").width();
+        let leftWidth = boxWidth - circleWidth;
+
+        $(".btn1").click(function(){
+            $(".circle1")
+                .animate({ left: leftWidth },1000)
+                .animate({ top: "80%" },1000)
+                .animate({ left: "0%" },1000)
+                .animate({ top: "0%" },1000)
+        });
+
+        //두번째 버튼을 클릭했을 때 클릭한 글씨를 출력해주세요~
+        $(".btn2 > button").click(function(){
+            let easing = $(this).text();
+
+            $(".circle2")
+                .animate({ left: leftWidth },1000, easing)
+                .animate({ top: "80%" },1000, easing)
+                .animate({ left: "0%" },1000, easing)
+                .animate({ top: "0%" },1000, easing)
+        });
+
+        //원의 position값을 relative로 변경해주세요~
+        $(".circle5 > div").css({"position":"relative", "margin-bottom":"30px"});
+
+        let ease = "easeOutElastic";
+
+        $(".btn5").click(function(){
+            $(".circle5 > div").eq(0).delay(100).animate({left: leftWidth},1000,ease).animate({left:"0"},1000);
+            $(".circle5 > div").eq(1).delay(200).animate({left: leftWidth},1000,ease).animate({left:"0"},1000);
+            $(".circle5 > div").eq(2).delay(300).animate({left: leftWidth},1000,ease).animate({left:"0"},1000);
+            $(".circle5 > div").eq(3).delay(400).animate({left: leftWidth},1000,ease).animate({left:"0"},1000);
+        });
+
+        //circle6의 하이트 값을 초기화해주세요~
+        $(".circle6").css("height","220px");
+        $(".circle6 > div").css({"position":"relative", "margin-bottom":"30px"});
+
+        $(".btn6").click(function(){
+            $(".circle6 > div:eq(0)")
+                .animate({left: leftWidth, width:"150px", height: "300px"},1000)
+                .animate({left:"0", width:"50px", height: "50px"},1000);
+            
+            $(".circle6 > div:eq(1)")
+                .animate({left: leftWidth },1000,"easeOutCirc")
+                .slideUp()
+                .slideDown()
+                .animate({left: "0" },1000,"easeOutCirc")
+            $(".circle6 > div:eq(2)")
+                .animate({ left: "50%", borderRadius:"0%" },1000, "easeOutQuint")
+                .animate({ height: 300, opacity: 0.5},"slow", "easeOutQuint")
+                .animate({ width: 300, opacity: 1, borderRadius:"30%"},"normal", "easeOutQuint")
+                .animate({ height: 50, width: 50, borderRadius:"50%" },1000, "easeOutQuint")
+                .animate({ left: 0},1000, "easeOutQuint")
+        });
+
+        $(".btn7-1").click(function(){
+            $(".circle7 > div").animate({ left: "+=100"}, "slow", "easeOutQuint");
+        });
+        $(".btn7-2").click(function(){
+            $(".circle7 > div").animate({ left: "-=100"}, "slow", "easeOutQuint");
+        });
+        $(".btn7-3").click(function(){
+            $(".circle7 > div").animate({ top: "-=100"}, "slow", "easeOutQuint");
+        });
+        $(".btn7-4").click(function(){
+            $(".circle7 > div").animate({ top: "+=100"}, "slow", "easeOutQuint");
+        });
+
+
+        $(".btn8 > button").click(function(){
+            loop();
+        });
+
+        function loop(){
+            $(".circle8 > div")
+                .animate({ left: leftWidth }, 1000, "easeOutQuint")
+                .animate({ left: 0 }, 1000, "easeOutQuint", loop);
+        }
+        
+
+        //9
+        $(".btn9").click(function(){
+            setInterval(time, 5000)
+        });
+
+        function time(){
+            $(".circle9 > div")
+                .animate({ left: leftWidth }, 1000, "easeOutQuint")
+                .animate({ left: 0 }, 1000, "easeOutQuint");
+        }
+
+        //10
+        $(".btn10").click(function(){
+            $(".circle10 > div")
+                .animate({ left: leftWidth }, 1000, "easeOutQuint")
+                .animate({ left: 0 }, 1000, "easeOutQuint");
+
+            setTimeout(out, 2000);
+        });
+
+        function out(){
+            $(".circle10 > div").hide();
+        }
+
+
+        // 속성. 애니메이션(2바퀴), --> 무한 움직이기  --> 10분 뒤에 사라지게
+        $(".btn11 > button").click(function(){
+            function loop(){
+                $(".circle11 > div")
+                    .animate({ left: leftWidth }, 1000, "easeOutQuint")
+                    .animate({ left: 0 }, 1000, "easeOutQuint", loop);
+            }
+            function out(){
+                $(".circle11 > div").hide();
+            }
+            loop();
+            setTimeout(out, 2000);
+        });
+
+        
+
+
+    </script>
 </body>
 
 </html>

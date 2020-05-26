@@ -483,8 +483,150 @@ C168.569,120.661,142.29,154.98,84.21,85.02z"/&gt;
 </code></pre>
                 </div>
                 <!-- //Intro6 -->
-                
 
+                <style>
+                    .aniRect1 {
+                        stroke: #880e4f; stroke-width: 18;
+                        transform-origin: center center;
+                        animation: rect1 8s infinite ease-in-out;
+                    }
+                    @keyframes rect1 {
+                        0% {stroke: #880e4f; stroke-width: 18; transform: rotate(0deg);}
+                        35% {stroke: #311b92; stroke-width: 1; transform: rotate(360deg)}
+                        70% {stroke: #004d40; stroke-width: 1; transform: rotate(360deg)}
+                        100% {stroke: #880e4f; stroke-width: 18; transform: rotate(0deg)}
+                    }
+                    .aniRect2 {
+                        stroke: #880e4f; stroke-width: 4;
+                        animation: rect2 2s infinite ease-in-out alternate;
+                        stroke-dasharray: 50;
+                        stroke-dashoffset: 50;
+                        stroke-linecap: round;
+                    }
+                    @keyframes rect2 {
+                        0% {stroke: #880e4f; stroke-dashoffset: 50;}
+                        35% {stroke: #311b92; }
+                        70% {stroke: #004d40; }
+                        100% {stroke: #880e4f; stroke-dashoffset: 0;}
+                    }
+                    .aniRect3 {
+                        stroke: #880e4f; stroke-width: 4;
+                        animation: rect3 2s infinite ease-in-out alternate;
+                        stroke-dasharray: 100;
+                        stroke-dashoffset: 100;
+                        stroke-linecap: round;
+                    }
+                    @keyframes rect3 {
+                        0% {stroke: #880e4f; stroke-dashoffset: 100;}
+                        35% {stroke: #311b92; }
+                        70% {stroke: #004d40; }
+                        100% {stroke: #880e4f; stroke-dashoffset: 0;}
+                    }
+                    .aniRect4 {
+                        stroke: #880e4f; stroke-width: 4;
+                        animation: rect4 4s infinite linear;
+                        stroke-dasharray: 400;
+                        stroke-dashoffset: 400;
+                    }
+                    @keyframes rect4 {
+                        0% {stroke: #880e4f; stroke-dashoffset: 400;}
+                        35% {stroke: #311b92; }
+                        70% {stroke: #004d40; }
+                        100% {stroke: #880e4f; stroke-dashoffset: 0;}
+                    }
+
+                    .aniPath1 { 
+                        fill: none; stroke: #880e4f; stroke-width: 2; stroke-linecap: round;
+                        animation: path1 2s infinite linear alternate-reverse;
+                        stroke-dasharray: 800;
+                    }
+                    @keyframes path1 {
+                        0% {stroke-dashoffset: 800;}
+                        100% {stroke-dashoffset: 0;}
+                    }
+                    .aniPath2 {
+                        fill: none; stroke: #880e4f; stroke-width: 2; 
+                        animation: path2 2s infinite linear alternate-reverse;
+                        stroke-dasharray: 1470;
+                    }
+                    @keyframes path2 {
+                        0% {stroke-dashoffset: 1470;}
+                        100% {stroke-dashoffset: 0;}
+                    }
+                    .aniPath3 {
+                        fill: none; stroke: #880e4f; stroke-width: 2; 
+                        animation: path3 3s infinite linear alternate-reverse;
+                        stroke-dasharray: 374;
+                    }
+                    @keyframes path3 {
+                        0% {stroke-dashoffset: 374;}
+                        100% {stroke-dashoffset: 0;}
+                    }
+
+                    .aniPath4 {
+                        fill: none; stroke: #880e4f; stroke-width: 2; 
+                        animation: path4 3s infinite linear alternate-reverse;
+                        stroke-dasharray: 1938;
+                    }
+                    @keyframes path4 {
+                        0% {stroke-dashoffset: 1938;}
+                        100% {stroke-dashoffset: 0;}
+                    }
+                </style>
+                <!-- Intro7 -->
+                <div class="bs-docs-section">
+                    <h2 id="intro7" class="page-header">Animation</h2>
+                    <div class="svgBox">
+                        <svg class="svg">
+                            <rect class="aniRect1" fill="none" width="100" height="100" x= "30" y="30" />
+                        </svg>
+                        <svg class="svg">
+                            <rect class="aniRect2" fill="none" width="100" height="100" x= "30" y="30" />
+                        </svg>
+                        <svg class="svg">
+                            <rect class="aniRect3" fill="none" width="100" height="100" x= "30" y="30" />
+                        </svg>
+                        <svg class="svg">
+                            <rect class="aniRect4" fill="none" width="100" height="100" x= "30" y="30" />
+                        </svg>
+                    </div>
+                    <div class="svgBox">
+                        <svg class="svg">
+                            <path class="aniPath1" d="M109.472,112.272c19.852,22.09-9.025,38.154-17.326,9.639
+                            c8.301,28.516-24.686,30.46-19.792,1.167c-4.894,29.293-35.457,16.731-18.338-7.538c-17.119,24.27-39.206-0.308-13.252-14.745
+                            C14.81,115.232,5.575,83.506,35.222,81.758C5.575,83.506,11.02,50.913,38.489,62.203c-27.47-11.29-8.424-38.292,11.428-16.201
+                            c-19.852-22.091,9.025-38.154,17.326-9.639C58.942,7.848,91.93,5.903,87.035,35.197c4.895-29.294,35.457-16.733,18.338,7.537
+                            c17.119-24.27,39.204,0.308,13.251,14.747c25.953-14.438,35.189,17.289,5.541,19.036c29.648-1.747,24.204,30.844-3.267,19.555
+                            C148.369,107.36,129.323,134.362,109.472,112.272z"/>
+                        </svg>
+                        <svg class="svg">
+                            <path class="aniPath2" d="M125.938,133.122C80.991,83.106,79.375,84.006,98.17,148.568
+                            c-18.795-64.563-20.642-64.454-31.721,1.869c11.079-66.323,9.369-67.025-29.39-12.08c38.759-54.945,37.522-56.321-21.239-23.632
+                            c58.762-32.689,58.245-34.465-8.88-30.51c67.125-3.955,67.43-5.779,5.235-31.34C74.37,78.437,75.436,76.925,30.491,26.91
+                            c44.944,50.016,46.561,49.117,27.767-15.447c18.794,64.563,20.64,64.455,31.722-1.869c-11.082,66.323-9.371,67.026,29.389,12.077
+                            c-38.76,54.949-37.523,56.325,21.238,23.635c-58.762,32.689-58.245,34.465,8.88,30.508c-67.125,3.957-67.43,5.781-5.234,31.34
+                            C82.057,81.596,80.991,83.106,125.938,133.122z"/>
+                        </svg>
+                        <svg class="svg">
+                            <path class="aniPath3" d="M21.663,6.022c4.399,4.515-9.927,18.471-5.528,22.987
+                            c4.399,4.516,18.726-9.439,23.125-4.923c4.399,4.516-9.927,18.471-5.528,22.987s18.725-9.44,23.124-4.925
+                            c4.399,4.516-9.927,18.472-5.527,22.988c4.4,4.517,18.726-9.439,23.126-4.922c4.399,4.516-9.927,18.472-5.527,22.988
+                            c4.399,4.516,18.724-9.44,23.124-4.924c4.398,4.515-9.927,18.471-5.528,22.987c4.399,4.515,18.725-9.44,23.124-4.926
+                            c4.4,4.518-9.926,18.473-5.525,22.989c4.401,4.519,18.728-9.437,23.129-4.918c4.399,4.517-9.926,18.472-5.526,22.988
+                            c4.403,4.521,18.729-9.436,23.133-4.915c4.403,4.52-9.923,18.476-5.52,22.995"/>
+                        </svg>
+                        <svg class="svg">
+                            <path class="aniPath4" d="M84.21,85.02c58.08,69.961,19.511,89.479-2.462,1.246
+                            c21.973,88.232-21.243,89.082-2.758,0.055c-18.484,89.027-57.791,71.043-2.509-1.148c-55.282,72.191-82.893,38.935-1.762-2.122
+                            c-81.131,41.057-91.576-0.889-0.667-2.678c-90.909,1.789-82.123-40.533,0.561-2.702C-8.071,39.839,18.21,5.52,76.29,75.48
+                            c-58.08-69.96-19.512-89.478,2.462-1.246c-21.974-88.232,21.241-89.082,2.759-0.055c18.482-89.027,57.79-71.043,2.509,1.148
+                            c55.281-72.191,82.892-38.934,1.763,2.123c81.129-41.057,91.576,0.888,0.666,2.677c90.91-1.789,82.121,40.533-0.561,2.701
+                            C168.569,120.661,142.29,154.98,84.21,85.02z"/>
+                        </svg>
+                        
+                    </div>
+                </div>
+                <!-- //Intro7 -->
 
                 
                
@@ -532,6 +674,13 @@ C168.569,120.661,142.29,154.98,84.21,85.02z"/&gt;
     <script src="../../assets/js/bootstrap.min.js"></script>
     <script src="../../assets/js/docs.min.js"></script>
     <script src="../../assets/js/prism.js"></script>
+    <script>
+        //let path = $(".aniPath2"); /* jquery */
+        let path = document.querySelector(".aniPath4"); /* javascript */
+
+        let length = path.getTotalLength();
+        alert(length)
+    </script>
 </body>
 
 </html>
