@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider01 - 페이드 효과 이미지 슬라이드</title>
+    <title>Slider06</title>
 
 
     <style>
@@ -20,7 +20,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: 0;
+            box-sizing: border-box;
         }
 
         a {
@@ -30,6 +30,7 @@
 
         img {
             width: 100%;
+            vertical-align: top;
         }
 
         ul {
@@ -91,48 +92,72 @@
 
         /* slide */
         .slider-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 1200px;
+            overflow: hidden;
+            /* background: #ccc; */
         }
 
         .slider-img {
             position: relative;
-            width: 1000px;
-            height: 600px;
+            width: 5000px;
             overflow: hidden;
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, .5);
         }
 
         .slider-img .slides {
+            float: left;
+            width: 400px;
+            padding: 10px;
+        }
+
+        /* btn */
+        .slider-btn a {
             position: absolute;
-            left: 0;
-            top: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: block;
+            padding: 2%;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .slider-btn a:hover {
+            opacity: 1;
+            transition: all 0.2s ease;
+        }
+
+        .slider-btn a.next {
+            right: 0;
         }
     </style>
 </head>
 
 <body>
     <div class="info">
-        <h1>Image Slider01</h1>
-        <p>페이드 효과</p>
+        <h1>Image Slider06</h1>
+        <p>좌로 움직이기</p>
         <ul>
-            <li>3초에 한번씩 이미지 변경하기</li>
+            <li>좌로 연속적으로 움직이기</li>
         </ul>
     </div>
 
     <div class="info2">
         <ul>
-            <li class="active"><a href="slide01.html">Slider01</a></li>
+            <li><a href="slide01.html">Slider01</a></li>
             <li><a href="slide02.html">Slider02</a></li>
             <li><a href="slide03.html">Slider03</a></li>
             <li><a href="slide04.html">Slider04</a></li>
             <li><a href="slide05.html">Slider05</a></li>
-            <li><a href="slide06.html">Slider06</a></li>
+            <li class="active"><a href="slide06.html">Slider06</a></li>
         </ul>
     </div>
 
+    <!-- slider -->
     <div class="slider-wrap">
         <div class="slider-img">
             <div class="slides"><img src="img/so01.jpg" alt="이미지1"></div>
@@ -143,24 +168,56 @@
         </div>
     </div>
 
+    <div class="slider-btn">
+        <a href="#" class="prev">prev</a>
+        <a href="#" class="next">next</a>
+    </div>
+
     <script src="js/jquery.min_1.12.4.js"></script>
     <script>
-        let slideWrap = $(".slider-wrap");
-        let slideImg = $(".slider-img");
-        let slides = $(".slides");
+        const sliderWrap = $(".slider-wrap");
+        const sliderImg = $(".slider-img");
+        const slides = $(".slides");
+        const slideBtn = $(".slider-btn");
 
-        let currentIndex = 0;               //현재 첫 번재 보이는 이미지
-        let slideCount = slides.length;   //이미지 갯수
+        let slideCount = slides.length;
+        let slideWidth = slides.outerWidth();
+        let showNumber = 3;
+        let currentIndex = 0;
 
-        function showNext() {
-            let nextIndex = (currentIndex - 1) % slideCount;
+        var slideCopy = $(".slides:lt(" + showNumber + ")").clone();
+        sliderImg.append(slideCopy);
 
-            slides.eq(currentIndex).fadeOut(500);
-            slides.eq(nextIndex).fadeIn(500);
-
-            currentIndex = nextIndex;
+        //이미지 움직이기
+        function back() {
+            if (currentIndex == 0) {
+                currentIndex = slideCount;
+                sliderImg.css("margin-left", -currentIndex * slideWidth + "px");
+            }
+            currentIndex--;
+            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
         }
-        setInterval(showNext, 3000)
+
+        function next() {
+            if (currentIndex == slideCount) {
+                currentIndex = 0;
+                sliderImg.css("margin-left", currentIndex);
+            }
+            currentIndex++;
+            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
+        }
+
+        //버튼 클릭하기
+        slideBtn.on("click", "a", function () {
+            if ($(this).hasClass("prev")) {
+                back();
+            } else {
+                next();
+            }
+        });
+
+
+
 
     </script>
 </body>
