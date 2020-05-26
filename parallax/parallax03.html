@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax02</title>
+    <title>Parallax03</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
@@ -250,61 +250,16 @@
             //console.log($(window).height()/2)
             //console.log(scrollTop)
             $(".scrollTop").text(scrollTop);
-            $(".s1OT").text( parseInt( $("#section1").offset().top ));
-            $(".s2OT").text( parseInt( $("#section2").offset().top ));
-            $(".s3OT").text( parseInt( $("#section3").offset().top ));
-            $(".s4OT").text( parseInt( $("#section4").offset().top ));
-            $(".s5OT").text( parseInt( $("#section5").offset().top ));
-            $(".s6OT").text( parseInt( $("#section6").offset().top ));
-            $(".s7OT").text( parseInt( $("#section7").offset().top ));
-            $(".s8OT").text( parseInt( $("#section8").offset().top ));
-            $(".s9OT").text( parseInt( $("#section9").offset().top ));
+            // $(".s1OT").text( parseInt( $("#section1").offset().top ));
+            // $(".s2OT").text( parseInt( $("#section2").offset().top ));
+            // $(".s3OT").text( parseInt( $("#section3").offset().top ));
+            // $(".s4OT").text( parseInt( $("#section4").offset().top ));
+            // $(".s5OT").text( parseInt( $("#section5").offset().top ));
+            // $(".s6OT").text( parseInt( $("#section6").offset().top ));
+            // $(".s7OT").text( parseInt( $("#section7").offset().top ));
+            // $(".s8OT").text( parseInt( $("#section8").offset().top ));
+            // $(".s9OT").text( parseInt( $("#section9").offset().top ));
 
-            if( scrollTop > parseInt( $("#section1").offset().top )){
-                $(".s1OT").css("color","red");
-            } else {
-                $(".s1OT").css("color","black");
-            }
-            if( scrollTop > parseInt( $("#section2").offset().top )){
-                $(".s2OT").css("color","red");
-            } else {
-                $(".s2OT").css("color","black");
-            }
-            if( scrollTop > parseInt( $("#section3").offset().top )){
-                $(".s3OT").css("color","red");
-            } else {
-                $(".s3OT").css("color","black");
-            }
-            if( scrollTop > parseInt( $("#section4").offset().top )){
-                $(".s4OT").css("color","red");
-            } else {
-                $(".s4OT").css("color","black");
-            }
-            if( scrollTop > parseInt( $("#section5").offset().top )){
-                $(".s5OT").css("color","red");
-            } else {
-                $(".s5OT").css("color","black");
-            }
-            if( scrollTop > parseInt( $("#section6").offset().top )){
-                $(".s6OT").css("color","red");
-            } else {
-                $(".s6OT").css("color","black");
-            } 
-            if( scrollTop > parseInt( $("#section7").offset().top )){
-                $(".s7OT").css("color","red");
-            } else {
-                $(".s7OT").css("color","black");
-            } 
-            if( scrollTop > parseInt( $("#section8").offset().top )){
-                $(".s8OT").css("color","red");
-            } else {
-                $(".s8OT").css("color","black");
-            }
-            if( scrollTop > parseInt( $("#section9").offset().top )){
-                $(".s9OT").css("color","red");
-            } else {
-                $(".s9OT").css("color","black");
-            }
 
             //노가다 
             // if( scrollTop > parseInt( $("#section1").offset().top )){
@@ -335,6 +290,16 @@
             //     $("#section9").addClass("show");
             // }
 
+            //한번에
+            for(let i=1; i<=9; i++){
+                $(".s"+i+"OT").text( parseInt( $("#section"+i).offset().top ));
+
+                if( scrollTop > parseInt( $("#section"+i).offset().top )){
+                    $(".s"+i+"OT").css("color","red");
+                } else {
+                    $(".s"+i+"OT").css("color","black");
+                }
+            }
 
             //한번에
             $(".content-item").each(function(){

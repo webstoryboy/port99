@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax02</title>
+    <title>Parallax04</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
@@ -264,7 +264,6 @@
             console.log("2:"+document.documentElement.scrollTop)
             console.log("3:"+window.pageYOffset)
 
-        
             document.querySelector(".pageYOffset").textContent = pageYOffset;
             document.querySelector(".s1OT").textContent = document.getElementById("section1").offsetTop;
             document.querySelector(".s2OT").textContent = document.getElementById("section2").offsetTop;
@@ -368,13 +367,17 @@
             // } else {
             //     document.getElementById("section9").classList.remove("show");
             // }
-
+            
             //한번에
-            // $(".content-item").each(function(){
-            //     if( scrollTop > $(this).offset().top ){
-            //         $(this).addClass("show");
-            //     }
-            // });
+            for(let i=1; i<=9; i++){
+                document.querySelector(".s"+i+"OT").textContent = document.getElementById("section1").offsetTop;
+
+                if( pageYOffset > document.getElementById("section"+i).offsetTop ){
+                    document.querySelector(".s"+i+"OT").style.color = "red";
+                } else {
+                    document.querySelector(".s"+i+"OT").style.color = "black";
+                }
+            }
 
             document.querySelectorAll(".content-item").forEach(elem => { 
                 console.log(elem.offsetTop);
@@ -386,12 +389,6 @@
             });
 
         });
-
-
-            //1시간 : 농심 메인 패랠럭스 효과
-            //1시간 : 피그마 정리
-
-            //개인별 사이트 확인 / 포트폴리오 확정-->스케치, 리서치, / 이력서 / 블로그 디자인,
 
 
     </script>
