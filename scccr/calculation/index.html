@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input type="number" id="input">
+        <button id="clear">C</button>
+    </div>
+    <div>
+        <button id="plus">+</button>
+        <button id="minus">-</button>
+        <button id="divide">/</button>
+        <button id="multiply">x</button>
+    </div>
+    <div>
+        <button id="calculate">=</button>
+        <input type="number" id="result">
+    </div>
+
+    <script>
+        const numberInput = document.querySelector("#input");
+        const clearButton = document.querySelector("#clear");
+        const plusButton = document.querySelector("#plus");
+        const minusButton = document.querySelector("#minus");
+        const divideButton = document.querySelector("#divide");
+        const multiplyButton = document.querySelector("#multiply");
+        const calculateButton = document.querySelector("#calculate");
+        const resultInput = document.querySelector("#result");
+
+        // + 누를 때 -> 입력값이 있는가? (X 무시)(O 값을 저장:temp)
+        // = 누를 때 -> 연산자가 존재?
+
+        let temp;
+        let operator;
+
+        plusButton.addEventListener('click', () => {
+            if (numberInput.value) {
+                temp = numberInput.value
+                operator = '+'
+                numberInput.value = null
+            }
+        })
+
+        clearButton.addEventListener('click', () => {
+            numberInput.value = null
+            temp = null
+            operator = null
+        });
+
+        calculateButton.addEventListener('click', () => {
+            if (operator) {
+                if (numberInput.value) {
+                    if (operator === '+') {
+                        resultInput.value = temp + numberInput.value
+                    } else if (operator === '-') {
+                        resultInput.value = temp - numberInput.value
+                    } else if (operator === '*') {
+                        resultInput.value = temp * numberInput.value
+                    } else if (operator === '/') {
+                        resultInput.value = temp / numberInput.value
+                    }
+                }
+            } else {
+                if (numberInput.value) {
+                    resultInput.value = temp
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
