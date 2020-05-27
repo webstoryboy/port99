@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider05</title>
+    <title>Slider07</title>
 
 
     <style>
@@ -90,39 +90,27 @@
             border-bottom: 1px dashed #fff;
         }
 
+        /* slide */
         .slider-wrap {
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto;
-            border-radius: 4px;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, .5);
+            width: 1200px;
+            overflow: hidden;
+            /* background: #ccc; */
         }
 
         .slider-img {
             position: relative;
-            margin: 0;
-            padding: 0;
-            height: 200px;
-            list-style: none;
+            width: 5000px;
+            overflow: hidden;
         }
 
         .slider-img .slides {
-            position: relative;
-            display: block;
             float: left;
-            width: 1000px;
-            height: 600px;
-        }
-
-        .slider-img .slides span {
-            position: absolute;
-            left: 5px;
-            top: 5px;
-            opacity: .5;
+            width: 400px;
+            padding: 10px;
         }
 
         /* btn */
@@ -132,12 +120,10 @@
             transform: translateY(-50%);
             z-index: 999;
             display: block;
-            padding: 4% 3%;
-            width: auto;
-            height: auto;
+            padding: 2%;
             background: rgba(0, 0, 0, 0.3);
             color: #fff;
-            font-size: 18px;
+            cursor: pointer;
         }
 
         .slider-btn a:hover {
@@ -145,46 +131,43 @@
             transition: all 0.2s ease;
         }
 
-        .slider-btn a.prev {
-            border-radius: 0 2px 2px 0;
-        }
-
         .slider-btn a.next {
             right: 0;
-            border-radius: 2px 0 0 2px;
         }
     </style>
 </head>
 
 <body>
     <div class="info">
-        <h1>Image Slider05</h1>
-        <p>좌우로 움직이기</p>
+        <h1>Image Slider07</h1>
+        <p>좌로 움직이기</p>
         <ul>
-            <li>연속적으로 움직이기</li>
-            <li>버튼으로 움직이기</li>
+            <li>좌로 연속적으로 움직이기</li>
         </ul>
     </div>
 
     <div class="info2">
         <ul>
-            <li><a href="slide01.html">Slider01</a></li>
-            <li><a href="slide02.html">Slider02</a></li>
-            <li><a href="slide03.html">Slider03</a></li>
-            <li><a href="slide04.html">Slider04</a></li>
-            <li class="active"><a href="slide05.html">Slider05</a></li>
-            <li><a href="slide06.html">Slider06</a></li>
+            <li><a href="slider01.html">Slider01</a></li>
+            <li><a href="slider02.html">Slider02</a></li>
+            <li><a href="slider03.html">Slider03</a></li>
+            <li><a href="slider04.html">Slider04</a></li>
+            <li><a href="slider05.html">Slider05</a></li>
+            <li><a href="slider06.html">Slider06</a></li>
+            <li class="active"><a href="slider07.html">Slider07</a></li>
+            <li><a href="slider08.html">Slider08</a></li>
+            <li><a href="slider09.html">Slider09</a></li>
         </ul>
     </div>
 
     <!-- slider -->
     <div class="slider-wrap">
         <div class="slider-img">
-            <div class="slides"><img src="img/so01.jpg" alt="이미지1"><span>1</span></div>
-            <div class="slides"><img src="img/so02.jpg" alt="이미지2"><span>2</span></div>
-            <div class="slides"><img src="img/so03.jpg" alt="이미지3"><span>3</span></div>
-            <div class="slides"><img src="img/so04.jpg" alt="이미지4"><span>4</span></div>
-            <div class="slides"><img src="img/so05.jpg" alt="이미지5"><span>5</span></div>
+            <div class="slides"><img src="img/so01.jpg" alt="이미지1"></div>
+            <div class="slides"><img src="img/so02.jpg" alt="이미지2"></div>
+            <div class="slides"><img src="img/so03.jpg" alt="이미지3"></div>
+            <div class="slides"><img src="img/so04.jpg" alt="이미지4"></div>
+            <div class="slides"><img src="img/so05.jpg" alt="이미지5"></div>
         </div>
     </div>
 
@@ -193,48 +176,52 @@
         <a href="#" class="next">next</a>
     </div>
 
-
-
     <script src="js/jquery.min_1.12.4.js"></script>
     <script>
-        $(document).ready(function () {
+        const sliderWrap = $(".slider-wrap");
+        const sliderImg = $(".slider-img");
+        const slides = $(".slides");
+        const slideBtn = $(".slider-btn");
 
-            const sliderWrap = $(".slider-wrap");
-            const sliderImg = $(".slider-img");
-            const slides = $(".slides");
+        let slideCount = slides.length;
+        let slideWidth = slides.outerWidth();
+        let showNumber = 3;
+        let currentIndex = 0;
 
-            let slideCount = slides.length;
-            let slideWidth = slides.width();
-            let slideHeight = slides.height();
-            let sliderTotalWidth = slideCount * slideWidth;
+        var slideCopy = $(".slides:lt(" + showNumber + ")").clone();
+        sliderImg.append(slideCopy);
 
-            sliderWrap.css({ width: slideWidth, height: slideHeight });
-            sliderImg.css({ width: sliderTotalWidth, marginLeft: - slideWidth });
-            $('.slides:last-child').prependTo(sliderImg);
+        //이미지 움직이기
+        function back() {
+            if (currentIndex == 0) {
+                currentIndex = slideCount;
+                sliderImg.css("margin-left", -currentIndex * slideWidth + "px");
+            }
+            currentIndex--;
+            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
+        }
 
-            function moveLeft() {
-                sliderImg.animate({ left: + slideWidth }, 200, function () {
-                    $('.slides:last-child').prependTo(sliderImg);
-                    sliderImg.css('left', '');
-                });
-            };
+        function next() {
+            if (currentIndex == slideCount) {
+                currentIndex = 0;
+                sliderImg.css("margin-left", currentIndex);
+            }
+            currentIndex++;
+            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
+        }
 
-            function moveRight() {
-                sliderImg.animate({ left: - slideWidth }, 200, function () {
-                    $('.slides:first-child').appendTo(sliderImg);
-                    sliderImg.css('left', '');
-                });
-            };
-
-            $(".slider-btn a.prev").click(function () {
-                moveLeft();
-            });
-
-            $(".slider-btn a.next").click(function () {
-                moveRight();
-            });
-
+        //버튼 클릭하기
+        slideBtn.on("click", "a", function () {
+            if ($(this).hasClass("prev")) {
+                back();
+            } else {
+                next();
+            }
         });
+
+
+
+
     </script>
 </body>
 

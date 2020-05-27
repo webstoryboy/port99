@@ -1,133 +1,85 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider02</title>
+    <title>Slider01 - 페이드 효과 이미지 슬라이드</title>
 
-
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-
-        @font-face {
-            font-family: 'GmarketSansMedium';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+        @font-face { 
+            font-family: 'GmarketSansMedium'; 
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); 
+            font-weight: normal; 
+            font-style: normal; 
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: 0;
-        }
-
-        a {
-            text-decoration: none;
-            color: #666;
-        }
-
-        img {
-            width: 100%;
-            vertical-align: top;
-        }
-
-        ul {
-            padding: 10px 20px;
-        }
-
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        a {text-decoration: none; color: #fff;}
+        img {width: 100%; vertical-align: top;}
+        ul {padding: 10px 20px;}
         body {
             background: url(img/so01.jpg) no-repeat center center;
             background-size: cover;
             font-family: 'Abel', 'GmarketSansMedium';
             color: #fff;
             height: 100vh;
-            transition: all 0.2s;
         }
-
         body::before {
             content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(50, 37, 11, 0.86);
+            position: absolute; left: 0; top: 0;
+            width: 100%; height: 100vh;
+            background: rgba(50,37,11,0.86);
             z-index: -1;
         }
-
         .info {
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 1000;
+            position: absolute; left: 0; top: 0; z-index: 1000;
             padding: 20px;
         }
-
         .info h1 {
-            padding-bottom: 10px;
+            margin-bottom: 10px;
         }
-
         .info2 {
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: 1000;
+            position: absolute; right: 0; top: 0; z-index: 1000;
             padding: 20px;
         }
-
         .info2 li {
             list-style: none;
             margin-bottom: 5px;
         }
-
-        .info2 li a {
-            color: #fff;
-        }
-
-        .info2 li.active {
+        .info2 li.active a {
             border-bottom: 1px dashed #fff;
         }
 
+
         /* slide */
-        .slide-wrap {
-            position: absolute;
-            left: 50%;
-            top: 50%;
+        .slider-wrap {
+            width: 1000px; height: 600px;
+            overflow: hidden;
+            position: absolute; left: 50%; top: 50%;
             transform: translate(-50%, -50%);
-            height: 100vh;
-            width: 1000px;
-            height: 600px;
-            overflow: hidden;
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, .5);
+            box-shadow: 4px 4px 20px rgba(0,0,0,.5);
         }
 
-        .slide-img {
+        .slider-img { 
             position: relative;
-            width: 5000px;
-            height: 600px;
+            width: 5000px; height: 600px;
             overflow: hidden;
-            box-shadow: 4px 4px 20px rgba(0, 0, 0, .5);
         }
 
-        .slide-img .slides {
-            float: left;
-            width: 1000px;
-            height: 600px;
+        .slider-img .slides { 
+            float: left; width: 1000px;
         }
     </style>
 </head>
-
 <body>
     <div class="info">
         <h1>Image Slider02</h1>
         <p>좌로 움직이기</p>
         <ul>
-            <li>3초에 한번씩 좌로 움직이기</li>
+            <li>3초에 한 번씩 좌로 움직이기</li>
         </ul>
     </div>
-
     <div class="info2">
         <ul>
             <li><a href="slide01.html">Slider01</a></li>
@@ -136,11 +88,14 @@
             <li><a href="slide04.html">Slider04</a></li>
             <li><a href="slide05.html">Slider05</a></li>
             <li><a href="slide06.html">Slider06</a></li>
+            <li><a href="slide07.html">Slider07</a></li>
+            <li><a href="slide08.html">Slider08</a></li>
         </ul>
     </div>
 
-    <div class="slide-wrap">
-        <div class="slide-img">
+    <!-- slider -->
+    <div class="slider-wrap">
+        <div class="slider-img">
             <div class="slides"><img src="img/so01.jpg" alt="이미지1"></div>
             <div class="slides"><img src="img/so02.jpg" alt="이미지2"></div>
             <div class="slides"><img src="img/so03.jpg" alt="이미지3"></div>
@@ -149,28 +104,34 @@
         </div>
     </div>
 
+    <!-- script -->
     <script src="js/jquery.min_1.12.4.js"></script>
     <script>
-        const slideWrap = $(".slide-wrap");
-        const slideImg = $(".slide-img");
+        const sliderWrap = $(".slider-wrap");
+        const sliderImg = $(".slider-img");
         const slides = $(".slides");
 
-        let currentIndex = 0;
+        let currentIndex = 0;   //현재 보이는 이미지
 
-        setInterval(function () {
-            // if( currentIndex < 4 ){
-            //     currentIndex++;
+        //3초에 한 번씩 함수를 실행
+        //left : -1000px
+        //left : -2000px
+        //left : -3000px
+        //left : -4000px
+        //left : 0px
+        //left : -1000px
+        setInterval(function(){
+            
+            // if( currentIndex < 4) {
+            //     currentIndex++
             // } else {
             //     currentIndex = 0;
             // }
+            //삼항 연산자
             currentIndex < 4 ? currentIndex++ : currentIndex = 0;
+            sliderImg.animate({ left : currentIndex * (-1000) + "px"}, 400)
 
-            let slidePosition = currentIndex * (-1000) + "px";
-            slideImg.animate({ left: slidePosition }, 400);
-
-        }, 3000)
-
+        }, 3000);
     </script>
 </body>
-
 </html>

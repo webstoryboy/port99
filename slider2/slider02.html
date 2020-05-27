@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider06</title>
+    <title>Slider02</title>
 
 
     <style>
@@ -20,7 +20,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: 0;
         }
 
         a {
@@ -91,75 +91,59 @@
         }
 
         /* slide */
-        .slider-wrap {
+        .slide-wrap {
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 1200px;
+            height: 100vh;
+            width: 1000px;
+            height: 600px;
             overflow: hidden;
-            /* background: #ccc; */
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, .5);
         }
 
-        .slider-img {
+        .slide-img {
             position: relative;
             width: 5000px;
+            height: 600px;
             overflow: hidden;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, .5);
         }
 
-        .slider-img .slides {
+        .slide-img .slides {
             float: left;
-            width: 400px;
-            padding: 10px;
-        }
-
-        /* btn */
-        .slider-btn a {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 999;
-            display: block;
-            padding: 2%;
-            background: rgba(0, 0, 0, 0.3);
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .slider-btn a:hover {
-            opacity: 1;
-            transition: all 0.2s ease;
-        }
-
-        .slider-btn a.next {
-            right: 0;
+            width: 1000px;
+            height: 600px;
         }
     </style>
 </head>
 
 <body>
     <div class="info">
-        <h1>Image Slider06</h1>
+        <h1>Image Slider02</h1>
         <p>좌로 움직이기</p>
         <ul>
-            <li>좌로 연속적으로 움직이기</li>
+            <li>3초에 한번씩 좌로 움직이기</li>
         </ul>
     </div>
 
     <div class="info2">
         <ul>
-            <li><a href="slide01.html">Slider01</a></li>
-            <li><a href="slide02.html">Slider02</a></li>
-            <li><a href="slide03.html">Slider03</a></li>
-            <li><a href="slide04.html">Slider04</a></li>
-            <li><a href="slide05.html">Slider05</a></li>
-            <li class="active"><a href="slide06.html">Slider06</a></li>
+            <li><a href="slider01.html">Slider01</a></li>
+            <li class="active"><a href="slider02.html">Slider02</a></li>
+            <li><a href="slider03.html">Slider03</a></li>
+            <li><a href="slider04.html">Slider04</a></li>
+            <li><a href="slider05.html">Slider05</a></li>
+            <li><a href="slider06.html">Slider06</a></li>
+            <li><a href="slider07.html">Slider07</a></li>
+            <li><a href="slider08.html">Slider08</a></li>
+            <li><a href="slider09.html">Slider09</a></li>
         </ul>
     </div>
 
-    <!-- slider -->
-    <div class="slider-wrap">
-        <div class="slider-img">
+    <div class="slide-wrap">
+        <div class="slide-img">
             <div class="slides"><img src="img/so01.jpg" alt="이미지1"></div>
             <div class="slides"><img src="img/so02.jpg" alt="이미지2"></div>
             <div class="slides"><img src="img/so03.jpg" alt="이미지3"></div>
@@ -168,56 +152,26 @@
         </div>
     </div>
 
-    <div class="slider-btn">
-        <a href="#" class="prev">prev</a>
-        <a href="#" class="next">next</a>
-    </div>
-
     <script src="js/jquery.min_1.12.4.js"></script>
     <script>
-        const sliderWrap = $(".slider-wrap");
-        const sliderImg = $(".slider-img");
+        const slideWrap = $(".slide-wrap");
+        const slideImg = $(".slide-img");
         const slides = $(".slides");
-        const slideBtn = $(".slider-btn");
 
-        let slideCount = slides.length;
-        let slideWidth = slides.outerWidth();
-        let showNumber = 3;
         let currentIndex = 0;
 
-        var slideCopy = $(".slides:lt(" + showNumber + ")").clone();
-        sliderImg.append(slideCopy);
+        setInterval(function () {
+            // if( currentIndex < 4 ){
+            //     currentIndex++;
+            // } else {
+            //     currentIndex = 0;
+            // }
+            currentIndex < 4 ? currentIndex++ : currentIndex = 0;
 
-        //이미지 움직이기
-        function back() {
-            if (currentIndex == 0) {
-                currentIndex = slideCount;
-                sliderImg.css("margin-left", -currentIndex * slideWidth + "px");
-            }
-            currentIndex--;
-            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
-        }
+            let slidePosition = currentIndex * (-1000) + "px";
+            slideImg.animate({ left: slidePosition }, 400);
 
-        function next() {
-            if (currentIndex == slideCount) {
-                currentIndex = 0;
-                sliderImg.css("margin-left", currentIndex);
-            }
-            currentIndex++;
-            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
-        }
-
-        //버튼 클릭하기
-        slideBtn.on("click", "a", function () {
-            if ($(this).hasClass("prev")) {
-                back();
-            } else {
-                next();
-            }
-        });
-
-
-
+        }, 3000)
 
     </script>
 </body>
