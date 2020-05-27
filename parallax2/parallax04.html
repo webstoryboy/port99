@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax04</title>
+    <title>Parallax02</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        * {margin: 0; padding: 0; box-sizing: border-box;}
-        li {list-style: none;}
-        a {text-decoration: none; color: #fff;}
-        :root { 
+        @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        :root {
             font-size: 12px;
         }
+
         body {
             --color-h1: #dc6e25;
             --color-title: #fff;
@@ -21,38 +44,77 @@
             --color-link: #000;
             --color-bg: #111;
             --font-family: 'lato', sans-serif;
-            --aspect-ratio: 36/17;
+            --aspect-ratio: 33/17;
             --image-width-max: 500px;
 
             background-color: var(--color-bg);
             font-family: var(--font-family);
             color: var(--color-title);
         }
+
+        .info {
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+            padding: 20px;
+            font-family: 'Abel', 'GmarketSansMedium';
+            text-align: right;
+        }
+
+        .info .menu {
+            padding-top: 10px;
+        }
+
+        .info .menu li {
+            margin-bottom: 5px;
+        }
+
+        .info .menu li.active a {
+            border-bottom: 1px dashed #fff;
+        }
+
+        .info h1 {
+            padding-bottom: 10px;
+            font-size: 38px;
+        }
+
+        .info p {
+            padding-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .info li {
+            font-size: 18px;
+        }
+
         #wrap h1 {
-            font-size: 7vw;
+            font-size: 8vw;
             color: var(--color-h1);
             padding: 3vw;
             text-transform: uppercase;
             font-weight: 700;
         }
+
         #wrap h1 em {
             display: block;
             font-weight: 100;
             padding-left: 18vw;
         }
+
         .contents {
             margin: 35vh auto 35vh;
         }
 
         .content-item {
             position: relative;
-            --image-width : calc(var(--image-width-max) * var(--aspect-ratio));
+            --image-width: calc(var(--image-width-max) * var(--aspect-ratio));
             width: var(--image-width);
             max-width: 90vw;
-            margin: 30vh 0 50vh;
+            margin: 60vh 0 60vh;
         }
 
-        .content-item:nth-child(even){
+        .content-item:nth-child(even) {
             margin-left: auto;
         }
 
@@ -60,12 +122,14 @@
             font-size: 20vw;
             font-weight: 100;
             position: absolute;
-            right: -5vw; top: -15vw;
-            opacity: 0.04;
+            right: -5vw;
+            top: -15vw;
+            opacity: 0.06;
         }
 
         .content-item:nth-child(even) .content-item-num {
-            right: auto; left: -5vw;
+            right: auto;
+            left: -5vw;
         }
 
         .content-item-title {
@@ -85,23 +149,23 @@
             position: relative;
             --width: 100%;
             width: var(--width);
-            padding-bottom: calc(var(--width)  / (var(--aspect-ratio)));
+            padding-bottom: calc(var(--width) / (var(--aspect-ratio)));
             overflow: hidden;
             background: #ccc;
         }
 
         .content-item-img {
             width: var(--width);
-            --overflow: 40px;
-            position: absolute; 
-            top: calc( -1 * var(--overflow));
+            --overflow: 60px;
+            position: absolute;
+            top: calc(-2 * var(--overflow));
             height: calc(100% + (2 * var(--overflow)));
             background-size: cover;
             background-position: 50% 0;
         }
 
         .content-item-desc {
-            font-size: 4vw;
+            font-size: 6vw;
             line-height: 1.2;
             font-weight: 600;
             text-transform: uppercase;
@@ -109,68 +173,100 @@
             text-align: right;
             word-break: keep-all;
             margin-top: -6vw;
-            margin-right: -3vw;
+            margin-right: -4vw;
             position: relative;
             z-index: 20;
         }
+
         .content-item:nth-child(even) .content-item-desc {
             text-align: left;
             margin-right: 0;
-            margin-left: -3vw;
+            margin-left: -4vw;
         }
 
+        #section1 .content-item-img {
+            background-image: url(img/so09.jpg);
+        }
 
-        #section1 .content-item-img {background-image: url(img/so09.jpg);}
-        #section2 .content-item-img {background-image: url(img/so02.jpg);}
-        #section3 .content-item-img {background-image: url(img/so03.jpg);}
-        #section4 .content-item-img {background-image: url(img/so04.jpg);}
-        #section5 .content-item-img {background-image: url(img/so05.jpg);}
-        #section6 .content-item-img {background-image: url(img/so06.jpg);}
-        #section7 .content-item-img {background-image: url(img/so07.jpg);}
-        #section8 .content-item-img {background-image: url(img/so08.jpg);}
-        #section9 .content-item-img {background-image: url(img/so01.jpg);}
+        #section2 .content-item-img {
+            background-image: url(img/so02.jpg);
+        }
+
+        #section3 .content-item-img {
+            background-image: url(img/so03.jpg);
+        }
+
+        #section4 .content-item-img {
+            background-image: url(img/so04.jpg);
+        }
+
+        #section5 .content-item-img {
+            background-image: url(img/so05.jpg);
+        }
+
+        #section6 .content-item-img {
+            background-image: url(img/so06.jpg);
+        }
+
+        #section7 .content-item-img {
+            background-image: url(img/so07.jpg);
+        }
+
+        #section8 .content-item-img {
+            background-image: url(img/so08.jpg);
+        }
+
+        #section9 .content-item-img {
+            background-image: url(img/so01.jpg);
+        }
 
         /* info */
-        .info { 
-            position: fixed; top: 20px; right: 20px;
-            background: rgba(255,255,255,0.4);
-            color: #000; padding: 10px;
-            font-size: 14px; font-weight: 300;
+        .info2 {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 300;
             z-index: 10000;
-            font-style: normal;
             font-family: 'Abel';
         }
 
-        .contents > section {
-            opacity: 0; transform: translateY(100px);
-            transition: all 0.6s ease;
-        }
-        .contents > section.show {
-            opacity: 1; transform: translateY(0);
+        .info2 strong {
+            color: #fff;
         }
     </style>
 </head>
-<body>
 
+<body>
     <div class="info">
-        <span>pageYOffset() : <strong class="pageYOffset">0</strong>px</span><br>
-        <span>#section1 offset : <strong class="s1OT">0</strong>px</span><br>
-        <span>#section2 offset : <strong class="s2OT">0</strong>px</span><br>
-        <span>#section3 offset : <strong class="s3OT">0</strong>px</span><br>
-        <span>#section4 offset : <strong class="s4OT">0</strong>px</span><br>
-        <span>#section5 offset : <strong class="s5OT">0</strong>px</span><br>
-        <span>#section6 offset : <strong class="s6OT">0</strong>px</span><br>
-        <span>#section7 offset : <strong class="s7OT">0</strong>px</span><br>
-        <span>#section8 offset : <strong class="s8OT">0</strong>px</span><br>
-        <span>#section9 offset : <strong class="s9OT">0</strong>px</span><br>
+        <h1>Parallax04</h1>
+        <p>이질감 효과</p>
+        <ul class="menu">
+            <li><a href="parallax01.html">Parallax01</a></li>
+            <li><a href="parallax02.html">parallax02</a></li>
+            <li><a href="parallax03.html">Parallax03</a></li>
+            <li class="active"><a href="parallax04.html">Parallax04</a></li>
+            <li><a href="parallax05.html">Parallax05</a></li>
+            <li><a href="parallax06.html">Parallax06</a></li>
+            <li><a href="parallax07.html">Parallax07</a></li>
+            <li><a href="parallax08.html">Parallax08</a></li>
+            <li><a href="parallax09.html">Parallax09</a></li>
+        </ul>
     </div>
 
+    <div class="info2">
+        <span>scrollTop() : <strong class="scrollTop">0</strong>px</span><br>
+    </div>
+
+    <!-- parallax -->
     <section id="wrap">
         <h1>Parallax <em>Scrolling</em></h1>
         <div class="contents">
             <section id="section1" class="content-item">
                 <span class="content-item-num">01</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section1</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
@@ -178,219 +274,131 @@
             </section>
             <section id="section2" class="content-item">
                 <span class="content-item-num">02</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section2</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">결과도 중요하지만, 과정을 더 중요하게 생각한다.</p>
             </section>
             <section id="section3" class="content-item">
                 <span class="content-item-num">03</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section3</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">매 순간에 최선을 다하고, 끊임없이 변화한다.</p>
             </section>
             <section id="section4" class="content-item">
                 <span class="content-item-num">04</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section4</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">모든지 기본을 중요하게 생각한다.</p>
             </section>
             <section id="section5" class="content-item">
                 <span class="content-item-num">05</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section5</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">천 마디의 말보다 하나의 행동이 더 값지다.</p>
             </section>
             <section id="section6" class="content-item">
                 <span class="content-item-num">06</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section6</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">조그만 성공에 만족하지 않으며, 방심을 경계한다.</p>
             </section>
             <section id="section7" class="content-item">
                 <span class="content-item-num">07</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section7</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">내 스타일을 다른 사람에게 강요하지 않는다.</p>
             </section>
             <section id="section8" class="content-item">
                 <span class="content-item-num">08</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section8</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">자신의 이익을 위해 다른 사람을 이용하지 않는다.</p>
             </section>
             <section id="section9" class="content-item">
                 <span class="content-item-num">09</span>
-                <h2 class="content-item-title">Basic Coding</h2>
+                <h2 class="content-item-title">Section9</h2>
                 <figure class="content-item-imgWrap">
                     <div class="content-item-img"></div>
                 </figure>
-                <p class="content-item-desc">높은 목표를 세우고, 스스로 채직찔 한다.</p>
+                <p class="content-item-desc">나보다 다른 사람의 의견도 존중한다.</p>
             </section>
         </div>
     </section>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
     <script>
-        //$(window).scroll(function(){});
-        //$(window).on("scroll",function(){});
-        //window.addEventListener("scroll", function(){ });
-        //window.addEventListener("scroll", () => { });
+        //제이쿼리
+        // $(window).scroll(function () {
+        //     let scrollTop = $(window).scrollTop() + $(window).height() / 2;
 
-        //const scrollTop = $(window).scrollTop();
-        //var pageYOffset = window.pageYOffset;
-        //var pageYOffset = document.documentElement.scrollTop;
+        //     $(".scrollTop").text(scrollTop);
 
-        //$(".scrollTop").text(scrollTop)
-        //$(".scrollTop").html(<span>scrollTop</span>)
-        //document.querySelector(".pageYOffset").textContent = pageYOffset;
-        //document.querySelector(".pageYOffset").innerText = pageYOffset;
-        //document.querySelector(".pageYOffset").innerHTML = pageYOffset;
+        //     // let offset1 = (scrollTop - $("#section1").offset().top)
+        //     // let offset2 = (scrollTop - $("#section2").offset().top)
+        //     // let offset3 = (scrollTop - $("#section3").offset().top)
+        //     // let offset4 = (scrollTop - $("#section4").offset().top)
+        //     // let offset5 = (scrollTop - $("#section5").offset().top)
+        //     // let offset6 = (scrollTop - $("#section6").offset().top)
+        //     // let offset7 = (scrollTop - $("#section7").offset().top)
+        //     // let offset8 = (scrollTop - $("#section8").offset().top)
+        //     // let offset9 = (scrollTop - $("#section9").offset().top)
 
-        window.addEventListener("scroll", () => { 
-            let pageYOffset = (window.pageYOffset || document.documentElement.scrollTop) + screen.height/2;
-            console.log("1:"+screen.height/2)
-            console.log("2:"+document.documentElement.scrollTop)
-            console.log("3:"+window.pageYOffset)
+        //     // $("#section1 .content-item-desc").css({ transform: "translateX("+ offset1+"px)" });
+        //     // $("#section2 .content-item-desc").css({ transform: "translateX("+ offset2+"px)" });
+        //     // $("#section3 .content-item-desc").css({ transform: "translateX("+ offset3+"px)" });
+        //     // $("#section4 .content-item-desc").css({ transform: "translateX("+ offset4+"px)" });
+        //     // $("#section5 .content-item-desc").css({ transform: "translateX("+ offset5+"px)" });
+        //     // $("#section6 .content-item-desc").css({ transform: "translateX("+ offset6+"px)" });
+        //     // $("#section7 .content-item-desc").css({ transform: "translateX("+ offset7+"px)" });
+        //     // $("#section8 .content-item-desc").css({ transform: "translateX("+ offset8+"px)" });
+        //     // $("#section9 .content-item-desc").css({ transform: "translateX("+ offset9+"px)" });
 
-            document.querySelector(".pageYOffset").textContent = pageYOffset;
-            document.querySelector(".s1OT").textContent = document.getElementById("section1").offsetTop;
-            document.querySelector(".s2OT").textContent = document.getElementById("section2").offsetTop;
-            document.querySelector(".s3OT").textContent = document.getElementById("section3").offsetTop;
-            document.querySelector(".s4OT").textContent = document.getElementById("section4").offsetTop;
-            document.querySelector(".s5OT").textContent = document.getElementById("section5").offsetTop;
-            document.querySelector(".s6OT").textContent = document.getElementById("section6").offsetTop;
-            document.querySelector(".s7OT").textContent = document.getElementById("section7").offsetTop;
-            document.querySelector(".s8OT").textContent = document.getElementById("section8").offsetTop;
-            document.querySelector(".s9OT").textContent = document.getElementById("section9").offsetTop;
+        //     // for(let i=1; i<=9; i++){
+        //     //     let offset = (scrollTop - $("#section"+i).offset().top)
+        //     //     $("#section"+i+" .content-item-desc").css({transform : "translateX("+offset+"px)"});
+        //     // }
 
-            if( pageYOffset > document.getElementById("section1").offsetTop ){
-                document.querySelector(".s1OT").style.color = "red";
-            } else {
-                document.querySelector(".s1OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section2").offsetTop ){
-                document.querySelector(".s2OT").style.color = "red";
-            } else {
-                document.querySelector(".s2OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section3").offsetTop ){
-                document.querySelector(".s3OT").style.color = "red";
-            } else {
-                document.querySelector(".s3OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section4").offsetTop ){
-                document.querySelector(".s4OT").style.color = "red";
-            } else {
-                document.querySelector(".s4OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section5").offsetTop ){
-                document.querySelector(".s5OT").style.color = "red";
-            } else {
-                document.querySelector(".s5OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section6").offsetTop ){
-                document.querySelector(".s6OT").style.color = "red";
-            } else {
-                document.querySelector(".s6OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section7").offsetTop ){
-                document.querySelector(".s7OT").style.color = "red";
-            } else {
-                document.querySelector(".s7OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section8").offsetTop ){
-                document.querySelector(".s8OT").style.color = "red";
-            } else {
-                document.querySelector(".s8OT").style.color = "black";
-            }
-            if( pageYOffset > document.getElementById("section9").offsetTop ){
-                document.querySelector(".s9OT").style.color = "red";
-            } else {
-                document.querySelector(".s9OT").style.color = "black";
-            }
+        //     $(".content-item").each(function () {
+        //         let offset1 = (scrollTop - $(this).offset().top) * 0.1;
+        //         let offset2 = (scrollTop - $(this).offset().top) * 0.2;
+        //         let offset3 = (scrollTop - $(this).offset().top) * 0.3;
+        //         let offset4 = (scrollTop - $(this).offset().top) * 0.4;
 
-            //노가다 
-            // if( pageYOffset > document.getElementById("section1").offsetTop ){
-            //     document.getElementById("section1").classList.add("show");
-            // } else {
-            //     document.getElementById("section1").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section2").offsetTop ){
-            //     document.getElementById("section2").classList.add("show");
-            // } else {
-            //     document.getElementById("section2").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section3").offsetTop ){
-            //     document.getElementById("section3").classList.add("show");
-            // } else {
-            //     document.getElementById("section3").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section4").offsetTop ){
-            //     document.getElementById("section4").classList.add("show");
-            // } else {
-            //     document.getElementById("section4").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section5").offsetTop ){
-            //     document.getElementById("section5").classList.add("show");
-            // } else {
-            //     document.getElementById("section5").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section6").offsetTop ){
-            //     document.getElementById("section6").classList.add("show");
-            // } else {
-            //     document.getElementById("section6").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section7").offsetTop ){
-            //     document.getElementById("section7").classList.add("show");
-            // } else {
-            //     document.getElementById("section7").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section8").offsetTop ){
-            //     document.getElementById("section8").classList.add("show");
-            // } else {
-            //     document.getElementById("section8").classList.remove("show");
-            // }
-            // if( pageYOffset > document.getElementById("section9").offsetTop ){
-            //     document.getElementById("section9").classList.add("show");
-            // } else {
-            //     document.getElementById("section9").classList.remove("show");
-            // }
-            
-            //한번에
-            for(let i=1; i<=9; i++){
-                document.querySelector(".s"+i+"OT").textContent = document.getElementById("section1").offsetTop;
+        //         $(this).find(".content-item-desc").css({ "transform": "translateY(" + -offset2 + "px)" });
+        //         $(this).find(".content-item-num").css({ "transform": "translateY(" + offset1 + "px)" });
+        //         $(this).find(".content-item-img").css({ "transform": "translateY(" + offset2 + "px)" });
+        //     });
+        // });
 
-                if( pageYOffset > document.getElementById("section"+i).offsetTop ){
-                    document.querySelector(".s"+i+"OT").style.color = "red";
-                } else {
-                    document.querySelector(".s"+i+"OT").style.color = "black";
-                }
-            }
+        //자바스크립트
+        window.addEventListener("scroll", () => {
+            let pageYOffset = (window.pageYOffset || document.documentElement.scrollTop) + screen.height / 2;
 
-            document.querySelectorAll(".content-item").forEach(elem => { 
-                console.log(elem.offsetTop);
-                if( pageYOffset > elem.offsetTop ){
-                    elem.classList.add("show");
-                } else {
-                    elem.classList.remove("show");
-                }
+            document.querySelector(".scrollTop").textContent = pageYOffset;
+            document.querySelectorAll(".content-item").forEach(elem => {
+
+                let target = elem.childNodes[7];
+                let offset = (pageYOffset - elem.offsetTop) * 0.2;
+                target.style.transform = "translateY(" + -offset + "px)"
             });
-
         });
-
-
     </script>
+
 </body>
+
 </html>

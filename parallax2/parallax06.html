@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax01</title>
+    <title>Parallax05</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 
@@ -33,10 +33,23 @@
             color: #fff;
         }
 
+        :root {
+            font-size: 12px;
+        }
+
         body {
-            background-color: #111;
-            color: #fff;
-            font-family: 'Lato', sans-serif;
+            --color-h1: #dc6e25;
+            --color-title: #fff;
+            --color-sub: #999;
+            --color-link: #000;
+            --color-bg: #111;
+            --font-family: 'lato', sans-serif;
+            --aspect-ratio: 33/17;
+            --image-width-max: 500px;
+
+            background-color: var(--color-bg);
+            font-family: var(--font-family);
+            color: var(--color-title);
         }
 
         .info {
@@ -54,7 +67,7 @@
         }
 
         .info .menu li {
-            padding-bottom: 5px;
+            margin-bottom: 5px;
         }
 
         .info .menu li.active a {
@@ -76,9 +89,9 @@
         }
 
         #wrap h1 {
-            font-size: 135px;
-            padding: 60px;
-            color: #dc6e25;
+            font-size: 8vw;
+            color: var(--color-h1);
+            padding: 3vw;
             text-transform: uppercase;
             font-weight: 700;
         }
@@ -86,18 +99,19 @@
         #wrap h1 em {
             display: block;
             font-weight: 100;
-            padding-left: 330px;
+            padding-left: 18vw;
         }
 
         .contents {
-            /* width: 1920px;  */
-            margin: 300px auto 400px;
+            margin: 35vh auto 35vh;
         }
 
         .content-item {
             position: relative;
-            width: 1000px;
-            margin: 200px 0 300px;
+            --image-width: calc(var(--image-width-max) * var(--aspect-ratio));
+            width: var(--image-width);
+            max-width: 90vw;
+            margin: 60vh 0 60vh;
         }
 
         .content-item:nth-child(even) {
@@ -105,26 +119,26 @@
         }
 
         .content-item-num {
-            font-size: 350px;
+            font-size: 20vw;
             font-weight: 100;
             position: absolute;
-            right: -100px;
-            top: -200px;
-            opacity: 0.04;
+            right: -5vw;
+            top: -15vw;
+            opacity: 0.06;
         }
 
         .content-item:nth-child(even) .content-item-num {
             right: auto;
-            left: -100px;
+            left: -5vw;
         }
 
         .content-item-title {
             text-align: right;
-            font-size: 24px;
             font-weight: 300;
-            color: #999;
-            padding-bottom: 10px;
             text-transform: capitalize;
+            color: var(--color-sub);
+            padding-bottom: 0.8vw;
+            font-size: 1.5rem;
         }
 
         .content-item:nth-child(even) .content-item-title {
@@ -133,35 +147,41 @@
 
         .content-item-imgWrap {
             position: relative;
-            padding-bottom: 57%;
+            --width: 100%;
+            width: var(--width);
+            padding-bottom: calc(var(--width) / (var(--aspect-ratio)));
             overflow: hidden;
+            background: #ccc;
         }
 
         .content-item-img {
-            height: 550px;
+            width: var(--width);
+            --overflow: 60px;
             position: absolute;
-            top: 0;
-            width: 100%;
+            top: calc(-2 * var(--overflow));
+            height: calc(100% + (2 * var(--overflow)));
             background-size: cover;
             background-position: 50% 0;
         }
 
         .content-item-desc {
-            font-size: 80px;
+            font-size: 6vw;
             line-height: 1.2;
             font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-title);
             text-align: right;
             word-break: keep-all;
-            margin-top: -100px;
-            margin-right: -50px;
+            margin-top: -6vw;
+            margin-right: -4vw;
             position: relative;
-            z-index: 100;
+            z-index: 20;
         }
 
         .content-item:nth-child(even) .content-item-desc {
             text-align: left;
-            margin-right: 0px;
-            margin-left: -50px;
+            margin-right: 0;
+            margin-left: -4vw;
         }
 
         #section1 .content-item-img {
@@ -199,25 +219,45 @@
         #section9 .content-item-img {
             background-image: url(img/so01.jpg);
         }
+
+        /* info */
+        .info2 {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 300;
+            z-index: 10000;
+            font-family: 'Abel';
+        }
+
+        .info2 strong {
+            color: #fff;
+        }
     </style>
 </head>
 
 <body>
-
     <div class="info">
-        <h1>Parallax01</h1>
-        <p>레이아웃 만들기</p>
+        <h1>Parallax06</h1>
+        <p>텍스트 효과</p>
         <ul class="menu">
-            <li class="active"><a href="parallax01.html">Parallax01</a></li>
-            <li><a href="parallax02.html">Parallax02</a></li>
+            <li><a href="parallax01.html">Parallax01</a></li>
+            <li><a href="parallax02.html">parallax02</a></li>
             <li><a href="parallax03.html">Parallax03</a></li>
             <li><a href="parallax04.html">Parallax04</a></li>
             <li><a href="parallax05.html">Parallax05</a></li>
-            <li><a href="parallax06.html">Parallax06</a></li>
+            <li class="active"><a href="parallax06.html">Parallax06</a></li>
             <li><a href="parallax07.html">Parallax07</a></li>
             <li><a href="parallax08.html">Parallax08</a></li>
             <li><a href="parallax09.html">Parallax09</a></li>
         </ul>
+    </div>
+
+    <div class="info2">
+        <span>scrollTop() : <strong class="scrollTop">0</strong>px</span><br>
     </div>
 
     <!-- parallax -->
@@ -298,6 +338,16 @@
             </section>
         </div>
     </section>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script>
+
+    </script>
+
+
+
 </body>
 
 </html>
