@@ -217,8 +217,8 @@
         let currentIndex = 0;
         let dotIndex = "";
 
-        //var slideCopy = $(".slides").clone();
-        //sliderImg.append(slideCopy);
+        var slideCopy = $(".slides").clone();
+        sliderImg.append(slideCopy);
 
         //닷 버튼
         sliders.each(function (i) {
@@ -228,40 +228,65 @@
             //dotIndex += "<a href='#'>" + name + "</a>";
         });
         sliderDot.html(dotIndex);
-        sliderDot.find('a').eq(0).addClass("active");
+        sliderDot.find('a').removeClass('active').eq(0).addClass('active');
 
-
-        function gotoSlide(index) {
-            sliderImg.animate({ left: -slideWidth * index + "px" }, 400);
-            currentIndex = index;
-            updateDot();
-        }
-
-        function updateDot() {
+        //이미지 움직이기
+        function back() {
+            if (currentIndex == 0) {
+                currentIndex = slideCount;
+                sliderImg.css("margin-left", -currentIndex * slideWidth + "px");
+            }
+            currentIndex--;
+            // 4: -1000 * 4 = -4000px
+            // 3: -1000 * 3 = -3000px
+            // 2: -1000 * 2 = -2000px
+            // 1: -1000 * 1 = -1000px
+            // 0: -1000 * 5 = -5000px
+            // 4: -1000 * 4 = -4000px
+            // 3: -1000 * 3 = -3000px
+            // 2: -1000 * 2 = -2000px
+            //........
+            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
+            console.log("back : " + currentIndex)
             sliderDot.find('a').removeClass('active').eq(currentIndex).addClass('active');
         }
 
-        //닷 버튼 클릭하기
-        sliderDot.on("click", "a", function (e) {
-            e.preventDefault();
-            if (!$(this).hasClass('active')) {
-                gotoSlide($(this).index());
+        function next() {
+            if (currentIndex == slideCount) {
+                currentIndex = 0;
+                sliderImg.css("margin-left", currentIndex);
             }
-        });
+            currentIndex++;
+            // 1: -1000 * 1 = -1000px;
+            // 2: -1000 * 2 = -2000px;
+            // 3: -1000 * 3 = -3000px;
+            // 4: -1000 * 3 = -4000px;
+            // 5: -1000 * 3 = -5000px;
+            // 1: -1000 * 1 = -1000px;
+            // 2: -1000 * 2 = -2000px;
+            // 3: -1000 * 3 = -3000px;
+            // 4: -1000 * 3 = -4000px;
+            // 5: -1000 * 3 = -5000px;
+            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
+            console.log("next : " + currentIndex)
+
+            if (currentIndex == slideCount) currentIndex = 0;
+            sliderDot.find('a').removeClass('active').eq(currentIndex).addClass('active');
+        }
+
+
+
 
         //버튼 클릭하기
         sliderBtn.on("click", "a", function (e) {
             e.preventDefault();
-            let nextIndex = (currentIndex + 1) % slideCount;
-            let prevIndex = (currentIndex - 1) % slideCount;
-            if (currentIndex == 0) prevIndex = slideCount - 1;
-            //console.log("nextIndex : " + nextIndex)
-            //console.log("prevIndex : " + prevIndex)
+            var nextIndex = (currentIndex + 1) % slideCount;
+            var prevIndex = (currentIndex - 1) % slideCount;
 
             if ($(this).hasClass("prev")) {
-                gotoSlide(prevIndex);
+                back();
             } else {
-                gotoSlide(nextIndex);
+                next();
             }
         });
 
