@@ -203,7 +203,7 @@
         sliderBtn.on("click", "a", function(e){
             e.preventDefault();
 
-            let nextIndex = (currentIndex + 1) % slideCount;
+            let nextIndex = (currentIndex + 1) % slideCount;  //1, 2, 3, 4, 0, 1, 2, 3, 4, 0
             let prevIndex = (currentIndex - 1) % slideCount;
             if(currentIndex == 0) prevIndex = slideCount - 1;
 

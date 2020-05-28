@@ -141,17 +141,17 @@
 
         let currentIndex = 0; 
         let slideCopy = sliders.clone();
-        sliderImg.append(slideCopy);    //슬라이더 이미지를 카피 후 추가
+        sliderImg.appendTo(slideCopy);    //슬라이더 이미지를 카피 후 추가
         
         //이미지 움직이기
         function moveLeft(){ 
             //이미지를 오른쪽(-)으로 이동(박스의 크기)
             if(currentIndex == 0){
                 currentIndex = 5;
-                sliderImg.css("margin-left", -currentIndex * slideWidth+"px"); //left:0
+                sliderImg.css("margin-left", -currentIndex * slideWidth+"px"); //magin-left: -5000px
             }
             currentIndex--;
-            sliderImg.animate({"margin-left": -slideWidth * currentIndex +"px"}, 400);
+            sliderImg.animate({"margin-left": -slideWidth * currentIndex +"px"}, 400); //magin-left: -4000px
             console.log("moveLeft: "+currentIndex)
         }
 
