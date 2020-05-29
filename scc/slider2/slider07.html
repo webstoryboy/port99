@@ -198,7 +198,7 @@
                 sliderImg.css("margin-left", -currentIndex * slideWidth + "px");
             }
             currentIndex--;
-            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
+            sliderImg.stop().animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
         }
 
         function next() {
@@ -207,7 +207,7 @@
                 sliderImg.css("margin-left", currentIndex);
             }
             currentIndex++;
-            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
+            sliderImg.stop().animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
         }
 
         //버튼 클릭하기

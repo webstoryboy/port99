@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Effect01</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        ul {
+            padding: 10px 20px;
+        }
+
+        body {
+            background: url(img/so02.jpg) no-repeat center center;
+            background-size: cover;
+            font-family: 'Abel', 'GmarketSansMedium';
+            color: #000;
+            height: 100vh;
+            transition: all 0.2s;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(114, 86, 57, 0.86);
+            z-index: -1;
+        }
+
+        .info {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .info h1 {
+            padding-bottom: 10px;
+        }
+
+        .info2 {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .info2 li {
+            list-style: none;
+            margin-bottom: 5px;
+        }
+
+        .info2 li a {
+            color: #fff;
+        }
+
+        .info2 li.active {
+            border-bottom: 1px dashed #fff;
+        }
+
+        .info3 {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            padding: 20px;
+            text-align: right;
+        }
+
+        .info3 li {
+            list-style: none;
+        }
+
+        /* contents */
+        .contents {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contents p {
+            max-width: 80vw;
+            font-size: 4vw;
+            text-transform: uppercase;
+            color: #000;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .contents p a {
+            color: #fff;
+            border-bottom: 1px dashed #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="info">
+        <h1>Mouse Effect01</h1>
+        <p>페이드 효과</p>
+        <ul>
+            <li>마우스 값 알아내기</li>
+        </ul>
+    </div>
+
+    <div class="info2">
+        <ul>
+            <li class="active"><a href="mouse01.html">Mouse01</a></li>
+            <li><a href="mouse02.html">Mouse02</a></li>
+            <li><a href="mouse03.html">Mouse03</a></li>
+            <li><a href="mouse04.html">Mouse04</a></li>
+            <li><a href="mouse05.html">Mouse05</a></li>
+            <li><a href="mouse06.html">Mouse06</a></li>
+            <li><a href="mouse07.html">Mouse07</a></li>
+            <li><a href="mouse08.html">Mouse08</a></li>
+            <li><a href="mouse09.html">Mouse09</a></li>
+        </ul>
+    </div>
+
+    <div class="info3">
+        <ul>
+            <li>clientX = <span id="clientX">0</span></li>
+            <li>clientY = <span id="clientY">0</span></li>
+            <li>offsetX = <span id="offsetX">0</span></li>
+            <li>offsetY = <span id="offsetY">0</span></li>
+            <li>pageX = <span id="pageX">0</span></li>
+            <li>pageY = <span id="pageY">0</span></li>
+            <li>screenX = <span id="screenX">0</span></li>
+            <li>screenY = <span id="screenY">0</span></li>
+        </ul>
+    </div>
+
+
+
+    <!-- contents -->
+    <div class="cursor"></div>
+
+    <div class="contents">
+        <p>
+            Hi, my name is Eddie and I am a <a>pragmatic</a> UI designer who has worked with dozens of
+            <a>businesses</a> and some <a>non-profit</a> organizations. If you'd like me to help you with your next
+            UI project, <a>let's talk</a>!
+        </p>
+    </div>
+
+
+
+    <script src="js/jquery.min_1.12.4.js"></script>
+    <script src="js/jquery-ui.min"></script>
+    <script src="js/gsap.min"></script>
+    <script>
+        var cursor = $(".cursor");
+
+        $("body, html").mousemove(function (e) {
+            $("#clientX").text(e.clientX);
+            $("#clientY").text(e.clientY);
+            $("#offsetX").text(e.offsetX);
+            $("#offsetY").text(e.offsetY);
+            $("#pageX").text(e.pageX);
+            $("#pageY").text(e.pageY);
+            $("#screenX").text(e.screenX);
+            $("#screenY").text(e.screenY);
+
+            $(".cursor").css("left", e.pageX - 15).css("top", e.pageY - 15);
+        });
+
+
+    </script>
+</body>
+
+</html>
