@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mouse Effect01</title>
+    <title>Mouse Effect02</title>
 
 
     <style>
@@ -91,19 +91,6 @@
             border-bottom: 1px dashed #fff;
         }
 
-        .info3 {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            z-index: 1000;
-            padding: 20px;
-            text-align: right;
-        }
-
-        .info3 li {
-            list-style: none;
-        }
-
         /* contents */
         .contents {
             display: flex;
@@ -132,28 +119,43 @@
 
         .cursor {
             position: absolute;
-            left: -100px;
-            top: -100px;
-            border: 2px solid #fff;
-            width: 50px;
-            height: 50px;
-            border-radius: 100%;
-            z-index: 10000;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 1000;
             user-select: none;
             pointer-events: none;
-            transition: background 0.6s ease-in-out, border-color 0.2s ease-in-out;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
         }
 
         .cursor.active {
-            border-color: #000;
-            background: rgba(0, 0, 0, 0.5);
+            opacity: 0.5;
+            transform: scale(0);
+        }
+
+        .cursor-follower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            user-select: none;
+            pointer-events: none;
+            transition: transform 0.6s ease-in-out, opacity 0.2s ease-in-out;
+        }
+
+        .cursor-follower.active {
+            opacity: 0.7;
+            transform: scale(4);
         }
     </style>
 </head>
 
 <body>
     <div class="info">
-        <h1>Mouse Effect01</h1>
+        <h1>Mouse Effect02</h1>
         <p>마우스 따라다니기</p>
         <ul>
             <li>마우스 값 알아내기</li>
@@ -162,8 +164,8 @@
 
     <div class="info2">
         <ul>
-            <li class="active"><a href="mouse01.html">Mouse01</a></li>
-            <li><a href="mouse02.html">Mouse02</a></li>
+            <li><a href="mouse01.html">Mouse01</a></li>
+            <li class="active"><a href="mouse02.html">Mouse02</a></li>
             <li><a href="mouse03.html">Mouse03</a></li>
             <li><a href="mouse04.html">Mouse04</a></li>
             <li><a href="mouse05.html">Mouse05</a></li>
@@ -174,23 +176,9 @@
         </ul>
     </div>
 
-    <div class="info3">
-        <ul>
-            <li>clientX = <span class="clientX">0</span></li>
-            <li>clientY = <span class="clientY">0</span></li>
-            <li>offsetX = <span class="offsetX">0</span></li>
-            <li>offsetY = <span class="offsetY">0</span></li>
-            <li>pageX = <span class="pageX">0</span></li>
-            <li>pageY = <span class="pageY">0</span></li>
-            <li>screenX = <span class="screenX">0</span></li>
-            <li>screenY = <span class="screenY">0</span></li>
-        </ul>
-    </div>
-
-
-
     <!-- contents -->
     <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
     <div class="contents">
         <p>
@@ -200,42 +188,74 @@
         </p>
     </div>
 
-
-
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/gsap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script> -->
+
     <script>
-        let cursor = $(".cursor");
+        var cursor = $(".cursor"),
+            follower = $(".cursor-follower"),
+            positionX = 0,
+            positionY = 0,
+            mouseX = 0, 	//마우스 X축 좌표 값
+            mouseY = 0;		//마우스 Y축 좌표 값
 
-        // $("body, html").mousemove(function (e) {
-        //     $(".clientX").text(e.clientX);
-        //     $(".clientY").text(e.clientY);
-        //     $(".offsetX").text(e.offsetX);
-        //     $(".offsetY").text(e.offsetY);
-        //     $(".pageX").text(e.pageX);
-        //     $(".pageY").text(e.pageY);
-        //     $(".screenX").text(e.screenX);
-        //     $(".screenY").text(e.screenY);
+        // $(document).mousemove(function (e) {
+        //     mouseX = e.pageX;
+        //     mouseY = e.pageY;
+        // });
 
-        //     $(".cursor").css("left", e.pageX - 25).css("top", e.pageY - 25);
+
+
+        // TweenMax.to({}, 0.016, {
+        //     repeat: -1,
+        //     onRepeat: function () {
+        //         positionX += (mouseX - positionX) / 9;
+        //         positionY += (mouseY - positionY) / 9;
+
+        //         TweenMax.set(cursor, {
+        //             css: {
+        //                 left: mouseX,
+        //                 top: mouseY
+        //             }
+        //         });
+
+        //         TweenMax.set(follower, {
+        //             css: {
+        //                 left: positionX - 11,
+        //                 top: positionY - 11
+        //             }
+        //         });
+        //     }
         // });
 
         // $("a").on("mouseenter", function () {
         //     cursor.addClass("active");
+        //     follower.addClass("active");
         // });
 
         // $("a").on("mouseleave", function () {
         //     cursor.removeClass("active");
+        //     follower.removeClass("active");
         // });
 
 
-        //gsap
+
         function moveCircle(e) {
-            gsap.to(".cursor", 0.3, {
+            positionX += (mouseX - positionX) / 7;
+            positionY += (mouseY - positionY) / 7;
+
+            gsap.to(cursor, 0.3, {
                 css: {
-                    left: e.pageX - 25,
-                    top: e.pageY - 25
+                    left: e.pageX - 5,
+                    top: e.pageY - 5
+                }
+            });
+            gsap.to(follower, 0.8, {
+                css: {
+                    left: e.pageX - positionX,
+                    top: e.pageY - positionY
                 }
             });
         }
@@ -245,11 +265,17 @@
         $("a").hover(
             function () {
                 cursor.addClass("active");
+                follower.addClass("active");
             },
             function () {
                 cursor.removeClass("active");
+                follower.removeClass("active");
             }
         )
+
+
+
+
 
 
     </script>

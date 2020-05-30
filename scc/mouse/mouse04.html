@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mouse Effect01</title>
+    <title>Mouse Effect04</title>
 
 
     <style>
@@ -37,13 +37,12 @@
         }
 
         body {
-            background: url(img/so02.jpg) no-repeat center center;
+            background: url(img/so03.jpg) no-repeat center center;
             background-size: cover;
             font-family: 'Abel', 'GmarketSansMedium';
             color: #000;
             height: 100vh;
             transition: all 0.2s;
-            cursor: none;
         }
 
         body::before {
@@ -91,17 +90,17 @@
             border-bottom: 1px dashed #fff;
         }
 
-        .info3 {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            z-index: 1000;
-            padding: 20px;
-            text-align: right;
+        body.black {
+            color: #fff;
+            background: #000;
         }
 
-        .info3 li {
-            list-style: none;
+        body.black::before {
+            background: #000;
+        }
+
+        body.black .contents p {
+            color: #4e4e4e;
         }
 
         /* contents */
@@ -132,8 +131,8 @@
 
         .cursor {
             position: absolute;
-            left: -100px;
-            top: -100px;
+            left: -400px;
+            top: -400px;
             border: 2px solid #fff;
             width: 50px;
             height: 50px;
@@ -141,20 +140,32 @@
             z-index: 10000;
             user-select: none;
             pointer-events: none;
-            transition: background 0.6s ease-in-out, border-color 0.2s ease-in-out;
+            transition: transform 0.6s ease-in-out, border 0.2s ease-in-out;
+            mix-blend-mode: difference;
         }
 
         .cursor.active {
-            border-color: #000;
-            background: rgba(0, 0, 0, 0.5);
+            background: #fff;
+            transform: scale(2);
+        }
+
+        .ball {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 80%;
+            height: 100px;
+            width: 100px;
+            transform: translateX(calc(var(--mouse-x) * 0.2px)) translateY(calc(var(--mouse-y) * 0.2px));
+            background: goldenrod;
         }
     </style>
 </head>
 
-<body>
+<body class="black">
     <div class="info">
-        <h1>Mouse Effect01</h1>
-        <p>마우스 따라다니기</p>
+        <h1>Mouse Effect04</h1>
+        <p>브랜드 효과 만들기</p>
         <ul>
             <li>마우스 값 알아내기</li>
         </ul>
@@ -162,10 +173,10 @@
 
     <div class="info2">
         <ul>
-            <li class="active"><a href="mouse01.html">Mouse01</a></li>
+            <li><a href="mouse01.html">Mouse01</a></li>
             <li><a href="mouse02.html">Mouse02</a></li>
             <li><a href="mouse03.html">Mouse03</a></li>
-            <li><a href="mouse04.html">Mouse04</a></li>
+            <li class="active"><a href="mouse04.html">Mouse04</a></li>
             <li><a href="mouse05.html">Mouse05</a></li>
             <li><a href="mouse06.html">Mouse06</a></li>
             <li><a href="mouse07.html">Mouse07</a></li>
@@ -173,21 +184,6 @@
             <li><a href="mouse09.html">Mouse09</a></li>
         </ul>
     </div>
-
-    <div class="info3">
-        <ul>
-            <li>clientX = <span class="clientX">0</span></li>
-            <li>clientY = <span class="clientY">0</span></li>
-            <li>offsetX = <span class="offsetX">0</span></li>
-            <li>offsetY = <span class="offsetY">0</span></li>
-            <li>pageX = <span class="pageX">0</span></li>
-            <li>pageY = <span class="pageY">0</span></li>
-            <li>screenX = <span class="screenX">0</span></li>
-            <li>screenY = <span class="screenY">0</span></li>
-        </ul>
-    </div>
-
-
 
     <!-- contents -->
     <div class="cursor"></div>
@@ -200,56 +196,27 @@
         </p>
     </div>
 
-
+    <div class="ball"></div>
 
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/gsap.min.js"></script>
+    <!-- <script src="js/gsap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+
     <script>
-        let cursor = $(".cursor");
+        var cursor = $(".cursor"),
+            positionX = 0,
+            positionY = 0,
+            mouseX = 0, 	//마우스 X축 좌표 값
+            mouseY = 0;		//마우스 Y축 좌표 값
 
-        // $("body, html").mousemove(function (e) {
-        //     $(".clientX").text(e.clientX);
-        //     $(".clientY").text(e.clientY);
-        //     $(".offsetX").text(e.offsetX);
-        //     $(".offsetY").text(e.offsetY);
-        //     $(".pageX").text(e.pageX);
-        //     $(".pageY").text(e.pageY);
-        //     $(".screenX").text(e.screenX);
-        //     $(".screenY").text(e.screenY);
-
-        //     $(".cursor").css("left", e.pageX - 25).css("top", e.pageY - 25);
-        // });
-
-        // $("a").on("mouseenter", function () {
-        //     cursor.addClass("active");
-        // });
-
-        // $("a").on("mouseleave", function () {
-        //     cursor.removeClass("active");
-        // });
+        var docStyle = document.documentElement.style;
 
 
-        //gsap
-        function moveCircle(e) {
-            gsap.to(".cursor", 0.3, {
-                css: {
-                    left: e.pageX - 25,
-                    top: e.pageY - 25
-                }
-            });
-        }
-
-        $(window).on("mousemove", moveCircle);
-
-        $("a").hover(
-            function () {
-                cursor.addClass("active");
-            },
-            function () {
-                cursor.removeClass("active");
-            }
-        )
+        document.addEventListener('mousemove', function (e) {
+            docStyle.setProperty('--mouse-x', e.clientX);
+            docStyle.setProperty('--mouse-y', e.clientY);
+        });
 
 
     </script>
