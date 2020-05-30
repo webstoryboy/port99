@@ -149,20 +149,58 @@
             transform: scale(2);
         }
 
-        .ball {
+
+        .twrap {
             position: absolute;
             left: 50%;
             top: 50%;
-            border-radius: 80%;
-            height: 100px;
-            width: 100px;
-            transform: translateX(calc(var(--mouse-x) * 0.2px)) translateY(calc(var(--mouse-y) * 0.2px));
-            background: goldenrod;
+            transform: translate(-50%, -50%);
+        }
+
+        .twrap .line {
+            width: 100vw;
+            display: flex;
+        }
+
+        .twrap .line .left {
+            width: 50vw;
+            overflow: hidden;
+            transform: skew(0deg, -15deg);
+            color: pink;
+        }
+
+        .twrap .line .left .content {
+            width: 100vw;
+            text-align: center;
+        }
+
+        .twrap .line .right {
+            width: 50vw;
+            overflow: hidden;
+            transform: skew(0deg, 15deg);
+            color: black;
+        }
+
+        .twrap .line .right .content {
+            width: 100vw;
+            text-align: center;
+            transform: translate(-50vw);
+        }
+
+
+        .twrap span {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10vw;
+            text-transform: uppercase;
+            line-height: .8;
+            transition: ease-out .6s;
+            font-weight: 800;
         }
     </style>
 </head>
 
-<body class="black">
+<body>
     <div class="info">
         <h1>Mouse Effect04</h1>
         <p>브랜드 효과 만들기</p>
@@ -176,8 +214,8 @@
             <li><a href="mouse01.html">Mouse01</a></li>
             <li><a href="mouse02.html">Mouse02</a></li>
             <li><a href="mouse03.html">Mouse03</a></li>
-            <li class="active"><a href="mouse04.html">Mouse04</a></li>
-            <li><a href="mouse05.html">Mouse05</a></li>
+            <li><a href="mouse04.html">Mouse04</a></li>
+            <li class="active"><a href="mouse05.html">Mouse05</a></li>
             <li><a href="mouse06.html">Mouse06</a></li>
             <li><a href="mouse07.html">Mouse07</a></li>
             <li><a href="mouse08.html">Mouse08</a></li>
@@ -189,12 +227,56 @@
     <div class="cursor"></div>
 
     <div class="contents">
-        <p>
-            Hi, my name is Eddie and I am a <a class="word">pragmatic</a> UI designer who has worked with dozens of
-            <a>businesses</a> and some <a>non-profit</a> organizations. If you'd like me to help you with
-            your next
-            UI project, <a>let's talk</a>!
-        </p>
+        <div class="twrap">
+            <div class="line">
+                <div class="left">
+                    <div class="content">
+                        <span class="spanSlow">Aladdin</span>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="content">
+                        <span class="spanSlow">Aladdin</span>
+                    </div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="left">
+                    <div class="content">
+                        <span class="spanSlow">What do</span>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="content">
+                        <span class="spanSlow">What do</span>
+                    </div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="left">
+                    <div class="content">
+                        <span class="spanSlow">portfolio</span>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="content">
+                        <span class="spanSlow">portfolio</span>
+                    </div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="left">
+                    <div class="content">
+                        <span class="spanSlow">study</span>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="content">
+                        <span class="spanSlow">study</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/jquery-1.12.4.min.js"></script>
@@ -204,47 +286,34 @@
     <script>
 
 
-        // const word = document.querySelector(".word");
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('resize', handleWindowResize);
 
-        // const shadow = e => {
-        //     const { x, y } = e;
-        //     const gBCR = word.getBoundingClientRect();
-        //     const w = this;
-        //     const xM = (x - gBCR.left - gBCR.width / 2) / gBCR.width * 5;
-        //     const yM = (y - gBCR.top - gBCR.height / 2) / gBCR.height * 5;
+        const spansSlow = document.querySelectorAll('.spanSlow');
+        const spansFast = document.querySelectorAll('.spanFast');
 
-        //     transform(xM, yM);
-        // };
+        let width = window.innerWidth;
 
-        // const transform = (x, y) => {
-        //     word.style.textShadow = `${x}px ${-y}px 0px rgb(102, 249, 255, 0.7),
-        //                                  ${-x}px ${y}px 0px rgb(255, 35, 251, 0.7),
-        //                                  ${y}px ${-x}px 0px rgb(255, 255, 73, 0.7),
-        //                                  ${-y}px ${x}px 0px rgb(102, 249, 255, 0.7)`;
-        // };
-
-        // window.addEventListener("mousemove", shadow);
-
-
-
-        window.addEventListener("mousemove", function (e) {
-            document.querySelectorAll(".word").forEach(elem => {
-                const { x, y } = e;
-                const gBCR = elem.getBoundingClientRect();
-                const w = this;
-                const xM = (x - gBCR.left - gBCR.width / 2) / gBCR.width * 5;
-                const yM = (y - gBCR.top - gBCR.height / 2) / gBCR.height * 5;
-
-                elem.style.textShadow = `${xM}px ${-yM}px 0px rgb(102, 249, 255, 0.7),
-                                         ${-xM}px ${yM}px 0px rgb(255, 35, 251, 0.7),
-                                         ${yM}px ${-xM}px 0px rgb(255, 255, 73, 0.7),
-                                         ${-yM}px ${xM}px 0px rgb(102, 249, 255, 0.7)`;
+        function handleMouseMove(e) {
+            let normalizedPosition = e.pageX / (width / 2) - 1;
+            let speedSlow = 100 * normalizedPosition;
+            let speedFast = 200 * normalizedPosition;
+            spansSlow.forEach((span) => {
+                span.style.transform = `translate(${speedSlow}px)`;
             });
-        });
+            spansFast.forEach((span) => {
+                span.style.transform = `translate(${speedFast}px)`
+            })
+        }
 
+        function handleWindowResize() {
+            width = window.innerWidth;
+        }
 
 
     </script>
 </body>
 
 </html>
+
+<!-- https://angle2.agency/lab/contacts -->

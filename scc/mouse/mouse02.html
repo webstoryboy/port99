@@ -243,8 +243,8 @@
 
 
         function moveCircle(e) {
-            positionX += (mouseX - positionX) / 7;
-            positionY += (mouseY - positionY) / 7;
+            positionX += (mouseX - positionX) / 4;
+            positionY += (mouseY - positionY) / 4;
 
             gsap.to(cursor, 0.3, {
                 css: {
