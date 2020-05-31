@@ -219,23 +219,6 @@
         #section9 .content-item-img {
             background-image: url(img/so01.jpg);
         }
-
-        /* info */
-        .info2 {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            color: #fff;
-            font-size: 16px;
-            line-height: 1.4;
-            font-weight: 300;
-            z-index: 10000;
-            font-family: 'Abel';
-        }
-
-        .info2 strong {
-            color: #fff;
-        }
     </style>
 </head>
 
@@ -254,10 +237,6 @@
             <li><a href="parallax08.html">Parallax08</a></li>
             <li><a href="parallax09.html">Parallax09</a></li>
         </ul>
-    </div>
-
-    <div class="info2">
-        <span>scrollTop() : <strong class="scrollTop">0</strong>px</span><br>
     </div>
 
     <!-- parallax -->
@@ -380,11 +359,11 @@
             //        });
 
             gsap.to(".content-item-imgWrap", .3, {
-                skewY: different * 0.4,
+                skewY: different * 0.2,
                 ease: Power1.ease
             })
             gsap.to(".content-item-desc", .3, {
-                skewY: -different * 0.4,
+                skewY: -different * 0.2,
                 ease: Power1.ease
             })
 
