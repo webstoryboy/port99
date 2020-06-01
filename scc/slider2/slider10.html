@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider08</title>
+    <title>Slider10</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
@@ -153,16 +153,25 @@
         .slider-dot a.active {
             background: rgba(255, 255, 255, .9);
         }
+
+        .slider-play {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            padding: 20px;
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
     <div class="info">
-        <h1>Image Slider08</h1>
+        <h1>Image Slider10</h1>
         <p>좌우로 움직이기</p>
         <ul>
             <li>연속적으로 움직이기</li>
             <li>닷 버튼 만들기</li>
+            <li>자동 플레이 버튼 만들기</li>
         </ul>
     </div>
     <div class="info2">
@@ -174,8 +183,9 @@
             <li><a href="slider05.html">Slider05</a></li>
             <li><a href="slider06.html">Slider06</a></li>
             <li><a href="slider07.html">Slider07</a></li>
-            <li class="active"><a href="slider08.html">Slider08</a></li>
+            <li><a href="slider08.html">Slider08</a></li>
             <li><a href="slider09.html">Slider09</a></li>
+            <li class="active"><a href="slider10.html">Slider10</a></li>
         </ul>
     </div>
 
@@ -203,6 +213,11 @@
         <a href="#" class="dot">5</a> -->
     </div>
 
+    <div class="slider-play">
+        <a href="#" class="play">Play</a>
+        <a href="#" class="stop">Stop</a>
+    </div>
+
     <!-- script -->
     <script src="js/jquery.min_1.12.4.js"></script>
     <script>
@@ -211,14 +226,12 @@
         const sliders = $(".slides");
         const sliderBtn = $(".slider-btn");
         const sliderDot = $(".slider-dot");
+        const sliderPlay = $(".slider-play");
 
         let slideCount = sliders.length;
         let slideWidth = sliders.width();
         let currentIndex = 0;
         let dotIndex = "";
-
-        var slideCopy = $(".slides").clone();
-        sliderImg.append(slideCopy);
 
         //닷 버튼
         sliders.each(function (i) {
@@ -228,68 +241,73 @@
             //dotIndex += "<a href='#'>" + name + "</a>";
         });
         sliderDot.html(dotIndex);
-        sliderDot.find('a').removeClass('active').eq(0).addClass('active');
+        sliderDot.find('a').eq(0).addClass("active");
 
-        //이미지 움직이기
-        function back() {
-            if (currentIndex == 0) {
-                currentIndex = slideCount;
-                sliderImg.css("margin-left", -currentIndex * slideWidth + "px");
-            }
-            currentIndex--;
-            // 4: -1000 * 4 = -4000px
-            // 3: -1000 * 3 = -3000px
-            // 2: -1000 * 2 = -2000px
-            // 1: -1000 * 1 = -1000px
-            // 0: -1000 * 5 = -5000px
-            // 4: -1000 * 4 = -4000px
-            // 3: -1000 * 3 = -3000px
-            // 2: -1000 * 2 = -2000px
-            //........
-            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
-            console.log("back : " + currentIndex)
+        function gotoSlide(index) {
+            sliderImg.stop().animate({ left: -slideWidth * index + "px" }, 400);
+            currentIndex = index;
+            updateDot();
+        }
+
+        function updateDot() {
             sliderDot.find('a').removeClass('active').eq(currentIndex).addClass('active');
         }
 
-        function next() {
-            if (currentIndex == slideCount) {
-                currentIndex = 0;
-                sliderImg.css("margin-left", currentIndex);
+        //닷 버튼 클릭하기
+        sliderDot.on("click", "a", function (e) {
+            e.preventDefault();
+            if (!$(this).hasClass("active")) {
+                gotoSlide($(this).index());
             }
-            currentIndex++;
-            // 1: -1000 * 1 = -1000px;
-            // 2: -1000 * 2 = -2000px;
-            // 3: -1000 * 3 = -3000px;
-            // 4: -1000 * 3 = -4000px;
-            // 5: -1000 * 3 = -5000px;
-            // 1: -1000 * 1 = -1000px;
-            // 2: -1000 * 2 = -2000px;
-            // 3: -1000 * 3 = -3000px;
-            // 4: -1000 * 3 = -4000px;
-            // 5: -1000 * 3 = -5000px;
-            sliderImg.animate({ "margin-left": -slideWidth * currentIndex + "px" }, 400);
-            console.log("next : " + currentIndex)
-
-            if (currentIndex == slideCount) currentIndex = 0;
-            sliderDot.find('a').removeClass('active').eq(currentIndex).addClass('active');
-        }
-
-
-
+        });
 
         //버튼 클릭하기
         sliderBtn.on("click", "a", function (e) {
             e.preventDefault();
-            var nextIndex = (currentIndex + 1) % slideCount;
-            var prevIndex = (currentIndex - 1) % slideCount;
+            let nextIndex = (currentIndex + 1) % slideCount;
+            let prevIndex = (currentIndex - 1) % slideCount;
+            if (currentIndex == 0) prevIndex = slideCount - 1;
+            //console.log("nextIndex : " + nextIndex)
+            //console.log("prevIndex : " + prevIndex)
 
             if ($(this).hasClass("prev")) {
-                back();
+                gotoSlide(prevIndex);
             } else {
-                next();
+                gotoSlide(nextIndex);
+            }
+
+        });
+
+        $(".slider-play .play").hide()
+        //버튼 클릭하기
+        sliderPlay.on("click", "a", function () {
+
+            if ($(this).hasClass("play")) {
+                startTimer();
+                $(".slider-play .stop").show()
+                $(".slider-play .play").hide()
+            } else {
+                stopTimer();
+                $(".slider-play .play").show()
+                $(".slider-play .stop").hide()
             }
         });
 
+        //자동 플레이
+        function startTimer() {
+            timer = setInterval(function () {
+                var nextIndex = (currentIndex + 1) % slideCount;
+                gotoSlide(nextIndex);
+            }, 3000);
+        };
+
+        function stopTimer() {
+            clearInterval(timer);
+        };
+        sliderWrap.on({ mouseenter: stopTimer, mouseleave: startTimer });
+
+
+        startTimer();
 
     </script>
 </body>
