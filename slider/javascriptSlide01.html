@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var slides = document.querySelectorAll("#container > img"); // 이미지들을 저장한 배열
+        var prev = document.querySelector("#prev");  // 이전 버튼 
+        var next = document.querySelector("#next");		// 다음 버튼
+        var current = 0; // 표시할 이미지 위치
+
+        showSlide(current);  // showSlide( ) 함수를 실행해 current 위치의 이미지 표시
+        prev.onclick = prevSlide;  // prev를 클릭하면 prevSlide 함수 실행
+        next.onclick = nextSlide;  // next를 클릭하면 nextSlide 함수 실행
+
+        function showSlide(n) {
+        for(var i=0; i<slides.length; i++) {  // slide 배열의 처음부터 끝까지 반복
+            slides[i].style.display = "none";  // 모든 이미지를 화면에서 감춤
+        }
+        slides[n].style.display = "block";  // n번째 이미지를 화면에 표시 
+        }
+
+        function prevSlide() {
+        if (current > 0) current -= 1;  // 현재 이미지가 첫번째가 아닐 경우, -1 위치로
+        else current = slides.length - 1; // 현재 이미지가 첫번째라면 마지막으로
+        showSlide(current); // 이동한 위치의 이미지 표시
+        } 
+
+        function nextSlide() {
+        if (current < slides.length -1) current += 1; // 현재 이미지가 마지막이 아니라면 +1 위치로
+        else current = 0; // 현재 이미지가 마지막이라면 첫번째 위치로
+        showSlide(current);  // 이동한 위치의 이미지 표시
+        } 
+
+
+        //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+    </script>
+
+
+
+<script>
+
+    
+//https://codepen.io/info2grow/pen/doLvZo?editors=0010
+
+
+var slideIndex = 0;
+var currentSlideIndex = 0;
+var slideArray = [];
+
+// Template for creating a custom Slide object
+function Slide(title, subtitle, background, link ) {
+	this.title = title;
+	this.subtitle = subtitle;
+	this.background = background;
+	this.link = link;
+	// we need an id to target later using getElementById
+	this.id = "slide" + slideIndex;
+	// Add one to the index for the next slide number
+	slideIndex++;
+	// Add this Slide to our array
+	slideArray.push(this);
+}
+
+
+
+// Creating our slide objects, you can make as many as you want
+
+var walkingDead = new Slide(
+	"The Walking Dead", 
+	"A show about fighting zombies", 
+	"https://acollectivemind.files.wordpress.com/2013/12/season-4-complete-cast-poster-the-walking-dead-the-walking-dead-35777405-2528-670.png", 
+	"http://www.amc.com/shows/the-walking-dead"
+);
+
+var bigBang = new Slide(
+	"The Big Bang Theory", 
+	"A show about Sheldon", 
+	"http://cdn.playbuzz.com/cdn/7b4f711d-2a46-45dc-bea7-85a15ffa587a/b9f955c1-d8ad-4778-862d-e66ec2c38df1.jpg", 
+	"http://www.cbs.com/shows/big_bang_theory/"
+);
+
+var LastMan = new Slide(
+	"The Last Man on Earth", 
+	"A show about loneliness", 
+	"https://www.wired.com/wp-content/uploads/2015/02/LMOE-AliveInTuscon_scene44_0028_hires2.jpg", 
+	"http://www.fox.com/the-last-man-on-earth"
+);
+
+
+
+/*-----------------------------------------------------------------
+-----------------------------------------------------------------
+----------------------- ADD TO WEB PAGE ---------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------*/
+
+
+
+function buildSlider(){
+	// A variable to hold all our HTML
+	var myHTML;
+	
+	// Go through the Array and add the code to our HTML
+	for(var i = 0; i < slideArray.length; i++) {
+		
+		myHTML += "<div id='" + slideArray[i].id + 
+		"' class='singleSlide' style='background-image:url(" + slideArray[i].background + ");'>" + 
+		"<div class='slideOverlay'>" + 
+		"<h1>" + slideArray[i].title + "</h1>" +
+		"<h4>" + slideArray[i].subtitle + "</h4>" +
+		"<a href='" + slideArray[i].link + "' target='_blank'>Open Link</a>" +
+		"</div>" +
+		"</div>";	
+		
+	}
+	
+	// Print our HTML to the web page
+	document.getElementById("mySlider").innerHTML = myHTML;
+		
+	// Display the first slide
+	document.getElementById("slide" + currentSlideIndex).style.left = 0;
+
+}
+
+// Create our slider
+buildSlider();
+
+
+
+
+
+/*-----------------------------------------------------------------
+-----------------------------------------------------------------
+----------------------- SLIDER CONTROLS ---------------------------
+-----------------------------------------------------------------
+-----------------------------------------------------------------*/
+
+
+
+// Navigates to the previous slide in the list
+function prevSlide(){
+	// Figure out what the previous slide is
+	var nextSlideIndex;
+	// If we are at zero go to the last slide in the list
+	if (currentSlideIndex === 0 ) {
+		nextSlideIndex = slideArray.length - 1;
+	} else {
+		// Otherwise the next one is this slide minus 1
+		nextSlideIndex = currentSlideIndex - 1;
+	}	
+	
+	// Setup the next slide and current slide for animations
+	document.getElementById("slide" + nextSlideIndex).style.left = "-100%";
+	document.getElementById("slide" + currentSlideIndex).style.left = 0;
+	
+	// Add the appropriate animation class to the slide
+	document.getElementById("slide" + nextSlideIndex).setAttribute("class", "singleSlide slideInLeft");
+	document.getElementById("slide" + currentSlideIndex).setAttribute("class", "singleSlide slideOutRight");
+	
+	// Set current slide to the new current slide
+	currentSlideIndex = nextSlideIndex;
+}
+
+
+// Navigates to the next slide in the list
+function nextSlide(){
+	// Figure out what the next slide is
+	var nextSlideIndex;
+	// If we are at the last slide the next one is the first (zero based)
+	if (currentSlideIndex === (slideArray.length - 1) ) {
+		nextSlideIndex = 0;
+	} else {
+		// Otherwise the next slide is the current one plus 1
+		nextSlideIndex = currentSlideIndex + 1;
+	}	
+	
+	// Setup the next slide and current slide for animations
+	document.getElementById("slide" + nextSlideIndex).style.left = "100%";
+	document.getElementById("slide" + currentSlideIndex).style.left = 0;
+	
+	// Add the appropriate animation class to the slide
+	document.getElementById("slide" + nextSlideIndex).setAttribute("class", "singleSlide slideInRight");
+	document.getElementById("slide" + currentSlideIndex).setAttribute("class", "singleSlide slideOutLeft");
+	
+	// Set current slide to the new current slide
+	currentSlideIndex = nextSlideIndex;
+}
+
+
+
+
+
+
+
+</script>
+
+    <script>
+        //https://codepen.io/MonnyDesign/pen/ZPpdNE?editors=0010
+        let leftArrow = document.getElementById('arrow-left');
+      let rightArrow = document.getElementById('arrow-right');
+      let images = document.getElementsByClassName('slide');
+
+      let sliderWrap = document.getElementById('slider');
+      let current = 0;
+      let lastImage = (images.length * 100);
+      let stoper = ((images.length - 1) * 100);
+
+      function countWidth(){
+        sliderWrap.style.width = lastImage + '%';
+        for(let i = 0; i < images.length; i++){
+          images[i].style.width = (100 / images.length) + '%';
+        }
+      }
+
+      function slideRight(){
+          current += 100;
+          if(current === lastImage){
+            current = 0;
+          }
+          sliderWrap.style.left = "-" + current + '%';
+      }
+
+      rightArrow.addEventListener('click', rightArrowClick);
+
+      function rightArrowClick(){
+        if(current === stoper ){
+          sliderWrap.style.left = '0%';
+        }
+        slideRight();
+      };
+
+      function slideLeft(){
+        current -= 100;
+        if(current === -1){
+          current = stoper;
+        }
+        sliderWrap.style.left = '-' + current + '%';
+      }
+
+
+      leftArrow.addEventListener('click', function(){
+        if(current === 0){
+          current += lastImage;
+          sliderWrap.style.left = '-' + current + '%';
+        }
+        slideLeft();
+      });
+
+      countWidth();
+    </script>
+
+</body>
+</html>

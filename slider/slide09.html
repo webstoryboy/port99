@@ -92,26 +92,33 @@
         }
 
         .slider-dot {
-            position: fixed; bottom: 20px; left: 50%;
+            position: absolute; bottom: 20px; left: 50%;
             transform: translate(-50%);
+            white-space: nowrap;
         }
         .slider-dot a {
-            width: 20px; height: 20px;
-            background:rgba(0,0,0,0.6);
+            width: 100px; height: 40px;
+            background:rgba(0,0,0,0.8);
             display: inline-block;
-            border-radius: 50%;
+            border-radius: 3px;
             margin: 5px;
-            text-indent: -9999px;
-            transition: background 0.3s;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            background-size: cover;
+            opacity: 0.5;
+            transition: all 0.3s;
         }
         .slider-dot a.active {
-            background:rgba(255,255,255,.9);
+            background-size: cover;
+            color: #F00;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="info">
-        <h1>Image Slider08</h1>
+        <h1>Image Slider09</h1>
         <p>좌우로 움직이기</p>
         <ul>
             <li>연속적으로 움직이기</li>
@@ -129,7 +136,7 @@
             <li><a href="slide06.html">Slider06</a></li>
             <li><a href="slide07.html">Slider07</a></li>
             <li class="active"><a href="slide08.html">Slider08</a></li>
-            <li><a href="slide09.html">Slider07</a></li>
+            <li><a href="slide09.html">Slider09</a></li>
         </ul>
     </div>
 
@@ -144,47 +151,44 @@
         </div>
     </div>
 
-    <div class="slider-btn">
-        <a href="#" class="prev">prev</a>
-        <a href="#" class="next">next</a>
-    </div>
-
-    <div class="slider-dot">
-        <!-- <a href="#" class="dot active">1</a>
-        <a href="#" class="dot">2</a>
-        <a href="#" class="dot">3</a>
-        <a href="#" class="dot">4</a>
-        <a href="#" class="dot">5</a> -->
-    </div>
-
     <!-- script -->
     <script src="js/jquery.min_1.12.4.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
     <script>
+        //버튼, 닷 태그 추가하기
+        $(".slider-wrap").append("<div class='slider-btn'><a href='#' class='prev'>prev</a><a href='#' class='next'>next</a></div>");
+        $(".slider-wrap").append("<div class='slider-dot'></div>");
+
         const sliderWrap = $(".slider-wrap");
         const sliderImg = $(".slider-img");
         const sliders = $(".slides");
         const sliderBtn = $(".slider-btn");
         const sliderDot = $(".slider-dot");
 
-        let slideCount = sliders.length;
-        let slideWidth = sliders.width();
-        let slideHeight = sliders.height();
-        let slideTotalWidth = slideCount * slideWidth;
-
+        let sliderCount = sliders.length;
+        let sliderWidth = sliders.width(); //1000
         let currentIndex = 0;
         let dotIndex = "";
+        let timer = "";
 
-        //이미지 갯수만큼 닷 메뉴 표현 
-        sliders.each(function(){
-            //console.log(index)
-            dotIndex += "<a href='#'></a>";
-            console.log(dotIndex)
-        })
+
+        //닷 버튼 만들기
+        sliders.each(function(index, element){
+            let slideName = $(this).find("img").attr("alt");
+            let slideImg = $(this).find("img").attr("src");
+            console.log(slideImg)
+
+            //dotIndex += "<a href='#' class='dot'>1</a>";
+            //dotIndex += "<a href='#' class='dot'>"+ (index+1) + "</a>";
+            dotIndex += "<a href='#' style='background-image:url("+slideImg+")'>"+ slideName + "</a>";
+
+        });
         sliderDot.html(dotIndex);
         sliderDot.find("a").eq(0).addClass("active");
 
-        function gotoSlider(index){
-            sliderImg.animate({ left : -slideWidth * index + "px" },400)
+        //이미지 움직이기
+        function gotoSlide(index){
+            sliderImg.animate({ left: -sliderWidth * index}, 400, "easeInOutSine");
             currentIndex = index;
             updateDot();
         }
@@ -193,37 +197,49 @@
             sliderDot.find("a").removeClass().eq(currentIndex).addClass("active");
         }
 
-        //숙제
-        //버튼을 클릭합니다. 
-        //active 있는지 확인
-        //active 없을 때 닷 메뉴 순서 번호 추출
-        //gotoSlide(index)
+        //자동 플레이
+        function startTimer (){
+            timer = setInterval(function(){
+                let nextIndex = (currentIndex + 1) % sliderCount;
+                gotoSlide(nextIndex);
+            },3000);
+        }
+        startTimer ();
 
+        //정지
+        function stopTimer (){
+            clearInterval(timer)
+        }
+
+        //sliderWrap.hover(function(){stopTime()}, function(){startTimer()});
+        sliderWrap.on({ mouseenter:stopTimer,  mouseleave: startTimer})
+
+                        
 
         //버튼 클릭하기
-        sliderBtn.on("click", "a", function(e){
-            e.preventDefault();
+        sliderBtn.on("click","a", function(){
+            let nextIndex = (currentIndex + 1) % sliderCount;  //1, 2, 3, 4, 0, 1, 2, 3, 4, 0
+            let prevIndex = (currentIndex - 1) % sliderCount;   //-1, -2, -3, -4  
+            if( currentIndex == 0) prevIndex = sliderCount - 1
 
-            let nextIndex = (currentIndex + 1) % slideCount;  //1, 2, 3, 4, 0, 1, 2, 3, 4, 0
-            let prevIndex = (currentIndex - 1) % slideCount;
-            if(currentIndex == 0) prevIndex = slideCount - 1;
+            //console.log("nextIndex : " + nextIndex);
+            //console.log("prevIndex : " + prevIndex);
 
-            if( $(this).hasClass("prev") ){
-                gotoSlider(2);
+            if( $(this).hasClass("prev")){
+                gotoSlide(prevIndex);
             } else {
-                gotoSlider(nextIndex);
+                gotoSlide(nextIndex);
             }
         });
 
-        //오른쪽 버튼을 클릭하면 currentIndex 1++ // 01234, 01234, 01234,
-        //왼쪽 버튼클릭하면 currentIndex 1--
-
-        //currentIndex = 1  --> 첫번째 이미지
-        //currentIndex = 2  --> 두번째 이미지
-        //currentIndex = 3  --> 세번째 이미지
-        //currentIndex = 4  --> 네번째 이미지
-        //currentIndex = 5  --> 다섯번째 이미지
+        //닷 버튼 클릭하기
+        sliderDot.on("click","a",function(){
+            gotoSlide($(this).index());
+        });
         
+        
+
+
        
     </script>
 </body>
