@@ -221,14 +221,31 @@
         }
 
         /* info */
-        .content-item-desc span {
+        /* 1 */
+        /* .content-item-desc {
             opacity: 0;
+            transform: translateY(70px);
             transition: all 0.3s ease;
         }
 
-        .content-item-desc span.show {
+        .content-item-desc.show {
+            transform: translateY(0);
             opacity: 1;
+        } */
+
+        /* 2 */
+        /* .content-item-desc span {
+            opacity: 0;
+            transform: translateY(70px);
+            transition: all 0.3s ease;
+            display: inline-block;
+            min-width: 20px;
         }
+
+        .content-item-desc span.show {
+            transform: translateY(0);
+            opacity: 1;
+        } */
     </style>
 </head>
 
@@ -346,8 +363,42 @@
         });
 
         $(window).scroll(function () {
-            if ($(window).scrollTop() > $(".split1").offset().top - $(window).height()) {
-                $(".split1").addClass("show");
+            //하나씩 나오게 하기
+            // if ($(window).scrollTop() > $("#section1").offset().top) {
+            //     $("#section1 .content-item-desc").addClass("show");
+            // } else {
+            //     $("#section1 .content-item-desc").removeClass("show");
+            // }
+
+            //하나씩 나오게 하기(한꺼번에 쓰기)
+            // $(".content-item").each(function () {
+            //     if ($(window).scrollTop() > $(this).offset().top) {
+            //         $(this).find(".content-item-desc").addClass("show");
+            //     } else {
+            //         $(this).find(".content-item-desc").removeClass("show");
+            //     }
+            // });
+
+            //한글자씩 나오게 하기
+            if ($(window).scrollTop() >= $("#section1").offset().top) {
+                $("#section1 .content-item-desc span").each(function (i) {
+                    setTimeout(function () {
+                        $("#section1 .content-item-desc span").eq(i).addClass("show");
+                    }, 50 * (i + 1));
+                });
+            }
+            if ($(window).scrollTop() >= $("#section2").offset().top) {
+                $("#section2 .content-item-desc span").each(function (i) {
+                    setTimeout(function () {
+                        $("#section2 .content-item-desc span").eq(i).addClass("show");
+                    }, 20 * (i + 1));
+                });
+            }
+            if ($(window).scrollTop() >= $("#section3").offset().top) {
+                $("#section3 .content-item-desc span").each(function (i) {
+                    gsap.fromTo("#section3 .content-item-desc span", 0.8,
+                        { opacity: 0, y: 100, repeat: 1 }, { opacity: 1, y: 0, repeat: 1, stagger: 0.05 })
+                });
             }
 
 
