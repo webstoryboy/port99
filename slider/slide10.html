@@ -92,13 +92,26 @@
         .slide-img .slide {position: absolute; width: 100%; height: 100%; overflow: hidden;}
         .slide-img .slide .stext {
             position: absolute; left: 50%; top: 50%; 
-            font-size: 8vw; color: #fff;
+            transform: translate(-50%,-50%) scale(0.8);
+        }
+        .slide-img .slide .stext h2 {
+            font-size: 11vw; 
+            line-height: 8vw;
+            padding-top: 0.1vw;
+            color: #fff;
             font-family: "Roboto";
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transform: translate(-50%,-50%) scale(0.8);
+            letter-spacing: 0.1em;
             font-weight: 700;
+            overflow: hidden;
+            /* white-space: nowrap; */
+            display: flex;
         }
+        .slide-img .slide .stext h2 span { 
+            /* display: inline-block; */
+            transform: translateY(101%);
+        }
+
         .slide-img .slide .simg {position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);}
         .slide-img .slide .simg img {max-width: 500px;}
         .slide-img .slide .snum {
@@ -326,6 +339,16 @@
             easing = "easeOutExpo";            //이미지 움직임 효과
             slideBg = ["#fcefe9", "#e9effd", "#fae3f5", "#fbe368", "#ccebea", "#e9effd", "#f4f2ec"]; //각 슬라이드 배경색
 
+        //글씨 분할
+        slide.each(function(){
+            let txt = $(this).find(".stext > h2").text();
+            let split = txt.split("").join("</span><span aria-hidden='true'>");
+                split = "<span aria-hidden='true'>" + split + "</span>";
+            $(this).find(".stext > h2").html(split).attr("aria-label", txt);
+        });
+
+
+
         //01. 각 이미지 absolute
         // left: currentIndex(0) * 100% = 0%
         // left: currentIndex(1) * 100% = 100%
@@ -336,7 +359,7 @@
         slide.each(function(i, e){
             //console.log(e)
             $(this).css({ left : 100 * i + "%", backgroundColor : slideBg[i]});          //각 슬라이드 이미지 위치 설정
-            dotIndex += "<a href='#'></a>";         //이미지 갯수만큼 닷 버튼 만들기
+            dotIndex += "<a href='#'></a>";                                             //이미지 갯수만큼 닷 버튼 만들기
         });
         slideDot.html(dotIndex);                         //닷 버튼 출력
 
@@ -345,6 +368,12 @@
             slideImg.animate({ left : -100 * num + "%"}, duration, easing);
 
             currentIndex = num;
+            updateDot();
+        }
+
+        function updateDot(){
+            slideDot.find("a").removeClass().eq(currentIndex).addClass("active");
+            slide.removeClass("active").eq(currentIndex).addClass("active");
         }
 
         //버튼 클릭하기
