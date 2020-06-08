@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Effect01</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+        a {text-decoration: none;color: #666;}
+        img {width: 100%; vertical-align: top;}
+        ul {padding: 10px 20px;}
+        body {
+            background: url(../slider2/img/su04.jpg) no-repeat center center;
+            background-size: cover;
+            font-family: 'Abel', 'GmarketSansMedium';
+            color: #fff;
+            height: 100vh;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(45, 71, 100, 0.8);
+            z-index: -1;
+        }
+        .info {position: absolute; left: 0; top: 0; z-index: 1000; padding: 20px;}
+        .info h1 {padding-bottom: 10px;}
+
+        .info2 {position: absolute; right: 0; top: 0; z-index: 1000; padding: 20px;}
+        .info2 li {list-style: none; margin-bottom: 5px;}
+        .info2 li a {color: #fff;}
+        .info2 li.active {border-bottom: 1px dashed #fff;}
+
+        .infor3 {position: absolute; right: 0; bottom: 0; z-index: 1000; padding: 20px;}
+        .infor3 li {list-style: none; margin-bottom: 5px;}
+        .infor3 li a {color: #fff;}
+
+        .contents {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .contents p {
+            max-width: 70vw;
+            font-size: 3vw;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        .contents p a {
+            color: orange;
+            font-weight: bold;
+            border-bottom: 2px dashed orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>Canvas Effect02</h1>
+        <p>캔버스</p>
+    </div>
+
+    <div class="info2">
+        <ul>
+            <li><a href="canvas01.html">Canvas01</a></li>
+            <li class="active"><a href="canvas02.html">Canvas02</a></li>
+            <li><a href="canvas03.html">Canvas03</a></li>
+            <li><a href="canvas04.html">Canvas04</a></li>
+            <li><a href="canvas05.html">Canvas05</a></li>
+        </ul>
+    </div>
+
+    <div class="infor3">
+        <ul>
+            <li>clientX : <span class="clientX">0</span></li>
+        </ul>
+    </div>
+
+    <!-- contents -->
+    <canvas id="canvas"></canvas>
+
+    <!-- script -->
+    <script src="../parallax2/js/jquery-1.12.4.min.js"></script>
+    <script src="../parallax2/js/jquery-ui.min.js"></script>
+    <script>
+
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        var width = canvas.width = window.innerWidth;
+        var height = canvas.height = window.innerHeight;
+        
+        var centerX = width * .5;
+        var centerY = height * .5;
+        var offset = height * 0.05;
+        var angle = 0;
+        var speed = 0.05;
+        
+        function render(){
+            context.clearRect(0, 0, width, height);
+
+            for (var i=0; i < 20; i++){
+                var y = centerY + Math.sin(angle + i) * offset;
+
+                context.beginPath();
+                context.arc((i+1)*150, y, 50, 0, Math.PI * 2, false);
+                context.fill();
+                context.fillStyle = "white";
+            }
+            console.log(y)
+            angle += speed;
+
+            requestAnimationFrame(render)
+        }
+        
+        render()
+
+    </script>
+
+</body>
+
+</html>
