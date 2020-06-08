@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Effect04</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+        a {text-decoration: none;color: #666;}
+        img {width: 100%; vertical-align: top;}
+        ul {padding: 10px 20px;}
+        body {
+            background: url(../slider2/img/su04.jpg) no-repeat center center;
+            background-size: cover;
+            font-family: 'Abel', 'GmarketSansMedium';
+            color: #fff;
+            height: 100vh;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(45, 71, 100, 0.8);
+            z-index: -1;
+        }
+        .info {position: absolute; left: 0; top: 0; z-index: 1000; padding: 20px;}
+        .info h1 {padding-bottom: 10px;}
+
+        .info2 {position: absolute; right: 0; top: 0; z-index: 1000; padding: 20px;}
+        .info2 li {list-style: none; margin-bottom: 5px;}
+        .info2 li a {color: #fff;}
+        .info2 li.active {border-bottom: 1px dashed #fff;}
+
+        .infor3 {position: absolute; right: 0; bottom: 0; z-index: 1000; padding: 20px;}
+        .infor3 li {list-style: none; margin-bottom: 5px;}
+        .infor3 li a {color: #fff;}
+
+        .contents {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .contents p {
+            max-width: 70vw;
+            font-size: 3vw;
+            line-height: 1.5;
+            text-align: justify;
+        }
+        .contents p a {
+            color: orange;
+            font-weight: bold;
+        }
+
+        
+.move-image {
+	width: 400px; height: 600px;
+	position: absolute;
+	left: 50%; top: 50%;
+	transform: translate(-50%, -50%) perspective(600px) rotatex(0deg) rotateY(10deg);
+	transform-style: preserve-3d;
+}
+.mimg {
+	position: relative;
+	width: 400px; height: 600px;
+	transform: translatez(80px) scale(0.8);
+}
+.mimg::before, .mimg::after {
+	content:'';
+	position: absolute; left: 0; top: 0;
+	width: 100%; height: 100%;
+	background: url(https://tistory4.daumcdn.net/tistory/2141493/skin/images/dog.jpg);
+	background-size: cover;
+	border-radius: 10px;
+}
+.mimg::after {
+	height: 30px;
+	top: auto; bottom: -15px;
+	background-size: 100% 30px;
+	filter: blur(15px);
+	z-index: -1;
+}
+.mtext {
+	position: absolute; top: 0; left: 0;
+	z-index: 2;
+	width: 400px; height: 600px;
+	border: 3px solid #fff;
+	transform: translatez(150px) translatex(-18px) translatey(-20px) scale(0.5);
+	background: linear-gradient(135deg, 
+			rgba(255,255,255,1) 0%, 
+			rgba(255,255,255,0.36) 35%, 
+			rgba(255,255,255,0.07) 41%, 
+			rgba(255,255,255,0) 51%, 
+			rgba(255,255,255,0) 100%
+	);
+	text-align: center;
+	font-size: 48px; color: #fff;
+	text-transform: uppercase;
+	line-height: 1050px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+.mtext::after {
+	content:'publisher';
+	position: absolute; left: 0; bottom: 0;
+	font-size: 20px;
+	line-height: 75px;
+	width: 100%;
+	font-weight: normal;
+	letter-spacing: 15px;
+	text-indent: 12px;
+}
+.cursor {
+    position: absolute;
+    border: 2px solid #fff;
+    background: rgba(255,255,255,0.4);
+    height: 40px;
+    width: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    border-radius: 100%;
+    z-index: 10000;
+    user-select: none;
+    pointer-events: none;
+		cursor: none;
+}
+     
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>Mouse Effect04</h1>
+        <p>마우스 따라다니기</p>
+        <ul>
+            <li>clientX, clientY</li>
+        </ul>
+    </div>
+
+    <div class="info2">
+        <ul>
+            <li><a href="mouse01.html">Mouse01</a></li>
+            <li><a href="mouse02.html">Mouse02</a></li>
+            <li><a href="mouse03.html">Mouse03</a></li>
+            <li class="active"><a href="mouse04.html">Mouse04</a></li>
+            <li><a href="mouse05.html">Mouse05</a></li>
+        </ul>
+    </div>
+
+    <div class="infor3">
+        <ul>
+            <li>pageX : <span class="pageX">0</span></li>
+            <li>pageY : <span class="pageY">0</span></li>
+            <li>mouseX : <span class="mouseX">0</span></li>
+            <li>mouseY : <span class="mouseY">0</span></li>
+            <li>angleX : <span class="angleX">0</span></li>
+            <li>angleY : <span class="angleY">0</span></li>
+            <li>fmouseX : <span class="fmouseX">0</span></li>
+            <li>fmouseY : <span class="fmouseY">0</span></li>
+        </ul>
+    </div>
+
+    <!-- contents -->
+    <div class="cursor"></div>
+
+    <div class="contents">
+        <div class="move-image">
+            <div class="mimg"></div>
+            <div class="mtext">SSang Sun</div>
+        </div>
+    </div>
+
+
+    <!-- script -->
+    <script src="../parallax2/js/jquery-1.12.4.min.js"></script>
+    <script src="../parallax2/js/jquery-ui.min.js"></script>
+    <script src="../parallax2/js/gsap.min.js"></script>
+    <script>
+        let fmouseX = 0,
+            fmouseY = 0,
+            mouseX = 0,
+            mouseY = 0,
+            angleX = 0,
+            angleY = 0,
+            friction = 1/8;
+
+        $(window).mousemove(function(e){
+            mouseX = Math.max(-100, Math.min(100, $(window).width()/2 - e.pageX));
+            mouseY = Math.max(-100, Math.min(100, $(window).height()/2 - e.pageY));
+            angleX = (12 * mouseX) / 100;
+            angleY = (12 * mouseY) / 100;
+            fmouseX += (angleX - fmouseX) * friction;
+            fmouseY += (angleY - fmouseY) * friction;
+            animation();
+        });
+
+        function animation() {
+            $(".move-image").css({'transform':'translate(-50%, -50%) perspective(600px) rotateX('+ fmouseY +'deg) rotateY('+ -fmouseX +'deg)'});
+            window.requestAnimationFrame(animation);
+        }
+
+        $(window).mousemove(function(e){
+            $(".pageX").text(e.pageX);
+            $(".pageY").text(e.pageY);
+            $(".mouseX").text(mouseX);
+            $(".mouseY").text(mouseY);
+            $(".angleX").text(angleX);
+            $(".angleY").text(angleY);
+            $(".fmouseX").text(fmouseX);
+            $(".fmouseY").text(fmouseY);
+        });
+
+        
+        //let max = Math.max(100, 200); //입력된 숫자 중 가장 큰 숫자를 반환합니다
+        //let min = Math.min(100, 200);  //입력된 숫자 중 가장 작은 숫자를 반환합니다
+
+        // var x = 100, y = -200;
+        // var z = Math.min(x, y);
+
+        // var arr = [100, 200, 300];
+        // var max = Math.max(...arr);
+
+        //let ceil = Math.ceil(.95);    //주어진 숫자보다 크거나 같은 숫자 중 가장 작은 숫자
+        //let ceil = Math.ceil(4);      // 4
+        //let ceil = Math.ceil(7.004);  // 8
+        //let ceil = Math.ceil(-0.95);  // -0
+        //let ceil = Math.ceil(-4);     // -4
+
+        //let floor = Math.floor( 45.95); //  45 주어진 수 이하의 가장 큰 정수.
+        //let floor = Math.floor( 45.05); //  45
+        //let floor = Math.floor(  4   ); //   4
+        //let floor = Math.floor(-45.05); // -46 
+        //let floor = Math.floor(-45.95); // -46
+
+        //let round = Math.round( 20.49); //  20 입력값을 반올림한 값과 가장 가까운 정수를 의미합니다.
+        //let round = Math.round( 20.5 ); //  21
+        //let round = Math.round( 42   ); //  42
+        //let round = Math.round(-20.5 ); // -20
+        //let round = Math.round(-20.51); // -21
+
+        //let random = Math.floor(Math.random() * 10) ;  //0 이상 1 미만의 부동소숫점 의사 난수.
+        //alert(max)
+    </script>
+
+</body>
+
+</html>
