@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mouse Effect01</title>
-    
+
     <style>
-         @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 
         @font-face {
             font-family: 'GmarketSansMedium';
@@ -14,11 +15,34 @@
             font-weight: normal;
             font-style: normal;
         }
-        @font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
-        * {margin: 0;padding: 0;box-sizing: border-box;}
-        a {text-decoration: none;color: #666;}
-        img {width: 100%; vertical-align: top;}
-        ul {padding: 10px 20px;}
+
+        @font-face {
+            font-family: 'S-CoreDream-2ExtraLight';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        ul {
+            padding: 10px 20px;
+        }
+
         body {
             background: url(../slider2/img/su04.jpg) no-repeat center center;
             background-size: cover;
@@ -29,6 +53,7 @@
             cursor: none;
             overflow: hidden;
         }
+
         body::before {
             content: '';
             position: absolute;
@@ -39,22 +64,74 @@
             background: rgba(45, 71, 100, 0.8);
             z-index: -1;
         }
-        .info {position: absolute; left: 0; top: 0; z-index: 1000; padding: 20px;}
-        .info h1 {padding-bottom: 10px;}
 
-        .info2 {position: absolute; right: 0; top: 0; z-index: 1000; padding: 20px;}
-        .info2 li {list-style: none; margin-bottom: 5px;}
-        .info2 li a {color: #fff;}
-        .info2 li.active {border-bottom: 1px dashed #fff;}
+        .info {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
 
-        .infor3 {position: absolute; right: 0; bottom: 0; z-index: 1000; padding: 20px;}
-        .infor3 li {list-style: none; margin-bottom: 5px;}
-        .infor3 li a {color: #fff;}
+        .info h1 {
+            padding-bottom: 10px;
+        }
 
-        .infor4 {position: absolute; left: 0; bottom: 0; z-index: 1000; padding: 20px;}
-        .infor4 a {color: #fff; border: 1px solid #fff; border-radius: 30px; padding: 5px 30px}
+        .info2 {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .info2 li {
+            list-style: none;
+            margin-bottom: 5px;
+        }
+
+        .info2 li a {
+            color: #fff;
+        }
+
+        .info2 li.active {
+            border-bottom: 1px dashed #fff;
+        }
+
+        .infor3 {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .infor3 li {
+            list-style: none;
+            margin-bottom: 5px;
+        }
+
+        .infor3 li a {
+            color: #fff;
+        }
+
+        .infor4 {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .infor4 a {
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 30px;
+            padding: 5px 30px
+        }
+
         .infor4 .modal {
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             width: 100%;
             height: 100vh;
             position: fixed;
@@ -63,51 +140,64 @@
             text-align: left;
             transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1);
         }
+
         .infor4 .modal.show {
             top: 0;
         }
+
         .infor4 .modal .close {
-            position: absolute; right: 10px; top: 20px;
+            position: absolute;
+            right: 10px;
+            top: 20px;
         }
 
         .contents {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%; height: 100vh;
+            width: 100%;
+            height: 100vh;
             flex-direction: column;
             overflow: hidden;
         }
+
         .contents p {
             max-width: 70vw;
             font-size: 3vw;
             line-height: 1.5;
             text-align: justify;
         }
+
         .contents p a {
             color: orange;
             font-weight: bold;
             border-bottom: 2px dashed orange;
         }
+
         .cursor {
-            position: absolute; left: -100px; top: -100px;
-            width: 50px; height: 50px; 
+            position: absolute;
+            left: -100px;
+            top: -100px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 3px solid #fff;
             z-index: 1000;
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.1);
             user-select: none;
             pointer-events: none;
             transition: background-color .2s, border-color .2s;
         }
+
         .cursor.active {
-            background-color: rgba(255,165,0,0.4);
+            background-color: rgba(255, 165, 0, 0.4);
             border-color: orange;
         }
     </style>
 
     <link rel="stylesheet" href="../assets/css/prism.css">
 </head>
+
 <body>
     <div class="info">
         <h1>Mouse Effect01</h1>
@@ -155,14 +245,14 @@
         <a href="#" class="view">소스보기</a>
         <!-- modal -->
         <div class="modal">
-            <div class="code-editor">	
+            <div class="code-editor">
                 <h3>Script Editor
                     <span class="control"></span>
                     <span class="control"></span>
                     <span class="control"></span>
                 </h3>
                 <div class="code">
-<pre class="line-numbers"><code class="language-js">$(window).mousemove(function(event){
+                    <pre class="line-numbers"><code class="language-js">$(window).mousemove(function(event){
     $(".clientX").text(event.clientX);
     $(".clientY").text(event.clientY);
     $(".offsetX").text(event.offsetX);
@@ -236,7 +326,7 @@
     </div>
 
 
-    
+
 
 
     <!-- script -->
@@ -263,9 +353,9 @@
         //         $(".cursor").removeClass("active");
         //     });
         // });
-        
+
         //javascript
-        window.addEventListener("mousemove", function(event){
+        window.addEventListener("mousemove", function (event) {
             document.querySelector(".clientX").innerHTML = event.clientX;
             document.querySelector(".clientY").innerHTML = event.clientY;
             document.querySelector(".offsetX").innerHTML = event.offsetX;
@@ -281,7 +371,7 @@
             let x = event.clientX - 25 + "px";
             let y = event.clientY - 25 + "px";
 
-            document.querySelector(".cursor").style.cssText = "left:"+ x +"; top:" + y;
+            document.querySelector(".cursor").style.cssText = "left:" + x + "; top:" + y;
 
             // document.querySelector(".contents a").addEventListener("mouseenter", function(){});
             // document.querySelector(".contents a").addEventListener("mouseleave", function(){});
@@ -304,18 +394,18 @@
         });
 
 
-        
-        $(".infor4 a").click(function(){
+
+        $(".infor4 a").click(function () {
             $(".infor4 .modal").addClass("show");
         });
-        $(".infor4 .close").click(function(){
+        $(".infor4 .close").click(function () {
             $(".infor4 .modal").removeClass("show");
         });
 
-        
 
-        
-        
+
+
+
     </script>
 
 </body>
