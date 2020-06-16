@@ -26,7 +26,41 @@
 
 </head>
 <body> 
-    <h1>컴퓨터 학원</h1>
-    <h2>컴퓨터 학원</h2>
+    
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <time class="header-data">2020년 6월 15일</time>
+                <h1 class="header-title">음악 듣기</h1>
+                <div class="header-id"><span>w</span></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="mainBanner">
+            <div class="container">
+                <div class="row">
+                    <div class="banner">
+                        <div class="banner-title">
+                            <span class="bt-stit">BEAT1 ON AIR</span>
+                            <h2 class="bt-tit">Travis Mills</h2>
+                            <p class="bt-desc">L.A’s pop culture authority</p>
+                        </div>
+                        <picture>
+                            <source srcset="assets/img/bestM01@3x.jpg" media="(min-width:800px)" />
+                            <source srcset="assets/img/bestM01@2x.jpg" media="(min-width:600px)" />
+                            <img srcset="assets/img/bestM01.jpg 1x, 
+                                           assets/img/bestM01@2x.jpg 2x, 
+                                           assets/img/bestM01@3x.jpg 3x "
+                            src="assets/img/bestM01.jpg" alt="이미지">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="recentMusic"></section>
+        <section id="nextProgram"></section>
+    </main>
 </body>
 </html>

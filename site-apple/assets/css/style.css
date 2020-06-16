@@ -1,10 +1,18 @@
-h1 {
-    font-size: 3vw;
-    font-weight: 900;
-    font-family: "SF Pro";
-}
-h2  {
-    font-size: 3vw;
-    font-weight: 900;
-    font-family:"Malgun Gothic", "맑은 고딕", helvetica, "Apple SD Gothic Neo", sans-serif;
-}
+
+/* container */
+.container {max-width: 1000px; margin: 0 auto;}
+
+/* row */
+.row {position: relative; margin: 0 20px;}
+
+/* layout */
+#header .container {border-bottom: 1px solid #ccc;}
+
+/* banner */
+.banner { }
+.banner .banner-title {font-family: "SF Pro Text"; }
+.banner .banner-title .bt-stit {font-size: 12px; line-height: 29px; color:#DA5E7C}
+.banner .banner-title .bt-tit {font-size: 22px; line-height: 34px; }
+.banner .banner-title .bt-desc {font-size: 22px; line-height: 34px; color: #818181; font-weight: 100;}
+
+.banner img {width: 100%;}
