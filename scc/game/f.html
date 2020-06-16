@@ -110,7 +110,6 @@
         }
 
         .score>* span.is-updating {
-            -webkit-animation: bounce 1s;
             animation: bounce 1s;
         }
 
@@ -625,9 +624,9 @@
         var $board = $('main'),
             $card = $('.card'),
             $itemCount = $('.score span'),
-            $wins = $('.wins span'),
-            $turns = $('.turns span'),
-            $attempts = $('.attempts span'),
+            $wins = $('.wins span'),                //우승 숫자 선택자
+            $turns = $('.turns span'),               //기회 숫자 선택자
+            $attempts = $('.attempts span'),   //시도 숫자 선택자
             $attemptsOverall = $('.attempts-overall span'),
             $success = $('.success'),
             $successMsg = $('.success-message'),
@@ -641,8 +640,8 @@
             lastTurnClass = 'last-turn',
             dataMatch = 'data-matched',
             dataType = 'data-type',
-            turnsCount = 2,
-            winsCount = 0,
+            turnsCount = 2,         //기회 숫자
+            winsCount = 0,         //우승 숫자
             attemptsCount = 0,      //시도한 횟수
             attemptsOverallCount = 0,
             tooManyAttempts = 8,
@@ -659,6 +658,7 @@
             soundSuccess = new Audio(assetsUrl + sound[0]),
             soundMatch = new Audio(assetsUrl + sound[1]),
             soundNoMatch = new Audio(assetsUrl + sound[2]);
+
 
         //음악을 클릭했을 때
         $btnSound.on('click', function (e) {
@@ -681,7 +681,7 @@
                 $(this).addClass(selectedClass);
             }
 
-            var selectedCards = $('.' + selectedClass);
+            var selectedCards = $('.' + selectedClass);         //선택된 카드는 클래스화.
 
             // 만약에 카드가 똑같다면
             if (selectedCards.length == 2) {
@@ -707,6 +707,8 @@
                         $turns.addClass(scoreUpdateClass).html(turnsCount);     //카운트 표시
                         selectedCards.removeClass(selectedClass);   //선택된 표시 지우기 원래 상태로 돌리기
                     }, timeoutLength);
+
+                    console.log(turnsCount)
 
                     //카운트가 기회가 없을 때 빨간색(주의)으로 변경
                     if (turnsCount === 1) {
@@ -761,18 +763,32 @@
                 }
                 $successMsg.text(msg);
 
+                //카드 초기화 
                 setTimeout(function () {
+                    attemptsOverallCount += attemptsCount;
+                    $attemptsOverall.addClass(scoreUpdateClass).html(attemptsOverallCount);
+                    winsCount += 1;
+                    $wins.addClass(scoreUpdateClass).html(winsCount);
                     $card.attr(dataMatch, false);
                 }, 1200);
             }
-
         })
 
+        // 게임이 완료된 후 게임 스코어를 초기화
+        $itemCount.on("webkitAnimationEnd oanimationend msAnimationEnd animationend", function () {
+            $itemCount.removeClass(scoreUpdateClass);
+        });
 
         // 다음 게임
         $btnContinue.on('click', function () {
             $success.removeClass(visibleClass);
             shuffleCards();
+            setTimeout(function () {
+                turnsCount = 2;
+                $turns.removeClass(lastTurnClass).html(turnsCount);
+                attemptsCount = 0;
+                $attempts.html(attemptsCount);
+            }, 300);
         });
 
         //카드 셔플
@@ -781,7 +797,54 @@
             while (cards.length) {
                 $board.append(cards.splice(Math.floor(Math.random() * cards.length), 1)[0]);
             }
+            console.log(cards)
+            // for (var i = 0; cards.length > 0; i += 1) {
+            //      $board.append(cards.splice(Math.floor(Math.random() * cards.length), 1)[0]);
+            // }
         }
+        // function shuffleCards() {
+        //     let s = []
+        //     var cards = $board.children();
+        //     while (cards.length) {
+        //         let dd = (cards.splice(Math.floor(Math.random() * cards.length), 1)[0]);
+        //         s.push(dd)
+        //         console.log(s)
+        //     }
+        // }
+
+
+        //splice 
+        var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+        var removed = myFish.splice(2, 0, 'drum');
+        //["angel", "clown", "drum", "mandarin", "sturgeon"] 
+
+        var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+        var removed = myFish.splice(2, 0, 'drum', 'guitar');
+        //["angel", "clown", "drum", "guitar", "mandarin", "sturgeon"] 
+
+        var myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon'];
+        var removed = myFish.splice(3, 1);
+        //["angel", "clown", "drum", "sturgeon"] 
+
+        var myFish = ['angel', 'clown', 'drum', 'sturgeon'];
+        var removed = myFish.splice(2, 1, 'trumpet');
+        //["angel", "clown", "trumpet", "sturgeon"]
+
+        var myFish = ['angel', 'clown', 'trumpet', 'sturgeon'];
+        var removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue');
+        //["parrot", "anemone", "blue", "trumpet", "sturgeon"] 
+
+        var myFish = ['parrot', 'anemone', 'blue', 'trumpet', 'sturgeon'];
+        var removed = myFish.splice(myFish.length - 3, 2);
+        //["parrot", "anemone", "sturgeon"] 
+
+        var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+        var removed = myFish.splice(-2, 1);
+        //["angel", "clown", "sturgeon"] 
+
+        var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+        var removed = myFish.splice(2);
+        //["angel", "clown"]
     </script>
 </body>
 
