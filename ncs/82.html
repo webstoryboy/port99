@@ -1,0 +1,279 @@
+<h2>데이터 조작 프로시저 개발</h2>
+<div class="well">
+- 응용소프트웨어 설계와 물리 데이터저장소 설계에 따라 데이터 저장소에 연결을 수행하는 프로시저를 작성할 수 있다.<br>
+- 응용소프트웨어 설계와 물리 데이터저장소 설계에 따라 데이터 저장소로부터 데이 터를 읽어 오는 프로시저를 작성할 수 있다.<br>
+- 응용소프트웨어 설계와 물리 데이터저장소 설계에 따라 데이터 변경 내용 또는 신 규 입력된 데이터를 데이터 저장소에 저장하는 프로시저를 작성할 수 있다.
+</div>
+
+<p>데이터 조작을 위해서 사용하는 언어를 SQL(Structured Query Language)이라고 하는데, SQL은 일 정한 데이터 집합으로부터 보다 쉽게 자료를 검색하고 입력, 수정, 삭제와 같은 조작을 할 수 있 도록 고안된 언어를 말한다.
+    일반적으로 SQL은 데이터 정의어(DDL: Data Definition Language), 데이터 조작어(DML: Data Manipulation Language), 데이터 제어어(DCL: Data Control Language) 등의 세가지로 분류한다.</p>
+
+<h3>1. SQL 분류</h3>
+<h4>1. 데이터 정의어(DDL: Data Definition Language)</h4>
+<p>데이터를 저장하고 있는 테이블 등의 구조를 생성하고 변경하기 위하여 사용되는 명령어 들을 말하는 것으로, 명령어 수행이 되면 이전 상태로 복귀할 수 없으므로 신중히 사용하 여야 한다.</p>
+<h5>1. 종류</h5>
+<p>CREATE, DROP, RENAME, ALTER, TRUNCATE 등이 있다.</p>
+<h5>2. CREATE: 오브젝트 생성</h5>
+<ul>
+    <li>문법
+        <ul>
+            <li>CREATE TABLE My_table(my_field1 NUMBER, my_field2 VARCHAR2(20), my_field3 DATE NOT NULL, CONSTRAINT Tbl_Col_pk Primary Key(my_field1));</li>
+        </ul>
+    </li>
+    <li>예시
+        <ul>
+            <li>CREATE TABLE dept1 (deptno number(2), dname varchar2(14), loc varchar2(13));</li>
+        </ul>
+    </li>
+</ul>
+
+<h5>3. DROP: 오브젝트 삭제</h5>
+<ul>
+    <li>문법 : DROP TABLE My_table;</li>
+    <li>예시 : DROP TABLE dept1;</li>
+</ul>
+
+<h5>4. RENAME: 오브젝트 이름 변경</h5>
+<ul>
+    <li>문법 : RENAME My_Table TO My_Backup_Table;</li>
+    <li>예시 : RENAME dept1 TO dept_copy;</li>
+</ul>
+
+<h5>5. ALTER: 오브젝트 구조 변경</h5>
+<ul>
+    <li>문법 : ALTER TABLE My_Table [ ADD/MODIFY ] (my_field2 varchar2(30));</li>
+    <li>예시 : ALTER TABLE dept_copy MODIFY (loc varchar2(14));</li>
+</ul>
+
+
+<h5>6. TRUNCATE: 오브젝트 자름</h5>
+<ul>
+    <li>문법 : TRUNCATE TABLE My_Table;</li>
+    <li>예시 : TRUNCATE TABLE dept_copy;</li>
+</ul>
+
+
+<h4>2. 데이터 조작어(DML: Data Manipulation Language)</h4>
+<p>데이터베이스에 있는 데이터를 변경하거나 검색하기 위하여 사용되는 명령어들을 말하며, 이 명령어는 트랜잭션 제어어(Transaction Control Language)를 활용하여 실행 전 상태로 복귀가능한 명령어이다.</p>
+
+<h5>1. INSERT: 데이터 입력</h5>
+<div class="well">INSERT INTO My_Table [ (empno) ] [ VALUES (1111); / SELECT .. ; ]</div>
+<ul>
+    <li>입력하고자 하는 테이블의 모든 칼럼 데이터를 입력한다면 칼럼명을 명시 하지 않아도 되나, 특정 칼럼만을 입력하고자 한다면 반드시 칼럼명을 명시하여야 한다.</li>
+    <li>반드시 칼럼명 수와 VALUES 절의 수는 동일해야 한다.</li>
+    <li>기존에 존재하는 테이블 데이터로부터 특정 테이블로 데이터를 복사하고자 한
+        다면 ‘INSERT INTO emp(empno) SELECT id FROM emp_src'와 같이 사용할 수 있다.</li>
+</ul>
+
+<h5>2. UPDATE: 데이터 수정</h5>
+<div class="well">UPDATE emp SET empno = 1234 [ , ename = ‘James’ ] WHERE empno = 1111;</div>
+<p>예시 : UPDATE dept_copy SET hr_limit=20 WHERE hr_limit is null;</p>
+
+<h5>3. DELETE: 데이터 삭제</h5>
+<div class="well">DELETE [ FROM ] My_Table WHERE my_field2 = ‘ABCD';</div>
+<p>예시 : DELETE dept_copy WHERE deptno > 90;</p>
+
+<h4>3. 데이터 제어어(DCL: Data Control Language)</h4>
+<p>사용자별로 데이터베이스에 접근할 수 있는 권한을 부여하거나 회수하는 명령어들을 말한다.</p>
+
+<h5>1. ROLE: 롤</h5>
+<div class="well">
+    CREATE ROLE Role_name;
+</div>
+<ul>
+    <li>Role_name 선언 후 GRANT로 권한을 Role_name으로 부여</li>
+    <li>racle에서는 일반적으로 많이 사용하는 권한을 묶어 3가지 기본 Role을 제공
+        <ul>
+            <li>CONNECT: 데이터베이스 접속 권한</li>
+            <li>RESOURCE: Object 생성권한</li>
+            <li>DBA: 모든 권한</li>
+        </ul>
+    </li>
+    <li>예시
+        <li>CREATE ROLE manager;</li>
+        <li>GRANT create table, create view TO manager;</li>
+        <li>GRANT manager TO scott;</li>
+    </li>
+</ul>
+
+<h5>2. GRANT: 권한 및 롤 부여</h5>
+<div class="well">GRANT 부여할 권한 유형 TO User [ Role_name ];</div>
+<ul>
+    <li>GRANT connect, resource to scott;</li>
+    <li>GRANT SELECT ON emp TO scott[PUBLIC] [With Grant/Admin Option];</li>
+</ul>
+<p>Grant/Admin Option은 둘 다 실행 권한을 받은 사용자가 다시 다른 사용자에게 실행 권한을 부여해 줄 수 있게 해주는 option이다. 다만, 두 Option 간 차이는, <br>
+    - With Grant Option: revoke 시 다른 사용자에게 부여된 권한도 함께 회수 된다.<br>
+    - With Admin Option: revoke 시 다른 사용자에게 부여한 권한은 함께 회수되 지 않으므로 Admin Option의 사용은 신중을 기해야 한다.</p>
+
+<h5>3. REVOKE: 권한 및 롤 회수</h5>
+<div class="well">REVOKE 회수할 권한 유형 FROM User;</div>
+<ul>
+    <li>예시
+        <ul>
+            <li>REVOKE connect, resource FROM scott;</li>
+            <li>REVOKE SELECT ON emp FROM scott;</li>
+        </ul>
+    </li>
+</ul>
+
+
+<h3>2. 트랜잭션 제어어(TCL: Transaction Control Language)</h3>
+<p>트랜잭션 제어어는 트랜잭션의 DML작업단위를 제어하는 명령어이다.</p>
+
+<h4>1. COMMIT</h4>
+<p>트랜잭션을 완료하여 데이터 변경사항을 최종 반영</p>
+<ul>
+    <li>COMMIT 이후 데이터 상태
+        <ul>
+            <li>데이터에 대한 변경 사항이 물리적인 디스크에 반영된다.</li>
+            <li>COMMIT 이전 데이터는 복구할 수 없다.</li>
+            <li>모든 사용자가 변경된 결과를 볼 수 있다.</li>
+            <li>관련된 행에 대해 잠금(Lock)이 풀리며 다른 사용자들이 조작할 수 있다.
+            </li>
+        </ul>
+    </li>
+    <li>문법 : COMMIT;</li>
+</ul>
+
+<h4>2. ROLLBACK</h4>
+<p>데이터 변경사항을 이전 상태로 되돌리는 명령어</p>
+<ul>
+    <li>ROLLBACK 이후 데이터 상태
+        <ul>
+            <li>ROLLBACK된 DML 문장은 메모리 상의 Buffer에만 영향을 미치기 때문에
+                복구가 가능하다.</li>
+            <li>관련된 행에 대한 잠금(Lock)이 풀리게 된다.</li>
+        </ul>
+    </li>
+    <li>문법 : ROLLBACK;</li>
+</ul>
+
+<h4>3. SAVEPOINT</h4>
+<p>지정된 특정 시점까지 Rollback할 수 있는 명령어</p>
+<ul>
+    <li>문법 : SAVEPOINT 특정지점 명칭;</li>
+</ul>
+
+
+
+<h3>3. 데이터 검색어(SELECT)</h3>
+<h4>1. 문법</h4>
+<div class="well">
+    SELECT [DISTINCT] {*, column [alias], . . .}<br>
+    FROM table_name<br>
+    [ WHERE condition ]<br>
+    [ GROUP BY column ]<br>
+    [ HAVING condition ]<br>
+    [ORDER BY {column, expression} [ASC | DESC]];
+</div>
+
+<h4>2. 항목 설명</h4>
+<ul>
+    <li>DISTINCT: 중복되는 행을 제거하는 옵션</li>
+    <li>*: 테이블의 모든 column을 출력</li>
+    <li>alias: 해당 column에 대해서 다른 이름을 부여할 때 사용 : alias 지정은 space 다음에 alias명 또는 AS alias로 지정 가능</li>
+    <li>table_name: 질의 대상 테이블명</li>
+    <li>WHERE: 조건을 만족하는 행들만 검색 : condition 은, column, 표현식, 상수 및 비교 연산자</li>
+    <li>GROUP BY: 그룹핑하고자 하는 단위 지정</li>
+    <li>HAVING: 그룹핑한 결과값에 대한 조건 검색</li>
+    <li>ORDER BY: 질의 결과 정렬을 위한 옵션(ASC:오름차순(Default), DESC내림차순)</li>
+</ul>
+
+
+<h3>4. 절차형 데이터 조작 프로시저 및 저장형 객체 활용</h3>
+<h4>1. 절차형 데이터 조작 프로시저</h4>
+<p>본 학습모듈은 표준 SQL을 기본으로 하지만, 데이터베이스에 종속적인 특정 영역에 대해 서는 시장 점유율을 고려하여 Oracle 데이터베이스를 전제하기로 하였으므로, 절차형 데이터 조작 프로시저 또한 Oracle에서 제공하는 PL/SQL을 기준으로 설명하기로 한다.</p>
+
+<h5>PL/SQL 개요</h5>
+<p>최근의 프로그래밍 언어의 특성을 수용한, SQL의 확장 기능이라 할 수 있다.</p>
+
+<h6>사용시 장점</h6>
+<ul>
+    <li>Compile이 필요 없어 script 생성 및 변경 후 바로 실행이 가능하다.</li>
+    <li>프로그램 개발의 모듈화가 가능하다.
+        <ul>
+            <li>블록 내에서 논리적으로 관련된 문장들을 그룹화할 수 있다.</li>
+            <li>강력한 프로그램을 작성하기 위해 서브 블록들을 큰 블록에 포함할 수 있다.</li>
+            <li>복잡한 문제에 대한 프로그래밍이 적절히 나뉘어진 모듈들의 집합으로 구성할 수 있다.</li>
+        </ul>
+    </li>
+    <li>식별자를 선언할 수 있다.
+        <ul>
+            <li>변수, 상수 등을 선언하여 해당 식별자를 SQL과 절차적인 프로그램에서 사용 할 수 있다.</li>
+            <li>데이터베이스의 테이블과 Record를 기반으로 하는 Dynamic한 변수 선언이 가능하다.</li>
+            <li>단일형 데이터 타입과 복합형 데이터 타입을 선언 할 수 있다.</li>
+        </ul>
+    </li>
+    <li>절차적 언어 구조로 된 프로그램을 작성 할 수 있다.
+        <ul>
+            <li>IF문을 통해 조건에 따라 일련의 문장을 실행할 수 있다.</li>
+            <li>LOOP문을 사용하여 일련의 문장을 반복적으로 실행할 수 있다.</li>
+            <li>Explicit Cursor를 이용한 Multi-row 처리가 가능하다.</li>
+        </ul>
+    </li>
+    <li>ERROR 처리가 가능하다.
+        <ul>
+            <li>Exception 처리 루틴을 이용하여 Oracle Server 에러를 처리할 수 있다.</li>
+            <li>사용자 정의 에러를 선언하고 Exception 처리 루틴으로 처리가 가능하다.</li>
+        </ul>
+    </li>
+    <li>성능 향상을 기대할 수 있다.
+        <ul>
+            <li>PL/SQL은 네트워크 부하를 줄여 프로그램의 성능을 향상시킬 수 있다.</li>
+            <li>PL/SQL은 여러 SQL문장을 BLOCK으로 묶고 한번에 BLOCK전부를 서버로 전
+                송하기 때문에 통신량을 줄일 수 있어 성능향상을 기대할 수 있다.</li>
+        </ul>
+    </li>
+</ul>
+
+<h6>PL/SQL 구조</h6>
+<p>PL/SQL은 프로그램을 논리적인 블록으로 나누게 하는 구조화된 블록 언어로서, 다음과 같은 블록 구조로 구성된다.</p>
+<ul>
+    <li>선언부 (DECLARE, Optional)
+        <ul>
+            <li>실행부에서 참조할 모든 변수, 상수, CURSOR, EXCEPTION을 선언한다.</li>
+        </ul>
+    </li>
+    <li>실행부 (BEGIN/END, Mandatory)
+        <ul>
+            <li>BEGIN과 END 사이에 기술되는 영역이다.</li>
+            <li>데이터베이스 데이터를 처리할 SQL문과 PL/SQL 블록을 기술한다.</li>
+        </ul>
+    </li>
+    <li>예외 처리부 (Exception, Optional)
+        <ul>
+            <li>실행부에서 에러가 발생했을 때 수행될 문장을 기술</li>
+        </ul>
+    </li>
+</ul>
+
+<h5>PL/SQL 처리 절차</h5>
+<ul>
+    <li>PL/SQL로 작성된 Block을 Oracle 서버로 보내면 PL/SQL 엔진이 SQL문과 Non SQL 문을 구분한다.</li>
+    <li>Non SQL문은 PL/SQL Engine내의 Procedural Statement Executor가, SQL문은 SQL Statement Executor가 처리하게 된다</li>
+    <li>Non SQL문은 Client환경에서, SQL문은 서버에서 실행하게 된다.</li>
+    <li>따라서, PL/SQL을 사용하게 되면 서버의 작업 양을 줄이게 되므로 네트워크 부하 를 감소시켜 수행성능을 증가시키는 잇점이 있다.</li>
+</ul>
+
+<h5>PL/SQL 프로그래밍 가이드</h5>
+<ul>
+    <li>PL/SQL Block내에서는 한 문장이 종료할 때마다 ‘;’을 기술한다.
+        <ul>
+            <li>END 뒤에도 ‘;’을 사용하여 Block이 끝났다는 것을 명시하여야 한다.</li>
+            <li>PL/SQL을 실행은 “/”을 사용하고, 성공적으로 실행 된다면 “... successfully completed” 라는 메시지가 출력되므로 이를 확인하여야 한다.</li>
+        </ul>
+    </li>
+    <li>PL/SQL Block의 작성은 편집기를 통해서나 SQL*Plus에서 바로 작성하여 실행할 수 있고, PL/SQL 실행 시 발생한 Error는 show errors 명령어로 확인한다.</li>
+    <li>PL/SQL 블록을 개발할 때 명확한 코드 생성과 유지보수를 위하여 프로그래밍 가 이드를 정의, 준수, 수행하는 것이 좋다.</li>
+    <li>코드의 가독성을 높이기 위하여 들여쓰기를 하도록 한다.</li>
+</ul>
+
+
+<h4>2. PL/SQL을 활용한 저장형 객체 활용</h4>
+<p>PL/SQL로 작성할 수 있는 저장형 객체로는 Stored Function, Stored Procedure, Stored Package, Trigger 등이 있는데, 각 저장형 객체의 특성과 작성을 위한 문법은 다음과 같다.</p>
+
+<h5>1. Stored Function</h5>
+<h5>2. Stored Procedure</h5>
+<h5>3. Stored Package</h5>
+<h5>4. Trigger</h5>

@@ -1,0 +1,94 @@
+<h2>외부 및 내부 모듈 연계를 위한 인터페이스 기능 식별</h2>
+<div class="well">개발하고자 하는 응용소프트웨어와 관련된 외부 및 내부 모듈 간의 연계가 필요한 인터페이스의 기능을 식별할 수 있다.</div>
+
+<h3>1. 내부, 외부 모듈 연계 방법(EAI, ESB 연계 방법)</h3>
+<p>시스템 인터페이스를 위해 외부 및 내부 모듈을 연계하는 대표적인 방법은 EAI(Enterprise Application Integration) 방식과 ESB(Enterprise Service Bus) 방식이 있다.</p>
+
+<h4>1. EAI(Enterprise Application Integration)</h4>
+<h5>EAI의 개념</h5>
+<p>기업에서 운영되는 서로 다른 플랫폼 및 애플리케이션들 간의 정보 전달, 연계, 통합 을 가능하게 해주는 솔루션이다. EAI를 사용함으로써 각 비즈니스 간 통합 및 연계성 을 증대시켜 효율성을 높여 줄 수 있으며 각 시스템 간의 확정성을 높여 줄 수 있다.</p>
+
+<h5>EAI의 구축 유형</h5>
+<p>EAI는 크게 Peer to Peer형, Hub & Spoke 방식, Bus 형태의 구성으로 분류될 수 있다.</p>
+
+<table>
+    <caption>EAI의 구축 유형</caption>
+    <colgroup>
+        <col style="width: 20%;">
+        <col style="width: 40%;">
+        <col style="width: 40%;">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>유형</th>
+            <th>설명</th>
+            <th>특징</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Point-to-Point</td>
+            <td>
+                <ul>
+                    <li>중간에 미들웨어를 두지 않고 각 애플리케이션 간 Point to Point 형태로 연결</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>솔루션 구매 없이 통합</li>
+                    <li>상대적 저렴하게 통합 가능</li>
+                    <li>변경, 재사용 어려움</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Hub & Spoke</td>
+            <td>
+                <ul>
+                    <li>단일 접점이 허브 시스템을 통해 데이터를 전송 하는 중앙 집중적 방식</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>모든 데이터 전송 보장</li>
+                    <li>확장,유지보수용이</li>
+                    <li>허브 장애 시 전체 영향</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Message Bus(ESB 방식)</td>
+            <td>
+                <ul>
+                    <li>애플리케이션 사이 미들웨어(버스)를 두어 처리</li>
+                    <li>미들웨어 통한 통합</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>어댑터가 각 시스템과 버스를 두어 연결하므로 뛰어난 확정성, 대용량 처리가능</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Hybrid</td>
+            <td>
+                <ul>
+                    <li>그룹 내에는 Hub & Spoke 방식을 그룹 간 메시징 버스 방식을 사용</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>표준 통합 기술, 데이 터 병목 현상 최소화</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h4>2. ESB(Enterprise Service Bus)</h4>
+<p>ESB는 애플리케이션 간의 통합 측면에서 EAI와 유사하다고 볼 수 있으나 애플리케이션 보다는 서비스 중심으로 통합을 지향하는 아키텍처 또는 기술이다.</p>
+
+<h5>ESB의 개념</h5>
+<p>웹 서비스 중심으로 표준화된 데이터, 버스를 통해 이 기종 애플리케이션을 유연(loosely-coupled)하게 통합하는 핵심 플랫폼(기술)이다. ESB는 Bus를 중심으로 각각 프로토콜이 호환이 되게끔 변환이 가능하고 서비스 중심으로 메시지 이동을 라우팅할 수있다. 관리 및 보안이 쉽고 높은 수준의 품질 지원이 가능하지만 표준화가 미비하고 특정 벤더 종속, 성능 문제에서 개선 되어야 할 부분이 남아 있다.</p>
