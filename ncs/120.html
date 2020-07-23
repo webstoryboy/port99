@@ -61,3 +61,98 @@
 
 <h5>데이터베이스 암호화 알고리즘</h5>
 <p>데이터베이스 암호화 알고리즘은 크게 대칭 키, 해시, 비대칭 키 알고리즘이 사용된다.</p>
+
+<table>
+    <caption>주요 데이터베이스 암호화 알고리즘</caption>
+    <colgroup>
+        <col style="width: 30%;">
+        <col style="width: 70%;">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>구분</th>
+            <th>내용</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>대칭 키 암호 알고리즘</td>
+            <td>ARIA 128/192/256, SEED</td>
+        </tr>
+        <tr>
+            <td>해시 알고리즘</td>
+            <td>SHA -256/384/512, HAS-160</td>
+        </tr>
+        <tr>
+            <td>비대칭 키 알고리즘</td>
+            <td>RSA, ECDSA</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+
+<h5>데이터베이스 암호화 기법</h5>
+<p>데이터베이스 암호화 기법으로는 애플리케이션에서 암호화를 수행하는 API 방식과 데이터베이스에서 암호화를 수행하는 Flug-in 방식, API 방식과 Flug-in 방식을 혼합한 Hybrid 방식이 있다.</p>
+
+<table>
+    <caption>주요 데이터베이스 암호화 기법</caption>
+    <colgroup>
+        <col style="width: 10%;">
+        <col style="width: 30%;">
+        <col style="width: 30%;">
+        <col style="width: 30%;">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>구분</th>
+            <th>API 방식</th>
+            <th>Filter(Plug-in) 방식</th>
+            <th>Hybrid 방식</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>개념</td>
+            <td>APP 레벨에서 암호 모 듈(API)을 적용하는 APP 수정 방식</td>
+            <td>DB 레벨의 확장성 프러 시저 기능을 이용, DBMS 에 plug-in 또는 snap-in 모듈로 동작하는 방식</td>
+            <td>API 방식과 Filter 방식을 결 합하거나, Filter 방식에 추 가적으로 SQL문에 대한 최 적화를 대행해 주는 어플 라이언스를 제공하는 방식</td>
+        </tr>
+        <tr>
+            <td>암호화/보안 방식</td>
+            <td>별도의 AP 개발/통합</td>
+            <td>DB 내 설치/연동</td>
+            <td>어플라이언스/DB 내 설치</td>
+        </tr>
+        <tr>
+            <td>서버 성능 부하</td>
+            <td>APP 서버에 암/복호화, 정책관리,키관리 부하 발생</td>
+            <td>DB 서버에 암/복호화, 정책관리,키관리 부하 발생</td>
+            <td>DB와 어플라이언스에서 부하 분산</td>
+        </tr>
+        <tr>
+            <td>시스템 통합 용이성</td>
+            <td>APP 개발 통합 기간 필요</td>
+            <td>APP 변경 불필요</td>
+            <td>APP 변경 불필요</td>
+        </tr>
+        <tr>
+            <td>관리 편의성</td>
+            <td>APP 변경 및 암호화 필드 변경에 따른 유지 보수 필요</td>
+            <td>관리자용 GUI 이용, 다수 DB 통합 관리 가능 편의성 높음.</td>
+            <td>관리자용 GUI이용, 다수 DB 통합 관리 가능 편의성 높음.</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+
+
+
+<h3>문제풀기</h3>
+<div class="well">데이터 베이스의 기밀성을 유지하기 위해 중요한 민감 데이터는 암호화하는 기법을 사용한다. 데이터 베이스의 암호화 알고리즘 3가지를 말하시오.</div>
+<a href="#" class="btna">
+    <span class="text">Text</span>
+    <span class="flip-front">정답확인</span>
+    <span class="flip-back">대칭 키, 해시, 비대칭 키 알고리즘</span>
+</a>
