@@ -1,0 +1,111 @@
+<h2>운영체제 설치 및 운용</h2>
+<div class="desc">응용개발을 위하여 선정된 운영체제를 설치하고 운용할 수 있다.</div>
+
+<h3>1. 운영체제 선택 및 설치</h3>
+<h4>1. 윈도즈 계열 운영체제 선택</h4>
+<ul>
+    <li>윈도즈 계열 운영체제는 개인용, 기업용, 워크스테이션용으로 출시된다.</li>
+    <li>Windows Home: 개인 사용자에게 최적화된 운영체제이다.</li>
+    <li>Windows Pro: 소규모 기업용으로 최적화된 운영체제이다. Pro는 Home에 비해 관리 및 배포, 도메인 가입, 엔터프라이즈 모드, 원격 데스크톱 지원, Hyper V와 같이 향상된 기능을 제공한다.</li>
+    <li>Windows Pro for Workstation: 트랜잭션이 몰리거나 복구 기능을 필요로 하는 소규모 기업용 운영체제이다. Pro에 비하여 CPU를 4개까지 동시 지원하여 동시 처리 성능이 뛰어나며 메모리도 6테라바이트까지 지원한다. 또 비휘발성 메모리 모듈을 지원하여 전 력이 공급되지 않아도 데이터를 유지할 수 있어 안정성이 향상되었으며 파일 복원을 위해 향상된 ReFs를 지원한다.</li>
+</ul>
+
+<h4>2. 리눅스/유닉스 계열 운영체제 선택</h4>
+<p>오픈소스 기반의 리눅스와 유닉스는 개발사 및 제공 업체가 다양하며 리눅스는 Redhat, 페도라, 센트OS와 같은 Redhat 계열과 데비안, 우분투, 칼리, 라즈비안과 같은 데비안 계열 그리고 기타 리눅스(젠투, 아치, 슬랙웨어) 등으로 구분된다. 각 리눅스별 특징과 차이 점이 있다.</p>
+
+<table>
+    <caption>리눅스의 종류 및 특징</caption>
+    <colgroup>
+        <col style="width: 15%;">
+        <col style="width: 75%;">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>종류</th>
+            <th>특징</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Debian GNU/Linux</td>
+            <td>
+                <ul>
+                    <li>개발자 패키지와 매뉴얼이 활성화되어 있어 개발자에게 최적화 되어 있음.</li>
+                    <li>다운로드: https://www.debian.org/distrib</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Ubuntu</td>
+            <td>
+                <ul>
+                    <li>가장 광범위하게 쓰이는 Linux 운영체제</li>
+                    <li>다양한 개발자용 패키지 제공</li>
+                    <li>Software Center를 통해 응용소프트웨어 공급</li>
+                    <li>다운로드: https://www.ubuntu.com/download</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>openSUSE</td>
+            <td>
+                <ul>
+                    <li>안정화된 버전(openSUSE)과 테스트 중인 버전(Tumbleweed)을 동 시에 공급</li>
+                    <li>YaST 패키지를 통해 태스크 자동화 지원</li>
+                    <li>다운로드: https://software.opensuse.org</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Fedora</td>
+            <td>
+                <ul>
+                    <li>스마트 설정과 업데이트로 사용자 편의성 제공</li>
+                    <li>안정화된 운영과 다양한 하드웨어 지원</li>
+                    <li>다운로드: https://getfedora.org/en/workstation</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>CentOS</td>
+            <td>
+                <ul>
+                    <li>프로그래밍에 최적화된 환경 제공</li>
+                    <li>RHEL 소스로 컴파일되어 해당 계열의 프로그램 대다수 사용 가능</li>
+                    <li>다운로드: https://www.centos.org/download</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Slackware</td>
+            <td>
+                <ul>
+                    <li>다양한 소프트웨어와 그래픽 유저 인터페이스가 미리 설치</li>
+                    <li>시스템 관리자를 위한 복구 툴 내장</li>
+                    <li>다운로드: http://www.slackware.com</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3>2. 운영체제 운용</h3>
+<p>외부의 침입이나 바이러스로 인해 시스템이 통제 불능의 상태가 되어 불필요한 리소스를 낭비하거나 중요한 데이터의 유실을 방지하기 위해 다음 사항을 지속 점검하여 운용한다.</p>
+
+<h4>1. 서버 운용 기준</h4>
+<ul>
+    <li>운용 아키텍처 및 기능 파악</li>
+    <li>네트워크 구성 현황 및 장비 매뉴얼 확보</li>
+    <li>장비 가동 및 중지 매뉴얼 확인</li>
+    <li>백업 주기, 보안 업데이트 주기 설정 및 점검</li>
+    <li>트러블 발생 시 대처 방안 마련</li>
+</ul>
+
+<h4>2. 개별 PC용 운영체제 운용 기준</h4>
+<ul>
+    <li>정기적인 데이터 백업</li>
+    <li>주기적 보안 업데이트</li>
+    <li>시스템 백업 정례화</li>
+    <li>트러블 발생 시 문의처 정보 확인</li>
+</ul>

@@ -46,7 +46,7 @@
 
 
 <h3>2. 소프트웨어 모듈 응집도</h3>
-<p>응집도는 모듈 내부에서 구성 요소 간에 밀접한 관계를 맺고 있는 정도로 평가되며, 응집도가 높을수록 필요한 요소들로 구성되어 있고 낮을수록 관련이 적은 요소들로 구성되어 있다.</p>
+<p><em>응집도</em>는 모듈 내부에서 구성 요소 간에 밀접한 관계를 맺고 있는 정도로 평가되며, 응집도가 높을수록 필요한 요소들로 구성되어 있고 낮을수록 관련이 적은 요소들로 구성되어 있다.</p>
 
 <h4>1. 응집도의 유형</h4>
 <p>한 모듈 안의 기능들의 연관성 정도를 나타낸다.</p>
@@ -106,7 +106,7 @@
 
 
 <h3>3. 소프트웨어 모듈 결합도</h3>
-<p>결합도는 모듈과 모듈 간의 관련성 정도를 나타내며, 관련이 적을수록 모듈의 독립성이 높아져 모듈간 영향이 적어지게 된다.</p>
+<p><em>결합도</em>는 모듈과 모듈 간의 관련성 정도를 나타내며, 관련이 적을수록 모듈의 독립성이 높아져 모듈간 영향이 적어지게 된다.</p>
 <h4>1. 결합도의 유형</h4>
 <table>
     <caption>결합도 유형</caption>
@@ -157,12 +157,43 @@
 
 <h3>문제풀기</h3>
 <div class="well">모듈 간의 인터페이스로 전달되는 파라미터를 통해서만 모듈 간의 상호 작용이 일어나는 경우의 결합도는?</div>
-<div class="answer a94-1"></div>
+<a href="#" class="btna">
+    <span class="text">Text</span>
+    <span class="flip-front">정답확인</span>
+    <span class="flip-back">자료 결합도(Data Coupling)</span>
+</a>
+<br><br>
 
 <div class="well">모듈이 다수의 관련 기능을 가질 때 모듈 안의 구성 요소들이 그 기능을 순차적으로 수행할 경우의 응집도는?</div>
-<div class="answer a94-2"></div>
+<a href="#" class="btna">
+    <span class="text">Text</span>
+    <span class="flip-front">정답확인</span>
+    <span class="flip-back">절차적 응집도(Procedural Cohesion)</span>
+</a>
+<br><br>
 
-<style>
-    .answer.a94-1:before {content: '자료 결합도(Data Coupling)'}
-    .answer.a94-2:before {content: '절차적 응집도(Procedural Cohesion)'}
-</style>
+<div class="well">파라미터가 아닌 모듈 밖에 선언되어 있는 전역 변수를 참조하고 전역 변수를 갱신하는 식으로 상호 작용하는 결합도는?</div>
+<a href="#" class="btna">
+    <span class="text">Text</span>
+    <span class="flip-front">정답확인</span>
+    <span class="flip-back">공통 결합도(Common Coupling)</span>
+</a>
+<br><br>
+
+<div class="well">모듈 간의 인터페이스로 배열이나 오브젝트(Object), 스트럭처(Structure) 등이 전달되는 경우의 결합도는?</div>
+<a href="#" class="btna">
+    <span class="text">Text</span>
+    <span class="flip-front">정답확인</span>
+    <span class="flip-back">스탬프 결합도(Stamp Coupling)</span>
+</a>
+<br><br>
+
+<div class="well">유사한 성격을 갖거나 특정 형태로 분류되는 처리 요소들이 한 모듈에서 처리되는 경우의 응집도는?</div>
+<a href="#" class="btna">
+    <span class="text">Text</span>
+    <span class="flip-front">정답확인</span>
+    <span class="flip-back">논리적 응집도(Logical Cohesion)</span>
+</a>
+<br><br>
+
+
