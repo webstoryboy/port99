@@ -1,0 +1,80 @@
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+    <div id="chart_div" style="width: 1200px; height: 500px;"></div>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['항목', '일반인', '부자'],
+          ['연금 및 사회보험', '1', '22'],
+          ['자녀 사교육비', '21', '18'],
+          ['식표룸', '21', '13'],
+          ['의류 및 잡화', '10', '11'],
+          ['가사 서비스', '6', '10'],
+          ['문화 및 레저', '10', '10'],
+          ['외식비', '20', '9'],
+          ['의료비 및 의약품비', '11', '6']
+        ]);
+
+        var options = {
+          chart: {
+            title: '일반인과 부자의 소비 항목 차이',
+            subtitle: '출처: 하나금융경영연구소, 2015 Korean Wealth Report',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawMultSeries);
+
+        function drawMultSeries() {
+            var data = google.visualization.arrayToDataTable([
+                ['항목', '일반인', '부자'],
+                ['연금 및 사회보험', 1, 22],
+                ['자녀 사교육비', 21, 18],
+                ['식료품', 21, 13],
+                ['의류 및 잡화', 10, 6],
+                ['가사 서비스', 30, 20]
+            ]);
+
+            var options = {
+                title: '일반인과 부자의 소비 항목 차이',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: '퍼센트',
+                    minValue: 0,
+                    maxValue: 40
+                },
+                vAxis: {
+                title: '항목'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+            }
+
+
+
+    </script>
+  </body>
+</html>
