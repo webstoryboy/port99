@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moust Effect02 - jQuery</title>
+    <title>Moust Effect02 - Javascript</title>
     <meta name="description" content="웹스토리보이와 함께 예제를 통해 배우는 스크립트 튜토리얼">
 	<meta name="keywords" content="mouse, animation, parallax, menu, slider, canvas, javascript, text, webs">
     <meta name="author" content="webstoryboy">
@@ -66,7 +66,7 @@
             top: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(5, 36, 70, 0.9);
+            background: rgba(13, 28, 3, 0.9);
             z-index: -1;
         }
 
@@ -88,7 +88,7 @@
             margin-bottom: 3px;
         }
 
-        .info li.active a:first-child {
+        .info li.active a:last-child {
             background: #fff;
             color: #000;
         }
@@ -217,7 +217,7 @@
 
     <!-- info -->
     <div class="info left">
-        <h1>jQuery Mouse Effect02</h1>
+        <h1>Javascript Mouse Effect02</h1>
         <p>마우스 따라다니기</p>
     </div>
 
@@ -250,32 +250,34 @@
 
 
     <!-- script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
     <script>
-        //jQuery + GSAP
-        const cursor = $(".cursor");
-        const follower = $(".cursor-follower");
+        //Javascript + GSAP
+        const cursor = document.querySelector(".cursor");
+        const follower = document.querySelector(".cursor-follower");
 
         //움직임 효과
-        $(document).mousemove(function(e){
+        document.addEventListener("mousemove", function (e){
             gsap.to(cursor, 0.3, {left: e.pageX - 5, top: e.pageY - 5 });
             gsap.to(follower, 0.8, {left: e.pageX - 15 , top: e.pageY  - 15});
         });
 
         //오버 효과
-        $(".contents em").hover(function(){
-            cursor.addClass("active");
-            follower.addClass("active");
-        }, function(){
-            cursor.removeClass("active");
-            follower.removeClass("active");
+        document.querySelectorAll(".contents em").forEach(elem => {
+            elem.addEventListener("mouseenter", () => {
+                cursor.classList.add("active");
+                follower.classList.add("active");
+            });
+            elem.addEventListener("mouseleave", () => {
+                cursor.classList.remove("active");
+                follower.classList.remove("active");
+            });
         });
-
+        
         //출력용
-        $(document).mousemove(function(e){  //마우스가 움직였을 때 이벤트 함수
-            $(".pageX").text(e.pageX);  //이벤트 pageX 값을 화면에 출력
-            $(".pageY").text(e.pageY);  //이벤트 pageY 값을 화면에 출력
+        document.addEventListener("mousemove", function (e){
+            document.querySelector(".pageX").textContent = e.pageX;
+            document.querySelector(".pageY").textContent = e.pageY;
         });
     </script>
 </body>
