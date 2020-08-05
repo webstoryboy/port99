@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax03</title>
+    <title>Parallax05</title>
     <meta name="description" content="웹스토리보이와 함께 예제를 통해 배우는 스크립트 튜토리얼">
 	<meta name="keywords" content="mouse, animation, parallax, menu, slider, canvas, javascript, text, webs">
     <meta name="author" content="webstoryboy">
@@ -281,20 +281,23 @@
         #section9 .content-item-img {
             background-image: url(../assets/img/so01.jpg);
         }
+
+        /* info */
+        
     </style>
 </head>
 <body>
 
     <!-- info -->
     <div class="info">
-        <h1>Parallax03</h1>
-        <p>패럴랙스 스크로링 효과</p>
+        <h1>Parallax05</h1>
+        <p>패럴랙스 효과</p>
         <ul class="menu">
             <li>Parallax <a href="parallax01.html">1</a><a href="jparallax01.html">1</a></li>
             <li>Parallax <a href="parallax02.html">2</a><a href="jparallax02.html">2</a></li>
-            <li class="active">Parallax <a href="parallax03.html">3</a><a href="jparallax03.html">3</a></li>
+            <li>Parallax <a href="parallax03.html">3</a><a href="jparallax03.html">3</a></li>
             <li>Parallax <a href="parallax04.html">4</a><a href="jparallax04.html">4</a></li>
-            <li>Parallax <a href="parallax05.html">5</a><a href="jparallax05.html">5</a></li>
+            <li class="active">Parallax <a href="parallax05.html">5</a><a href="jparallax05.html">5</a></li>
             <li>Parallax <a href="parallax06.html">6</a><a href="jparallax06.html">6</a></li>
             <li>Parallax <a href="parallax07.html">7</a><a href="jparallax07.html">7</a></li>
             <li>Parallax <a href="parallax08.html">8</a><a href="jparallax08.html">8</a></li>
@@ -395,28 +398,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
     <script>
-        //제이쿼리
-        let scrollTop = $(window).scrollTop();
-
-        function scroll() {
-            const newScrollTop = $(window).scrollTop();
-            const different = newScrollTop - scrollTop;
-
-            console.log("scrollTop : " + scrollTop)
-            console.log("newScrollTop : " + newScrollTop)
-            console.log("different : " + different)
-
-            //$(".content-item-imgWrap").css({ "transform": "skewY(" + different * 0.3 + "deg)" });
-
-            gsap.to(".content-item-imgWrap", .3, {
-                skewY: different * 0.1,
-                ease: Power1.ease
-            })
-
-            scrollTop = newScrollTop
-            requestAnimationFrame(scroll)
-        }
-        scroll();
+        
     </script>
 </body>
 </html>
